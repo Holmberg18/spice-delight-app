@@ -1,0 +1,135 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-ExtraLight.ttf') format('ttf');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-Light.ttf') format('ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-Medium.ttf') format('ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-SemiBold.ttf') format('ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-Bold.ttf') format('ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-ExtraBold.ttf') format('ttf');
+    font-weight: 800;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-Light.otf') format('otf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-LightItalic.otf') format('otf');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-Regular.otf') format('otf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-RegularItalic.otf') format('otf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-Medium.otf') format('otf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-MediumItalic.otf') format('otf');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-Semibold.otf') format('otf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-SemiboldItalic.otf') format('otf');
+    font-weight: 600;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-Bold.otf') format('otf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-BoldItalic.otf') format('otf');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-Black.otf') format('otf');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos';
+    src: url('fonts/TiemposHeadline-BlackItalic.otf') format('otf');
+    font-weight: 900;
+    font-style: italic;
+}
+
