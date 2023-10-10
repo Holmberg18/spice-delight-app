@@ -1,20 +1,12 @@
+import Navigation from '../../components/Navigation'
+
+
 const Home = () => {
     return (
         <div className="bg-gray-100 text-gray-800">
 
             {/* Navbar */}
-            <nav className="bg-white shadow p-4">
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <div className="text-2xl font-bold text-indigo-600">Brand</div>
-                <div className="space-x-4">
-                <a href="#" className="text-gray-700 hover:text-indigo-600">Home</a>
-                <a href="#" className="text-gray-700 hover:text-indigo-600">About</a>
-                <a href="#" className="text-gray-700 hover:text-indigo-600">Services</a>
-                <a href="#" className="text-gray-700 hover:text-indigo-600">Contact</a>
-                </div>
-            </div>
-            </nav>
-    
+            <Navigation />
             {/* Main content */}
             <main className="mt-10">
             <div className="max-w-7xl mx-auto px-4">
@@ -56,6 +48,7 @@ const Home = () => {
             <div className="max-w-7xl mx-auto text-center">
                 <p>&copy; 2023 My Company. All rights reserved.</p>
             </div>
+            <a href="https://www.flaticon.com/free-icons/lunch" title="lunch icons">Lunch icons created by Freepik - Flaticon</a>
             </footer>
     
       </div>
