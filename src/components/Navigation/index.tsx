@@ -1,13 +1,9 @@
-import { createRef, useRef } from 'react'
 import { BrowserRouter as Router, Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass"
 import Button from "../Button"
 
 const Navigation = () => {
-
-    const searchRef = createRef<HTMLFormElement>()
-
 
     return(
         <nav className="border-gray-200 border-b border-gray-100">
