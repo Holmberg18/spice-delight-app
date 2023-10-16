@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors= require('tailwindcss/colors')
 module.exports = {
   content: [
     "./index.html",
@@ -13,7 +15,7 @@ module.exports = {
     },
     colors: {
       'black': '#333333',
-      'white': '#FFFFF0',
+      'white': '#F7F7F7',
       'blue': '#1fb6ff',
       'purple': '#7e5bef',
       'pink': '#ff49db',
@@ -35,8 +37,11 @@ module.exports = {
       },
       borderRadius: {
         '4xl': '2rem',
-      }
+      },
+      colors: {
+        purple: colors.purple
+    },
     }
   },
-  plugins: [],
+  plugins: []
 }
