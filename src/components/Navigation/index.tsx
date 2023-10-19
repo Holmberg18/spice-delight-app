@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Link } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass"
+import Searchbar from "../Searchbar"
 import Button from "../Button"
 
 const Navigation = () => {
@@ -27,7 +26,7 @@ const Navigation = () => {
                         </Link>
                     </Router>
                     <li>
-                        <p className="text-xl"><FontAwesomeIcon icon={faMagnifyingGlass} /></p>
+                       <Searchbar />
                     </li>
                     <li>
                         <a href="#" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent"><Button name={"Get the App"} rounded={true} /></a>

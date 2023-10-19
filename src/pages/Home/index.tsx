@@ -24,31 +24,31 @@ const Home = () => {
                 
                 {/* Hero section */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="text-left">
-                    <h1 className="my-4 text-7xl">Get Your Favorite Food With Ease</h1>
-                    <p className="my-9">Satisfy Your Hunger Pangs with a Wide Range of Delicious Meals from Top Restaurants - Fast and Reliable Delivery Guaranteed!</p>
-                    <div className="flex flex-row items-center justify-between px-6 flex-wrap">
-                        <Button name={"Order Now"} rounded={true} />
-                        <div className="relative h-48 w-48">
-                            <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
-                            <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
+                    <div className="text-left">
+                        <h1 className="my-4 text-7xl">Get Your Favorite Food With Ease</h1>
+                        <p className="my-9">Satisfy Your Hunger Pangs with a Wide Range of Delicious Meals from Top Restaurants - Fast and Reliable Delivery Guaranteed!</p>
+                        <div className="flex flex-wrap items-center justify-center xs:flex-column lg:justify-between lg:flex-row px-6">
+                            <Button name={"Order Now"} rounded={true} />
+                            <div className="relative h-48 w-48">
+                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
+                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="my-16">
-                    <img src="/pexels-spice-hero.jpg" alt="Placeholder Image" className="w-full rounded-md shadow-lg" />
-                </div>
+                    <div className="my-16">
+                        <img src="/pexels-spice-hero.jpg" alt="Placeholder Image" className="w-full rounded-md shadow-lg" />
+                    </div>
                 </div>
     
                 {/* Recipe Slider section */}
-                <section className="grid grid-cols-1 grid-rows-4 lg:grid-cols-5 grid-rows-1 mt-16 content-center">
+                <section className="grid sm:grid-rows-5 grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 grid-rows-1 mt-16 content-center">
                     <div className="lg:col-span-1 flex items-center justify-center">
                         <p className="font-semibold text-2xl">Trending Recipes</p>
                     </div>
                     <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center align-center lg:block">
                         <Recipes classes="max-w-md" />
                     </div>
-                    <div className="row-span-1 lg:col-span-1 flex items-center my-7">
+                    <div className="row-span-1 flex items-center my-7 justify-center xl:justify-start">
                         <a href="#" className="font-semibold underline underline-offset-8 decoration-yellow">Explore More</a>
                     </div>
                     <div className="row-span-1 lg:col-span-1 my-10">
