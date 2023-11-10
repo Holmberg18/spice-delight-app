@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import Navigation from '../../components/Navigation'
 import Button from '../../components/Button'
 import Recipes from '../../components/Recipes'
 import CircleType from 'circletype'
@@ -9,6 +8,7 @@ import { faStar, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
+    
     const getAppRef = useRef<HTMLParagraphElement>(null)
 
     useEffect(() => {
@@ -16,8 +16,6 @@ const Home = () => {
     },[])
     return (
         <div className="bg-gray-100 text-gray-800">
-            {/* Navbar */}
-            <Navigation />
             {/* Main content */}
             <main className="mt-10">
             <div className="max-w-7xl mx-auto px-4">
@@ -28,10 +26,10 @@ const Home = () => {
                         <h1 className="my-4 text-7xl">Get Your Favorite Food With Ease</h1>
                         <p className="my-9">Satisfy Your Hunger Pangs with a Wide Range of Delicious Meals from Top Restaurants - Fast and Reliable Delivery Guaranteed!</p>
                         <div className="flex flex-wrap items-center justify-center xs:flex-column lg:justify-between lg:flex-row px-6">
-                            <Button name={"Order Now"} rounded={true} />
+                            <Button buttonType="button" name={"Order Now"} rounded={true} />
                             <div className="relative h-48 w-48">
                                 <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
-                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
+                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button buttonType="button" icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
                             </div>
                         </div>
                     </div>
