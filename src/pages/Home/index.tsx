@@ -26,10 +26,10 @@ const Home = () => {
                         <h1 className="my-4 text-7xl">Get Your Favorite Food With Ease</h1>
                         <p className="my-9">Satisfy Your Hunger Pangs with a Wide Range of Delicious Meals from Top Restaurants - Fast and Reliable Delivery Guaranteed!</p>
                         <div className="flex flex-wrap items-center justify-center xs:flex-column lg:justify-between lg:flex-row px-6">
-                            <Button name={"Order Now"} rounded={true} />
+                            <Button buttonType="button" name={"Order Now"} rounded={true} />
                             <div className="relative h-48 w-48">
                                 <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
-                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
+                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button buttonType="button" icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
                             </div>
                         </div>
                     </div>

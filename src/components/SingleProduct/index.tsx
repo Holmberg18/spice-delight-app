@@ -25,14 +25,18 @@ const SingleProduct = ({ prod }: Props) => {
             <div className="flex flex-col px-24">
                 {
                     cart.some((p: {[key: string]: any}) => p.id === prod.id) ? (
-                        <Button action={() => {
+                        <Button 
+                            buttonType="button"
+                            action={() => {
                             dispatch({
                                 type: "REMOVE_FROM_CART",
                                 payload: prod,
                             })
                         }} name="Remove from cart" rounded={true} className="my-2" />
                     ) : (
-                        <Button action={()=> {
+                        <Button 
+                            buttonType="button"
+                            action={()=> {
                             dispatch({
                                 type: "ADD_TO_CART",
                                 payload: prod,

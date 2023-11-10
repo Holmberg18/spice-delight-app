@@ -59,7 +59,7 @@ const Cart = () => {
                         ) : <li className="block text-white hover:text-blue text-sm cursor-pointer">Your cart is empty!</li>
                     }
                     <Link to="/cart">
-                        <Button name="Go To Cart" rounded={true} className="md:hover:text-blue"/>
+                        <Button buttonType="button" name="Go To Cart" rounded={true} className="md:hover:text-blue"/>
                     </Link>
                 </ul>
             </div>
