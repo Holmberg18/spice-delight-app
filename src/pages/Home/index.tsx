@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import Navigation from '../../components/Navigation'
 import Button from '../../components/Button'
 import Recipes from '../../components/Recipes'
 import CircleType from 'circletype'
@@ -9,6 +8,7 @@ import { faStar, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
+    
     const getAppRef = useRef<HTMLParagraphElement>(null)
 
     useEffect(() => {
@@ -16,8 +16,6 @@ const Home = () => {
     },[])
     return (
         <div className="bg-gray-100 text-gray-800">
-            {/* Navbar */}
-            <Navigation />
             {/* Main content */}
             <main className="mt-10">
             <div className="max-w-7xl mx-auto px-4">

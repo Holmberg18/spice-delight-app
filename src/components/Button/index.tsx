@@ -1,17 +1,19 @@
 import { MouseEventHandler } from "react"
 
 interface Props {
-    name?: string;
+    name?: string
+    disabled?: boolean
     action?: MouseEventHandler<HTMLButtonElement>,
     rounded: boolean
     icon?: JSX.Element
-    classes?: string
+    className?: string
+    buttonType: "button" | "submit" | "reset" | undefined
 }
 
-const Button = ({ name, action, rounded, icon, classes }: Props) => {
+const Button = ({ name, disabled, action, rounded, icon, className, buttonType }: Props) => {
 
     return (
-        <button className={"bg-black hover:bg-blue-700 text-white text-sm h-12 px-6 py-3 "+classes} onClick={action} style={{borderRadius: rounded ? 24: 0}}>
+        <button type={buttonType} disabled={disabled} className={"bg-black hover:bg-blue-700 text-white text-sm h-12 px-6 py-3 "+className} onClick={action} style={{borderRadius: rounded ? 24: 0}}>
             {name}{icon}
         </button>
     )
