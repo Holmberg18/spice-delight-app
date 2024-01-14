@@ -1,9 +1,10 @@
 import { useContext, createContext, useReducer } from "react"
-import { cartReducer, productReducer } from "./Reducers"
-import { faker } from "@faker-js/faker"
+import { cartReducer, mealReducer } from "./Reducers"
+import { fetchRecipes } from "../utils/recipes"
 
 const Cart = createContext<any>({} as any)
-faker.seed(99)
+const getRecipeCollection = async(): Promise<void | Meal[]> => await fetchRecipes()
+const recipes = getRecipeCollection()
 
 interface Props {
     children: JSX.Element
@@ -11,29 +12,19 @@ interface Props {
 
 const Context = ({ children }: Props) => {
 
-    const products = [...Array(20)].map(() => ({
-        id: faker.string.uuid(),
-        name: faker.commerce.productName(),
-        price: faker.commerce.price(),
-        image: faker.image.url(),
-        inStock: faker.helpers.arrayElement([0, 3, 5, 6, 7]),
-        fastDelivery: faker.datatype.boolean(),
-        ratings: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
-    }))
-
     const [state, dispatch] = useReducer(cartReducer, {
-        products: products,
+        recipes: recipes,
         cart: []
     })
 
-    const [productState, productDispatch] = useReducer(productReducer, {
+    const [mealState, mealDispatch] = useReducer(mealReducer, {
         byStock: false,
         byFastDelivery: false,
         byRating: 0,
         searchQuery: "",
     })
 
-    return <Cart.Provider value={{state, dispatch, productState, productDispatch}}>{children}</Cart.Provider>
+    return <Cart.Provider value={{state, dispatch, mealState, mealDispatch}}>{children}</Cart.Provider>
 }
 
 export default Context

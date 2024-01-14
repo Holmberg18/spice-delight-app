@@ -5,20 +5,20 @@ import { CartState } from '../../context/Context'
 
 const Searchbar = () => {
 
-    const { productState: { productDispatch }} = CartState()
+    const { mealState: { mealDispatch }} = CartState()
     const [isVisible, setIsVisible] = useState(false)
     return(
         <div className="relative">
-                    {
+            {
                 isVisible ? (
                     <input
                         type="text"
                         placeholder="Search for recipes, restaurants..."
                         className="p-2 border rounded"
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => productDispatch({type: "FILTER_BY_SEARCH", payload: e.target.value})}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => mealDispatch({type: "FILTER_BY_SEARCH", payload: e.target.value})}
                         onBlur={() => setIsVisible(false)}
                         autoFocus
-                        />
+                    />
                 ) : (
                     <FontAwesomeIcon
                         icon={faSearch}
@@ -27,7 +27,6 @@ const Searchbar = () => {
                         />
                 )
             }
-
         </div>
     )
 }

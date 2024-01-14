@@ -4,13 +4,13 @@ export const cartReducer = (state: any, action: any) => {
             return { ...state, cart: [...state.cart, { ...action.payload, qty: 1}] };
         case "REMOVE_FROM_CART":
             return { ...state,
-                cart: state.cart.filter((c: {[key:string]:any}) => c.id !== action.payload.id),
+                cart: state.cart.filter((c: {[key:string]:any}) => c.idMeal !== action.payload.idMeal),
             };
         case "CHANGE_CART_QTY":
             return {
                 ...state,
                 cart: state.cart.filter((c: {[key:string]:any}) => 
-                    c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
+                    c.idMeal === action.payload.idMeal ? (c.qty = action.payload.qty) : c.qty
                 )
             }
         default:
@@ -18,7 +18,7 @@ export const cartReducer = (state: any, action: any) => {
     }
 }
 
-export const productReducer = (state: any, action: any) => {
+export const mealReducer = (state: any, action: any) => {
     switch(action.type){
         case "SORT_BY_PRICE":
             return {...state, sort: action.payload}

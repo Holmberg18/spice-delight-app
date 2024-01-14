@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Button from '../../components/Button'
-import Recipes from '../../components/Recipes'
+import { fetchRecipes } from '../../utils/recipes'
+import Slider from '../../components/Slider'
 import CircleType from 'circletype'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +9,6 @@ import { faStar, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 
-    
     const getAppRef = useRef<HTMLParagraphElement>(null)
 
     useEffect(() => {
@@ -19,7 +19,6 @@ const Home = () => {
             {/* Main content */}
             <main className="mt-10">
             <div className="max-w-7xl mx-auto px-4">
-                
                 {/* Hero section */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div className="text-left">
@@ -28,8 +27,8 @@ const Home = () => {
                         <div className="flex flex-wrap items-center justify-center xs:flex-column lg:justify-between lg:flex-row px-6">
                             <Button buttonType="button" name={"Order Now"} rounded={true} />
                             <div className="relative h-48 w-48">
-                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
-                                <div className="absolute absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button buttonType="button" icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
+                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
+                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Button buttonType="button" icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></div>
                             </div>
                         </div>
                     </div>
@@ -44,7 +43,17 @@ const Home = () => {
                         <p className="font-semibold text-2xl">Trending Recipes</p>
                     </div>
                     <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center align-center lg:block">
-                        <Recipes classes="max-w-md" />
+                        <Slider 
+                            classes="max-w-md" 
+                            getSlideData={fetchRecipes} 
+                            id="idMeal"
+                            src= "strMealThumb"
+                            label= "strMeal"
+                            background= "bg-purple-400"
+                            perView={2}
+                            thumbSize={"10px"}
+                            imageId="strMealThumb"
+                        />
                     </div>
                     <div className="row-span-1 flex items-center my-7 justify-center xl:justify-start">
                         <a href="#" className="font-semibold underline underline-offset-8 decoration-yellow">Explore More</a>

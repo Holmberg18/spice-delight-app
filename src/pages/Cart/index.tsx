@@ -29,10 +29,10 @@ const Cart = () => {
                 <ol className="Tiempos">
                     {
                         cart.length > 0 ? cart.map((prod: {[key:string]:any}) => (
-                            <li key={prod.name} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4  rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
-                                <img className="md:max-w-xs fluid rounded-lg" src={prod.image} alt={prod.name} />
-                                <p>{prod.name}</p>
-                                <p>{prod.price}</p>
+                            <li key={prod.strMeal} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4  rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
+                                <img className="md:max-w-xs fluid rounded-lg" src={prod.strMealThumb} alt={prod.strMeal} />
+                                <p>{prod.strMeal}</p>
+                                <p>${prod.price}</p>
                                 <Rating rating={prod.ratings} className="px-6 pb-2" />
                                 <select 
                                     className="w-28"
@@ -68,7 +68,7 @@ const Cart = () => {
             </div>
             <div className="flex flex-col bg-[#343a40] text-white p-6 w-[25%] m-2 h-[86vh]">
                 <h1 className="text-xxl mb-3">Subtotal ({cart.length}) items</h1>
-                <p className="Manrope bold mb-3">Total: {total}</p>
+                <p className="Manrope bold mb-3">Total: ${total}</p>
                 <Link to="/checkout">
                     <Button buttonType="button" name="Proceed to Checkout" className="bg-blue" rounded={false} />
                 </Link>
