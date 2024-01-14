@@ -14,8 +14,8 @@ import {
 const Filters = () => {
 
     const { 
-        productState: { byStock, byFastDelivery, sort, byRating},
-        productDispatch 
+        mealState: { byStock, byFastDelivery, sort, byRating},
+        mealDispatch 
     } = CartState()
 
     const initialValues: MyFormValues = { sortBy: ''}
@@ -27,7 +27,7 @@ const Filters = () => {
     ]
     return (
         <div className="bg-[#343a40] text-white p-6 w-[20%] m-2 h-[86vh]">
-            <span className="text-xl">Filter Products</span>
+            <span className="text-xl">Filter Recipes</span>
             <Formik
                 initialValues={initialValues}
                 onSubmit={( values, actions) => {
@@ -44,7 +44,7 @@ const Filters = () => {
                                     name="filter" 
                                     value={filter.value} 
                                     onChange={() => {
-                                        productDispatch({type: filter.dispatch, payload: filter.order})
+                                        mealDispatch({type: filter.dispatch, payload: filter.order})
                                     }}
                                     checked={(filter.dispatch === "SORT_BY_PRICE" && sort === filter.order) || filter.checked}
                                  />
@@ -57,14 +57,14 @@ const Filters = () => {
                         <Rating 
                             rating={byRating}
                             onClick={(i: number) => 
-                                productDispatch({
+                                mealDispatch({
                                     type: "FILTER_BY_RATING",
                                     payload: i + 1,
                                 })}
                             className="cursor-pointer"
                         />
                     </div>
-                    <Button buttonType="button" name="Clear Filters" rounded={true} action={() => productDispatch({type: "CLEAR_FILTERS"})}/>
+                    <Button buttonType="button" name="Clear Filters" rounded={true} action={() => mealDispatch({type: "CLEAR_FILTERS"})}/>
                 </Form>
             </Formik>
         </div>
