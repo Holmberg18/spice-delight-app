@@ -69,9 +69,9 @@ const Meals = () => {
     ),[transformMeals])
 
     return(
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row wrap">
             <Filters />
-            <div className="grid grid-cols-3 w-[80%]">
+            <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 lg:w-[75%] justify-center">
                 {mealList.length ? mealList.map((prod: Meal) => {
                     return <SingleMeal meal={prod} key={prod.idMeal} />
                 }): ""}
