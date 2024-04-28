@@ -8,19 +8,19 @@ import categories from '../../data/categories.json'
 
 const Categories = () => {
 
-    const [bannerId, setBannerId] = useState<string>("")
+    const [banner, setBanner] = useState<string>("2IxTgsgFi-s")
     const [banners, setBanners] = useState<{[key:string]: any}>({})
     const [isFocused, setIsFocused] = useState<boolean>(false)
 
     const handleBannerImgClick = (id: string): void => {
-        setBannerId(id)
+        setBanner(id)
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const input: string = e.currentTarget.value.toLowerCase()
         const categoryList: {[key: string]: any} = categories
         if(input in categories){
-            setBannerId(categoryList[input])
+            setBanner(categoryList[input])
         }
     }
 
@@ -54,17 +54,17 @@ const Categories = () => {
                     { isFocused && <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute text-[#CC3232] top-[1rem] right-[1rem]" /> }
                 </div>
             </div>
-            <div className="relative w-full max-w-[90%] h-max">
-                <Banner src={bannerId?.length > 0 ? banners[bannerId]: "/category_banner.jpg"} classes="absolute z-1 h-[50vh] rounded-xl" />
-                <Slider 
-                    classes="absolute z-2 top-[5rem] cursor-pointer"
+            <div className="relative w-full h-[20rem]">
+                <Banner src={banners[banner] + "/category_banner.jpg"} classes={`absolute z-1 h-[20rem] rounded-xl`} />
+                <Slider
+                    classes="absolute z-2 align-middle cursor-pointer top-1/4"
                     getSlideData={getCategories}
                     id="idCategory"
                     src="strCategoryThumb"
                     label="strCategory"
                     background="bg-black"
                     perView={5}
-                    thumbSize={"200px"}
+                    thumbSize={"lg"}
                     action={handleBannerImgClick}
                     imageId="banner"
                     arrows={true}

@@ -1,10 +1,11 @@
 import axios from 'axios'
 import categoryMap from '../data/categories.json'
+import { Meal } from '../models/Meal'
 
-const fetchRecipes = () => {
+const fetchRecipes = (type: string) => {
 
-    const recipes = axios({
-        url: "https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian",
+    const recipes: Promise<void | Meal[]> = axios({
+        url: `https://www.themealdb.com/api/json/v1/1/filter.php?a=${type}`,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -12,14 +13,19 @@ const fetchRecipes = () => {
     })
     .then((response: any) => response.data)
     .then((data: any) => {
-        let meals: Meal[] = data.meals
-        meals = meals.map((meal : {[key: string]: any}) => ({
-                ...meal, 
+        let meals: any = data.meals
+        if(Array.isArray(meals)){
+            meals = meals.map((meal : Meal) => ({
+                idMeal: meal.idMeal,
+                name: meal.strMeal,
                 price: (Math.random() * (50 - 10) + 10).toFixed(2),
+                strMeal: meal.strMeal,
+                strMealThumb: meal.strMealThumb,
                 ratings: (Math.random() * (5 - 1) + 1).toFixed(),
-                inStock: Math.random() >= 0.5,
+                inStock: Math.random() <= 0.8,
                 fastDelivery: Math.random() >= 0.5
-        }))
+            }))
+        }
         return meals
     })
     .catch((error) => {

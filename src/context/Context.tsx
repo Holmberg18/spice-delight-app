@@ -1,10 +1,17 @@
 import { useContext, createContext, useReducer } from "react"
 import { cartReducer, mealReducer } from "./Reducers"
 import { fetchRecipes } from "../utils/recipes"
+import { Meal } from "../models/Meal"
 
 const Cart = createContext<any>({} as any)
-const getRecipeCollection = async(): Promise<void | Meal[]> => await fetchRecipes()
-const recipes = getRecipeCollection()
+const getRecipeCollection = async(type: string): Promise<void | Meal[]> => await fetchRecipes(type)
+const recipeList = async() => {
+    const mexicanRecipes: void | Meal[] = await getRecipeCollection("Mexican")
+    const spanishRecipes : void | Meal[] = await getRecipeCollection("Spanish")
+
+    return Array.isArray(mexicanRecipes) && 
+        Array.isArray(spanishRecipes) ? mexicanRecipes.concat(spanishRecipes) : null
+}
 
 interface Props {
     children: JSX.Element
@@ -13,7 +20,7 @@ interface Props {
 const Context = ({ children }: Props) => {
 
     const [state, dispatch] = useReducer(cartReducer, {
-        recipes: recipes,
+        recipes: recipeList(),
         cart: []
     })
 

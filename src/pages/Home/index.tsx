@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import { fetchRecipes } from '../../utils/recipes'
 import Slider from '../../components/Slider'
@@ -38,25 +39,26 @@ const Home = () => {
                 </div>
     
                 {/* Recipe Slider section */}
-                <section className="grid sm:grid-rows-5 grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 grid-rows-1 mt-16 content-center">
+                <section className="grid sm:grid-rows-5 grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 grid-rows-1 mt-16 content-center align-middle">
                     <div className="lg:col-span-1 flex items-center justify-center">
                         <p className="font-semibold text-2xl">Trending Recipes</p>
                     </div>
-                    <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center align-center lg:block">
+                    <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center my-auto lg:block">
                         <Slider 
                             classes="max-w-md" 
-                            getSlideData={fetchRecipes} 
+                            getSlideData={() => fetchRecipes("Spanish")} 
                             id="idMeal"
                             src= "strMealThumb"
                             label= "strMeal"
                             background= "bg-purple-400"
                             perView={2}
-                            thumbSize={"10px"}
+                            thumbSize={"sm"}
                             imageId="strMealThumb"
                         />
                     </div>
                     <div className="row-span-1 flex items-center my-7 justify-center xl:justify-start">
-                        <a href="#" className="font-semibold underline underline-offset-8 decoration-yellow">Explore More</a>
+                        {/* <a href="#" >Explore More</a> */}
+                        <Link className="font-semibold underline underline-offset-8 decoration-yellow" to="/products">Explore More</Link>
                     </div>
                     <div className="row-span-1 lg:col-span-1 my-10">
                         <p className="text-2xl px-3"><FontAwesomeIcon icon={faStar} /></p>
@@ -66,15 +68,6 @@ const Home = () => {
                 </section>
             </div>
             </main>
-    
-            {/* Footer */}
-            <footer className="bg-indigo-600 text-gray p-4 mt-16">
-                <div className="max-w-7xl mx-auto text-center">
-                    <p>&copy; 2023 Spice Delight. All rights reserved.</p>
-                </div>
-                <a href="https://www.flaticon.com/free-icons/lunch" title="lunch icons">Lunch icons created by Freepik - Flaticon</a>
-            </footer>
-    
       </div>
     )
 }

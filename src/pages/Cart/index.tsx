@@ -4,23 +4,20 @@ import Rating from '../../components/Rating'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../components/Button'
-import { CartState } from "../../context/Context"
+import { updateQuantity, removeFromCart } from "../../features/cartSlice"
+import { RootState } from "../../app/store"
+import { CartItem } from "../../models/Meal"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const Cart = () => {
 
-    type Product = {[attr: string]: any}
     const [total, setTotal] = useState<number>(0)
-    const {
-        state: { cart },
-        dispatch,
-    }: {
-        state: {cart: Product[]},
-        dispatch: Function
-    } = CartState()
+    const cart = useSelector((state: RootState) => state.cart.items)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setTotal(cart.reduce((acc: number, curr: {[key:string]: any}) => acc + Number(curr.price) * curr.qty, 0))
+        setTotal(cart.reduce((acc: number, curr: CartItem) => acc + Number(curr.meal.price) * curr.quantity, 0))
     }, [cart])
 
     return (
@@ -28,25 +25,20 @@ const Cart = () => {
             <div className="w-[75%] h-[86vh] p-8" >
                 <ol className="Tiempos">
                     {
-                        cart.length > 0 ? cart.map((prod: {[key:string]:any}) => (
-                            <li key={prod.strMeal} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4  rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
-                                <img className="md:max-w-xs fluid rounded-lg" src={prod.strMealThumb} alt={prod.strMeal} />
-                                <p>{prod.strMeal}</p>
-                                <p>${prod.price}</p>
-                                <Rating rating={prod.ratings} className="px-6 pb-2" />
+                        cart.length > 0 ? cart.map((prod: CartItem) => (
+                            <li key={prod.meal.strMeal} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4  rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
+                                <img className="md:max-w-xs fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} />
+                                <p>{prod.meal.strMeal}</p>
+                                <p>${prod.meal.price}</p>
+                                <Rating rating={prod.meal.ratings} className="px-6 pb-2" />
                                 <select 
                                     className="w-28"
-                                    value={prod.qty}
+                                    value={prod.quantity}
                                     onChange={(e: ChangeEvent<HTMLSelectElement>) => 
-                                        dispatch({
-                                            type: "CHANGE_CART_QTY",
-                                            payload: {
-                                                id: prod.id,
-                                                qty: e.target.value
-                                            }
-                                        })}>
+                                        dispatch(updateQuantity({idMeal: prod.meal.idMeal, quantity: parseInt(e.target.value)}))}
+                                >
                                     {
-                                       [...Array(prod.inStock).keys()].map((x) => (
+                                       [...Array(prod.meal.inStock).keys()].map((x) => (
                                             <option key={x + 1}>{x + 1}</option>
                                        ))
                                     }
@@ -54,11 +46,7 @@ const Cart = () => {
                                 <div className="block text-[#343a40] hover:text-blue text-sm cursor-pointer">
                                     <FontAwesomeIcon 
                                         icon={faTrashCan} 
-                                        onClick={() => 
-                                            dispatch({
-                                                type: "REMOVE_FROM_CART",
-                                                payload: prod,
-                                        })}
+                                        onClick={() => dispatch(removeFromCart(prod.meal))}
                                     />
                                 </div>
                             </li>
