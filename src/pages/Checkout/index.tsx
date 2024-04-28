@@ -1,13 +1,12 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { State, IState } from 'country-state-city';
 import * as Yup from 'yup'
 import Button from '../../components/Button';
 import Rating from '../../components/Rating';
 import { CartState } from "../../context/Context"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-
+import { RootState } from "../../app/store"
+import { useDispatch, useSelector } from "react-redux"
 
 const initialValues: CheckoutFormValues = {
     firstName: '',
@@ -24,7 +23,6 @@ const stateOptions: StateOption[] = State.getStatesOfCountry("US").map((state: I
     value: state.isoCode,
 }))
 
-
 const validationSchema = Yup.object({
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
@@ -37,16 +35,11 @@ const validationSchema = Yup.object({
 
 const CheckoutForm = () => {
 
-    type Product = {[attr: string]: any}
     const [total, setTotal] = useState<number>(0)
-    const {
-        state: { cart },
-    }: {
-        state: {cart: Product[]},
-    } = CartState()
+    const cart = useSelector((state: RootState) => state.cart.items)
 
     useEffect(() => {
-        setTotal(cart.reduce((acc: number, curr: {[key:string]: any}) => acc + Number(curr.price) * curr.qty, 0))
+        setTotal(cart.reduce((acc: number, curr: {[key:string]: any}) => acc + (curr.meal.price * curr.quantity), 0))
     }, [cart])
 
     return (
@@ -62,82 +55,76 @@ const CheckoutForm = () => {
                             setSubmitting(false);
                         }, 400)
                     }}
-                    >
-                        <Form className="grid grid-cols-2 gap-6">
-                            <div className="col-span-2 sm:col-span-1">
-                                <label htmlFor="firstName" className="block">First Name</label>
-                                <Field name="firstname" type="text" className="mt-1 p-2 border rounded w-full"/>
-                                <ErrorMessage name="firstName" component="div" className="text-red text-sm" />
-                            </div>
+                >
+                    <Form className="grid grid-cols-1 gap-6">
+                        <div className="col-span-1">
+                            <label htmlFor="firstName" className="block text-left">First Name</label>
+                            <Field name="firstname" type="text" className="mt-1 p-2 border rounded w-full" />
+                            <ErrorMessage name="firstName" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2 sm:col-span-1">
-                                <label htmlFor="lastName" className="block">Last Name</label>
-                                <Field name="lastName" type="text" className="mt-1 p-2 border rounded w-full" />
-                                <ErrorMessage name="lastName" component="div" className="text-rid text-sm" />
-                            </div>
+                        <div className="col-span-1">
+                            <label htmlFor="lastName" className="block text-left">Last Name</label>
+                            <Field name="lastName" type="text" className="mt-1 p-2 border rounded w-full" />
+                            <ErrorMessage name="lastName" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2">
-                                <label htmlFor="email" className="block">Email</label>
-                                <Field name="email" type="email" className="mt-1 p-2 border rounded w-full"/>
-                                <ErrorMessage name="email" component="div" className="text-red text-sm" />  
-                            </div>
+                        <div className="col-span-1">
+                            <label htmlFor="email" className="block text-left">Email</label>
+                            <Field name="email" type="email" className="mt-1 p-2 border rounded w-full" />
+                            <ErrorMessage name="email" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2">
-                                <label htmlFor="address" className="block">Address</label>
-                                <Field name="address" type="text" className="mt-1 p-2 border rounded w-full"/>
-                                <ErrorMessage name="address" component="div" className="text-red text-sm"/>
-                            </div>
+                        <div className="col-span-1">
+                            <label htmlFor="address" className="block text-left">Address</label>
+                            <Field name="address" type="text" className="mt-1 p-2 border rounded w-full" />
+                            <ErrorMessage name="address" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2 sm:col-span-1">
-                                <label htmlFor="city" className="block">City</label>
-                                <Field name="city" type="text" className="mt-1 p-2 border rounded w-full"/>
-                                <ErrorMessage name="city" component="div" className="text-red text-sm"/>
-                            </div>
+                        <div className="col-span-1">
+                            <label htmlFor="city" className="block text-left">City</label>
+                            <Field name="city" type="text" className="mt-1 p-2 border rounded w-full" />
+                            <ErrorMessage name="city" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2 sm:col-span-1">
-                                <label htmlFor="city" className="block">City</label>
-                                <Field name="city" type="text" className="mt-1 p-2 border rounded w-full"/>
-                                <ErrorMessage name="city" component="div" className="text-red text-sm"/>
-                            </div>
-
-                            <div className="col-span-2 sm:col-span-1">
-                                <label htmlFor="state" className="block">State</label>
-                                <Field as="select" name="state" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                    <option value="">Select a state...</option>
-                                    {stateOptions.map((option) => (
+                        <div className="col-span-1">
+                            <label htmlFor="state" className="block text-left">State</label>
+                            <Field as="select" name="state" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="">Select a state...</option>
+                                {stateOptions.map((option) => (
                                     <option key={option.value} value={option.value}>{option.label}</option>
-                                    ))}
-                                </Field>
-                                <ErrorMessage name="state" component="div" className="text-red text-sm"/>
-                            </div>
+                                ))}
+                            </Field>
+                            <ErrorMessage name="state" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2 sm:col-span-1">
-                                <label htmlFor="zipCode" className="block">Zip Code</label>
-                                <Field name="zipCode" type="text" className="mt-1 p-2 border rounded w-full"/>
-                                <ErrorMessage name="zipCode" component="div" className="text-red text-sm"/>
-                            </div>
+                        <div className="col-span-1">
+                            <label htmlFor="zipCode" className="block text-left">Zip Code</label>
+                            <Field name="zipCode" type="text" className="mt-1 p-2 border rounded w-full" />
+                            <ErrorMessage name="zipCode" component="div" className="text-red text-sm" />
+                        </div>
 
-                            <div className="col-span-2">
-                                <Button buttonType="button" name={"Pay Now"} rounded={true} />
-                            </div>
-                        </Form>
-                    </Formik>
+                        <div className="col-span-1">
+                            <Button buttonType="button" name={"Pay Now"} rounded={true} />
+                        </div>
+                    </Form>
+                </Formik>
             </div>
             <div className="bg-white cols-span-1 text-[#343a40] p-8 rounded-lg shadow-lg w-full max-w-4xl">
                 <ol className="Tiempos">
-                        {
-                            cart.length > 0 ? cart.map((prod: {[key:string]:any}) => (
-                                <li key={prod.strMeal} className="flex flex-col items-center space-x-4 bg-white shadow-lg p-4 my-4  rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
-                                    <img className="w-full max-w-[5rem] fluid rounded-lg" src={prod.strMealThumb} alt={prod.strMeal} />
-                                    <p>{prod.strMeal}</p>
-                                    <p>${prod.price}</p>
-                                    <Rating rating={prod.ratings} className="px-6 pb-2" />
-                                </li>
-                            )) : <li className="Tiempos text-lg">Your cart is empty!</li>
-                        }
-                    </ol>
-                    <h1 className="text-xxl mb-3">Subtotal ({cart.length}) items</h1>
-                    <p className="Manrope bold mb-3">Total: ${total}</p>`
+                    {
+                        cart.length > 0 ? cart.map((prod: { [key: string]: any }) => (
+                            <li key={prod.meal.strMeal} className="flex flex-col items-center justify-evenly space-x-4 bg-white shadow-lg p-4 my-4 rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
+                                <img className="w-full max-w-[5rem] fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} />
+                                <p>{prod.meal.strMeal}</p>
+                                <p>${prod.meal.price}</p>
+                                <Rating rating={prod.meal.ratings} className="px-6 pb-2" />
+                            </li>
+                        )) : <li className="Tiempos text-lg">Your cart is empty!</li>
+                    }
+                </ol>
+                <h1 className="text-xxl mb-3">Subtotal ({cart.length}) items</h1>
+                <p className="Manrope bold mb-3">Total: ${total}</p>`
             </div>
         </div>
     )
