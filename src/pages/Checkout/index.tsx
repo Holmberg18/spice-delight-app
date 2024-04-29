@@ -43,7 +43,7 @@ const CheckoutForm = () => {
     }, [cart])
 
     return (
-        <div className="bg-[#343a40] min-h-screen grid grid-cols-2 gap-6 justify-center items-center p-4">
+        <div className="bg-[#343a40] min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-6 justify-center items-center p-4">
             <div className="bg-white cols-span-1 text-[#343a40] p-8 rounded-lg shadow-lg w-full max-w-4xl">
                 <h2 className="text-2xl font-bold mb-6">Checkout</h2>
                 <Formik
@@ -58,48 +58,48 @@ const CheckoutForm = () => {
                 >
                     <Form className="grid grid-cols-1 gap-6">
                         <div className="col-span-1">
-                            <label htmlFor="firstName" className="block text-left">First Name</label>
+                            <label htmlFor="firstName" className="block text-left mx-3">First Name</label>
                             <Field name="firstname" type="text" className="mt-1 p-2 border rounded w-full" />
-                            <ErrorMessage name="firstName" component="div" className="text-red text-sm" />
+                            <ErrorMessage name="firstName" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="lastName" className="block text-left">Last Name</label>
+                            <label htmlFor="lastName" className="block text-left mx-3">Last Name</label>
                             <Field name="lastName" type="text" className="mt-1 p-2 border rounded w-full" />
-                            <ErrorMessage name="lastName" component="div" className="text-red text-sm" />
+                            <ErrorMessage name="lastName" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="email" className="block text-left">Email</label>
+                            <label htmlFor="email" className="block text-left mx-3">Email</label>
                             <Field name="email" type="email" className="mt-1 p-2 border rounded w-full" />
-                            <ErrorMessage name="email" component="div" className="text-red text-sm" />
+                            <ErrorMessage name="email" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="address" className="block text-left">Address</label>
+                            <label htmlFor="address" className="block text-left mx-3">Address</label>
                             <Field name="address" type="text" className="mt-1 p-2 border rounded w-full" />
-                            <ErrorMessage name="address" component="div" className="text-red text-sm" />
+                            <ErrorMessage name="address" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="city" className="block text-left">City</label>
+                            <label htmlFor="city" className="block text-left mx-3">City</label>
                             <Field name="city" type="text" className="mt-1 p-2 border rounded w-full" />
-                            <ErrorMessage name="city" component="div" className="text-red text-sm" />
+                            <ErrorMessage name="city" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="state" className="block text-left">State</label>
+                            <label htmlFor="state" className="block text-left mx-3">State</label>
                             <Field as="select" name="state" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="">Select a state...</option>
                                 {stateOptions.map((option) => (
                                     <option key={option.value} value={option.value}>{option.label}</option>
                                 ))}
                             </Field>
-                            <ErrorMessage name="state" component="div" className="text-red text-sm" />
+                            <ErrorMessage name="state" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="zipCode" className="block text-left">Zip Code</label>
+                            <label htmlFor="zipCode" className="block text-left mx-3">Zip Code</label>
                             <Field name="zipCode" type="text" className="mt-1 p-2 border rounded w-full" />
                             <ErrorMessage name="zipCode" component="div" className="text-red text-sm" />
                         </div>
