@@ -4,9 +4,8 @@ import { State, IState } from 'country-state-city';
 import * as Yup from 'yup'
 import Button from '../../components/Button';
 import Rating from '../../components/Rating';
-import { CartState } from "../../context/Context"
 import { RootState } from "../../app/store"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 const initialValues: CheckoutFormValues = {
     firstName: '',
