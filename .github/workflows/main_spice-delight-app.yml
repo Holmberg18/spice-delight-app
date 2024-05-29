@@ -44,7 +44,7 @@ jobs:
     needs: build
     environment:
       name: 'Development'
-      url: spice-delight-app.azurewebsites.net
+      url: https://spice-delight-app.azurewebsites.net
 
     steps:
       - name: Download artifact from build job
