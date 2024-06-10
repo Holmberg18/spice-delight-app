@@ -19,3 +19,4 @@ declare type StateOption = {
     label: string,
     value: string 
 }
+declare type Styles = {[key:string]: string}

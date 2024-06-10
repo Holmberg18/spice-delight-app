@@ -1,21 +1,23 @@
-import { KeyVaultSecret, SecretClient } from "@azure/keyvault-secrets"
-import { DefaultAzureCredential, EnvironmentCredential } from "@azure/identity"
+import { KeyVaultSecret, SecretClient } from "@azure/keyvault-secrets";
+import { DefaultAzureCredential } from "@azure/identity";
 
-const getApiKey = async ():Promise<KeyVaultSecret> => {
+export const getApiKey = async ():Promise<string | undefined> => {
 
-    //Grab api key from key vault
-    const credential: EnvironmentCredential = new DefaultAzureCredential();
-
-    const keyVaultName: string | undefined = process.env.KEY_VAULT_NAME;
+    if(import.meta.env.VITE_REACT_ENV === "Development"){
+        return import.meta.env.VITE_API_KEY
+    }
+    
+    const keyVaultName: string | undefined = import.meta.env.VITE_KEY_VAULT_NAME;
     if(!keyVaultName) throw new Error("KEY_VAULT_NAME is empty");
     const url: string = "https://" + keyVaultName + ".vault.azure.net";
-  
-    const client: SecretClient = new SecretClient(url, credential);
-    const apiKeySecret: KeyVaultSecret = await client.getSecret("spice-delight-app-api-key")
-
-    return apiKeySecret
-}
-
-export {
-    getApiKey
+    const secretClient: SecretClient = new SecretClient(url, new DefaultAzureCredential())
+    //Grab api key from key vault
+    try {
+        const secret: KeyVaultSecret = await secretClient.getSecret("spice-delight-app-api-key");
+        return secret.value;
+    } catch (error: any) {
+        console.error("Error fetching Key Vault secret:", error.message);
+        throw error;
+    }
+    
 }
