@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link } from "react-router-dom"
-import Searchbar from "../Searchbar"
-import Cart from "../Cart"
-import Account from "../Account"
-import Button from "../Button"
+import Searchbar from "@/components/Searchbar"
+import Cart from "@/components/Cart"
+import Account from "@/components/Account"
+import Button from "@/components/Button"
 
 const Navigation = () => {
 

@@ -1,12 +1,12 @@
-import { useState, useEffect, ChangeEvent } from 'react'
-import { Link } from 'react-router-dom'
-import Rating from '../../components/Rating'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import Button from '../../components/Button'
-import { updateQuantity, removeFromCart } from "../../features/cartSlice"
-import { RootState } from "../../app/store"
-import { CartItem } from "../../models/Meal"
+import { useState, useEffect, ChangeEvent } from "react"
+import { Link } from "react-router-dom"
+import Rating from "@/components/Rating"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
+import Button from "@/components/Button"
+import { updateQuantity, removeFromCart } from "@/features/cartSlice"
+import { RootState } from "@/app/store"
+import { CartItem } from "@/models/Meal"
 import { useDispatch, useSelector } from "react-redux"
 
 

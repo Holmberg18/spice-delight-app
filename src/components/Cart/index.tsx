@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import Button from '../Button'
+import Button from '@/components/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { removeFromCart } from "../../features/cartSlice"
-import { RootState } from "../../app/store"
+import { removeFromCart } from "@/features/cartSlice"
+import { RootState } from "@/app/store"
 import { useDispatch, useSelector } from "react-redux"
-import { CartItem } from '../../models/Meal'
+import { CartItem } from '@/models/Meal'
 import { faCartShopping, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 const Cart = () => {

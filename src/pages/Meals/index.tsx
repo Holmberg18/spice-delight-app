@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-import { fetchRecipesAsync } from '../../features/recipeSlice'
-import Filters from '../../components/Filters'
-import SingleMeal from '../../components/SingleMeal'
-import { Meal } from '../../models/Meal'
+import { useEffect, useMemo } from "react"
+import { useAppDispatch, useAppSelector } from "@/hooks"
+import { fetchRecipesAsync } from "@/features/recipeSlice"
+import Filters from "@/components/Filters"
+import SingleMeal from "@/components/SingleMeal"
+import { Meal } from "@/models/Meal"
 
 const Meals = () => {
 

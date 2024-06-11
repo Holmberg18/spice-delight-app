@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
-import { fetchRecipes } from "../utils/recipes"
-import { Meal } from "../models/Meal"
+import { fetchRecipes } from "@/utils/recipes"
+import { Meal } from "@/models/Meal"
 
 interface RecipeState {
     items: Meal[] | null,

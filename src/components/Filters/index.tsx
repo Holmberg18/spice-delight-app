@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react"
 import {
     Formik,
     Form,
@@ -10,13 +10,13 @@ import {
     sortFastDelivery,
     sortRating,
     clearFilters
-} from '../../features/recipeSlice'
-import Rating from "../Rating"
-import Button from "../Button"
+} from '@/features/recipeSlice'
+import Rating from "@/components/Rating"
+import Button from "@/components/Button"
 import { ReactNode } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight, faChevronDown } from "@fortawesome/free-solid-svg-icons"
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 
 interface MyFormValues {
     sortBy: string

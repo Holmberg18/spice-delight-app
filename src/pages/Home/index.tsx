@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import Button from '../../components/Button'
-import { fetchRecipes } from '../../utils/recipes'
-import Slider from '../../components/Slider'
-import CircleType from 'circletype'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
+import Button from "@/components/Button"
+import { fetchRecipes } from "@/utils/recipes"
+import Slider from "@/components/Slider"
+import CircleType from "circletype"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons"
 
 
 const Home = () => {
@@ -45,14 +45,11 @@ const Home = () => {
                     </div>
                     <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center my-auto lg:block">
                         <Slider 
-                            classes="max-w-md" 
                             getSlideData={() => fetchRecipes("Spanish")} 
                             id="idMeal"
                             src= "strMealThumb"
                             label= "strMeal"
-                            background= "bg-purple-400"
                             perView={2}
-                            thumbSize={"sm"}
                             imageId="strMealThumb"
                         />
                     </div>

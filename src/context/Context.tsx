@@ -1,7 +1,7 @@
 import { useContext, createContext, useReducer } from "react"
-import { cartReducer, mealReducer } from "./Reducers"
-import { fetchRecipes } from "../utils/recipes"
-import { Meal } from "../models/Meal"
+import { cartReducer, mealReducer } from "@/context/Reducers"
+import { fetchRecipes } from "@/utils/recipes"
+import { Meal } from "@/models/Meal"
 
 const Cart = createContext<any>({} as any)
 const getRecipeCollection = async(type: string): Promise<void | Meal[]> => await fetchRecipes(type)

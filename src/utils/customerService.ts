@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { getApiKey } from './keyVault'
+import axios from "axios"
+import { getApiKey } from "@/utils/keyVault"
 
 export const login = async (username:string, password:string): Promise<boolean | void> => {
     
@@ -11,12 +11,7 @@ export const login = async (username:string, password:string): Promise<boolean |
             "Ocp-Apim-Subscription-Key": apiKey
         }
     })
-    .then((response: any) => {
-        if(response.status === 200){
-            return true
-        }
-        else return false
-    })
+    .then((response: any) => response.data)
     .catch((error) => {
         console.log(error)
     })

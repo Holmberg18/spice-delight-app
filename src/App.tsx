@@ -1,18 +1,18 @@
-import Navigation from './components/Navigation'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import Meals from './pages/Meals'
-import Cart from './pages/Cart'
-import MemberPage from './pages/MemberPage'
+import Navigation from "@/components/Navigation"
+import Footer from "@/components/Footer"
+import Home from "@/pages/Home"
+import Meals from "@/pages/Meals"
+import Cart from "@/pages/Cart"
+import MemberPage from "@/pages/MemberPage"
 import { 
   BrowserRouter as Router,
   Routes,
   Route
-} from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { store } from './store'
-import './App.css'
-import CheckoutForm from './pages/Checkout'
+} from "react-router-dom"
+import { Provider } from "react-redux"
+import { store } from "@/store"
+import "@/App.css"
+import CheckoutForm from "@/pages/Checkout"
 
 function App() {
 

@@ -1,9 +1,9 @@
-import Rating from "../Rating"
-import Button from "../Button"
+import Rating from "@/components/Rating"
+import Button from "@/components/Button"
 import { useDispatch, useSelector } from "react-redux"
-import { addToCart, removeFromCart } from "../../features/cartSlice"
-import { RootState } from "../../app/store"
-import { Meal, CartItem } from "../../models/Meal"
+import { addToCart, removeFromCart } from "@/features/cartSlice"
+import { RootState } from "@/app/store"
+import { Meal, CartItem } from "@/models/Meal"
 
 interface Props {
     meal: Meal

@@ -1,14 +1,14 @@
 import { login } from "@/utils/customerService"
-import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { useFormik } from "formik"
+import { useNavigate } from "react-router-dom"
 import * as Yup from "yup"
 
 
 const validationSchema = Yup.object().shape({
   username: Yup.string()
     .required("Username is a required field")
-    .min(3, 'Username must be at least 3 characters')
-    .max(20, 'Username cannot exceed 20 characters'),
+    .min(3, "Username must be at least 3 characters")
+    .max(20, "Username cannot exceed 20 characters"),
   password: Yup.string()
     .required("Password is a required field")
     .min(8, "Password must be at least 8 characters"),
@@ -27,8 +27,8 @@ const LoginForm = () => {
   
   const formik = useFormik({
     initialValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
     validationSchema,
     onSubmit: (values) => {

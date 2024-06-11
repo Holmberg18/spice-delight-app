@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { State, IState } from 'country-state-city';
 import * as Yup from 'yup'
-import Button from '../../components/Button';
-import Rating from '../../components/Rating';
-import { RootState } from "../../app/store"
+import Button from '@/components/Button';
+import Rating from '@/components/Rating';
+import { RootState } from "@/app/store"
 import { useSelector } from "react-redux"
 
 const initialValues: CheckoutFormValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    address: '',
-    city: '',
-    state: '',
-    zipCode: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
 }
 
 const stateOptions: StateOption[] = State.getStatesOfCountry("US").map((state: IState) => ({
@@ -23,13 +23,13 @@ const stateOptions: StateOption[] = State.getStatesOfCountry("US").map((state: I
 }))
 
 const validationSchema = Yup.object({
-    firstName: Yup.string().required('Required'),
-    lastName: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid email address').required('Required'),
-    address: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
-    state: Yup.string().required('Required'),
-    zipCode: Yup.string().matches(/^[0-9]{5}(?:-[0-9]{4})?$/, 'Invalid ZIP code').required('Required'),
+    firstName: Yup.string().required("Required"),
+    lastName: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid email address").required("Required"),
+    address: Yup.string().required("Required"),
+    city: Yup.string().required("Required"),
+    state: Yup.string().required("Required"),
+    zipCode: Yup.string().matches(/^[0-9]{5}(?:-[0-9]{4})?$/, "Invalid ZIP code").required("Required"),
 })
 
 const CheckoutForm = () => {

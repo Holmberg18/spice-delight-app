@@ -1,1 +1,1 @@
-declare module 'circletype'
+declare module "circletype"

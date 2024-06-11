@@ -1,6 +1,6 @@
 import axios from 'axios'
-import categoryMap from '../data/categories.json'
-import { Meal } from '../models/Meal'
+import categoryMap from '@/data/categories.json'
+import { Meal } from '@/models/Meal'
 
 const fetchRecipes = (type: string) => {
 

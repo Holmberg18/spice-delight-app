@@ -1,24 +1,21 @@
-import { useState, useEffect } from 'react' 
-import 'keen-slider/keen-slider.min.css'
-import { useKeenSlider } from 'keen-slider/react'
-import Arrow from './Arrow'
+import { useState, useEffect } from "react" 
+import "keen-slider/keen-slider.min.css"
+import { useKeenSlider } from "keen-slider/react"
 
 interface Props {
-    classes: string,
     getSlideData: Function,
     id: string,
     src: string,
     label: string,
-    background: string,
     perView: number,
-    thumbSize: string,
     action?: Function,
     imageId: string,
-    arrows?: boolean,
     initialSlide?: number,
 }
 
-const Slider = ({ classes, getSlideData, id, src, label, background, perView, action, imageId, arrows, initialSlide, thumbSize }: Props) => {
+
+
+const Slider = ({  getSlideData, id, src, label, perView, action, imageId, initialSlide }: Props) => {
 
     const [slideData, setSlideData] = useState<Object[]>([])
     const [currentSlide, setCurrentSlide] = useState<number>(0)
@@ -30,7 +27,7 @@ const Slider = ({ classes, getSlideData, id, src, label, background, perView, ac
         }
     }
 
-    const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
+    const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         breakpoints: {
             "min-width: 300px)": {
                 slides: { perView: perView - 4, spacing: 5}
@@ -65,46 +62,86 @@ const Slider = ({ classes, getSlideData, id, src, label, background, perView, ac
 
     return (
         <>
-            <div ref={ref} className={`keen-slider ${classes}`} >
-                {
-                    Array.isArray(slideData) && slideData.length > 0 ? slideData.map((slide: {[key: string]: any}, index: number) => 
-                        <div key={slide[id]} className={`keen-slider__slide number-slide${index} relative w-52 h-36`}>
-                            <div className={`z-20 absolute m-auto left-0 right-0 top-0 bottom-0 w-full max-w-[${thumbSize === "sm" ? "6.5rem" : "8.5rem"}]`}>
-                                <img src={slide[src]} alt="recipe" className={`rounded-full`} onClick={() => handleImgClick(slide[imageId])} />
-                            </div>
-                            <p className="absolute z-10 m-auto left-0 right-0 bottom-3 text-white text-sm">{slide[label].split(" ").slice(0, 2).join(" ")}</p>
-                            <div className={`absolute z-0 w-48 h-36 m-auto left-0 right-0 bottom-0 rounded-lg ${background}`}/>
-                        </div>
-                    ) : ''
-                }
-            </div>
+          <div className="relative flex flex-row">
+            <div ref={sliderRef} className="keen-slider">
             {
-                arrows && loaded && instanceRef.current && (
-                    <>
-                        <Arrow
-                            left
-                            onClick={(e:any) => 
-                                e.stopPropagation() || instanceRef.current?.prev()
-                            }
-                            disabled={currentSlide === 0}
-                            fill="#CC3232"
-                        />
-                        <Arrow 
-                            onClick={(e: any) => 
-                                e.stopPropagation() || instanceRef.current?.next()
-                            }
-                            disabled={
-                                currentSlide ===
-                                instanceRef?.current?.track?.details?.slides.length - 1
-                            }
-                            fill="#CC3232"
-                        />
-                    </>
-                )
+                Array.isArray(slideData) && slideData.length > 0 ? slideData.map((slide: {[key: string]: any}, index: number) => 
+                    <div key={slide[id]} className={`keen-slider__slide number-slide${index}`}>
+                        <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                            <img src={slide[src]} alt="recipe" className="w-full" onClick={() => handleImgClick(slide[imageId])} />
+                            <p className="font-bold text-xl mb-2">{slide[label].split(" ").slice(0, 2).join(" ")}</p>
+                        </div>
+                    </div>
+                ) : ''
             }
+            </div>
+            {loaded && instanceRef.current && (
+              <>
+                <Arrow
+                  left
+                  onClick={(e: any) =>
+                    e.stopPropagation() || instanceRef.current?.prev()
+                  }
+                  disabled={currentSlide === 0}
+                />
+    
+                <Arrow
+                  onClick={(e: any) =>
+                    e.stopPropagation() || instanceRef.current?.next()
+                  }
+                  disabled={
+                    currentSlide ===
+                    slideData.length - 1
+                  }
+                />
+              </>
+            )}
+          </div>
+          {loaded && instanceRef.current && (
+            <div className="dots">
+              {[
+                ...Array(slideData.length).keys(),
+              ].map((idx) => {
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      instanceRef.current?.moveToIdx(idx)
+                    }}
+                    className={"dot" + (currentSlide === idx ? " active" : "")}
+                  ></button>
+                )
+              })}
+            </div>
+          )}
         </>
-        
-    )
-}
+      )
+    }
+    
+    function Arrow(props: {
+      disabled: boolean
+      left?: boolean
+      onClick: (e: any) => void
+    }) {
+      const disabled = props.disabled ? " arrow--disabled" : ""
+      return (
+        <svg
+          onClick={props.onClick}
+          className={`h-10 w-10 absolute top-1/2 transform -translate-y-1/2 cursor-pointer fill-white ${
+            props.left ? "left-[5px]" : "left-auto right-[5px]"
+          } ${disabled}`}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          {props.left && (
+            <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+          )}
+          {!props.left && (
+            <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+          )}
+        </svg>
+      )
+    }
+  
 
 export default Slider

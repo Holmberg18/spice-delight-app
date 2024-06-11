@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
-import { Meal } from "../models/Meal"
+import { Meal } from "@/models/Meal"
 
 const getCartFromCookie = (): [] => {
     const cartCookie = Cookies.get("shoppingCart")
@@ -21,7 +21,7 @@ const initialState: CartState = {
 }
 
 export const cartSlice = createSlice({
-    name: 'cart',
+    name: "cart",
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<Meal>) => {

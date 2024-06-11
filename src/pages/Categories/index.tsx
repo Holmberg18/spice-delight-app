@@ -1,10 +1,10 @@
 import { useState, useEffect, ChangeEvent } from 'react'
-import Slider from "../../components/Slider"
-import Banner from "../../components/Banner"
-import { getCategories, getBannerPhotos } from "../../utils/recipes"
+import Slider from "@/components/Slider"
+import Banner from "@/components/Banner"
+import { getCategories, getBannerPhotos } from "@/utils/recipes"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import categories from '../../data/categories.json'
+import categories from '@/data/categories.json'
 
 const Categories = () => {
 
