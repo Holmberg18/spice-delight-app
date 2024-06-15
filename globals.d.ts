@@ -5,8 +5,8 @@ interface mealProps {
         searchQuery: string,
 }
 
-declare type Object = {[key: string]: any}
-declare type CheckoutFormValues = {
+declare interface Object {[key: string]: any}
+declare interface CheckoutFormValues {
     firstName: string,
     lastName: string,
     email: string,
@@ -15,8 +15,17 @@ declare type CheckoutFormValues = {
     state: string,
     zipCode: string,
 }
-declare type StateOption = { 
+declare interface StateOption { 
     label: string,
     value: string 
 }
-declare type Styles = {[key:string]: string}
+declare interface Styles {[key:string]: string}
+declare interface Customer {
+    customerId: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    address: string,
+    username: string
+}

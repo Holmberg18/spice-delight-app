@@ -1,7 +1,7 @@
 import axios from "axios"
 import { getApiKey } from "@/utils/keyVault"
 
-export const login = async (username:string, password:string): Promise<boolean | void> => {
+export const login = async (username:string, password:string): Promise<Customer | void> => {
     
     const apiKey: string | undefined = await getApiKey()
     const credentials = { "username": username, "password": password }

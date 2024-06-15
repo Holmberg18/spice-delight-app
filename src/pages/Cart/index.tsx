@@ -26,7 +26,7 @@ const Cart = () => {
                 <ol className="Tiempos">
                     {
                         cart.length > 0 ? cart.map((prod: CartItem) => (
-                            <li key={prod.meal.strMeal} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4  rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
+                            <li key={prod.meal.strMeal} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4 rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
                                 <img className="md:max-w-xs fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} />
                                 <p>{prod.meal.strMeal}</p>
                                 <p>${prod.meal.price}</p>

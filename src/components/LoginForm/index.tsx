@@ -1,6 +1,11 @@
+import { useState } from "react"
 import { login } from "@/utils/customerService"
 import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { login as loginCustomer } from "@/features/customerSlice"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import * as Yup from "yup"
 
 
@@ -17,11 +22,18 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
 
-  const navigate = useNavigate()    
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [submit, setSubmit] = useState<boolean>(false)
+
   const handleLogin = async(username: string, password: string): Promise<void> => {
+    setSubmit(true)
     const loginAttempt = await login(username,password)
     if(loginAttempt){
+      dispatch(loginCustomer(loginAttempt))
       navigate("/products")
+    } else {
+      setSubmit(false)
     }
   }
   
@@ -71,12 +83,16 @@ const LoginForm = () => {
         {formik.errors.password && (
           <p className={styles.error}>{formik.errors.password}</p>
         )}
+        <div className="flex flex-row">
         <button
+          disabled={submit}
           type="submit"
           className={styles.button}
         >
           Login
         </button>
+        { submit ? <FontAwesomeIcon className="animate-spin" icon={faSpinner} /> : "" }
+        </div>
       </form>
     </div>
   )
