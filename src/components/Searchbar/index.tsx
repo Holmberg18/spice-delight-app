@@ -1,11 +1,23 @@
-import { useState, ChangeEvent } from "react"
+import { useState, KeyboardEvent } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
-import { CartState } from "@/context/Context"
+import { useDispatch } from 'react-redux'
+import { sortKeyword } from '@/features/recipeSlice'
+import { useNavigate } from 'react-router-dom'
+
 
 const Searchbar = () => {
 
-    const { mealState: { mealDispatch }} = CartState()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleSearch = (e: KeyboardEvent): void => {
+        if(e.key == "Enter"){
+            const keyword = e.target as HTMLInputElement
+            dispatch(sortKeyword(keyword?.value))
+            navigate("/products")
+        }
+    }
+
     const [isVisible, setIsVisible] = useState(false)
     return(
         <div className="relative">
@@ -15,7 +27,7 @@ const Searchbar = () => {
                         type="text"
                         placeholder="Search for recipes, restaurants..."
                         className="p-2 border rounded"
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => mealDispatch({type: "FILTER_BY_SEARCH", payload: e.target.value})}
+                        onKeyDown={handleSearch}
                         onBlur={() => setIsVisible(false)}
                         autoFocus
                     />

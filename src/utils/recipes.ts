@@ -1,5 +1,4 @@
 import axios from 'axios'
-import categoryMap from '@/data/categories.json'
 import { Meal } from '@/models/Meal'
 
 const fetchRecipes = (type: string) => {
@@ -35,35 +34,6 @@ const fetchRecipes = (type: string) => {
     return recipes
 }
 
-const getCategories = (): any => {
-
-    const categories = axios({
-        url: "https://www.themealdb.com/api/json/v1/1/categories.php",
-        method: "GET",
-
-        headers: {
-            "Content-type": "application/json",
-        }
-    })
-    .then((response) => response.data)
-    .then((data: any) => {
-        let categoryData = data.categories
-        const categoryBanners: {[key: string]: any} = categoryMap
-        categoryData.map((category: {[key: string]: any}) => {
-            let newCategory = category
-            newCategory["banner"] = categoryBanners[category["strCategory"].toLowerCase()]
-            return newCategory
-        })
-        return categoryData
-    })
-    .catch((error) => {
-        console.log(error)
-    })
-
-    return categories
-
-}
-
 const getBannerPhotos = ():any => {
 
     const bannerPhotos = axios({
@@ -82,4 +52,4 @@ const getBannerPhotos = ():any => {
         return bannerPhotos
 }
 
-export { fetchRecipes, getCategories, getBannerPhotos }
+export { fetchRecipes, getBannerPhotos }

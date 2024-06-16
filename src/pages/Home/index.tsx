@@ -39,7 +39,7 @@ const Home = () => {
                 </div>
     
                 {/* Recipe Slider section */}
-                <section className="grid sm:grid-rows-5 grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 grid-rows-1 mt-16 content-center align-middle">
+                <section className="grid sm:grid-rows-5 grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 grid-rows-1 mt-16 content-center align-middle gap-x-4">
                     <div className="lg:col-span-1 flex items-center justify-center">
                         <p className="font-semibold text-2xl">Trending Recipes</p>
                     </div>

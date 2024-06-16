@@ -38,6 +38,12 @@ const recipeSlice = createSlice({
     name: 'recipes',
     initialState,
     reducers: {
+        sortKeyword: (state, action: PayloadAction<string>) => {
+            if(state.items?.length){
+                state.items = state.items.filter((item: Meal) =>  item.strMeal?.toLowerCase().includes(action.payload.toLowerCase()))
+                state.filters.searchQuery = action.payload
+            }
+        },
         sortPrice: (state, action: PayloadAction<string>) => {
             state.filters.sortByPrice = action.payload
         },
@@ -61,6 +67,7 @@ const recipeSlice = createSlice({
                 minRating: 0,
                 searchQuery: "",
             }
+            state.items = initialState.items
         }
     },
     extraReducers: (builder) => {
@@ -74,7 +81,8 @@ const recipeSlice = createSlice({
 })
 
 export default recipeSlice.reducer
-export const { 
+export const {
+    sortKeyword,
     sortPrice, 
     sortStock, 
     sortFastDelivery, 

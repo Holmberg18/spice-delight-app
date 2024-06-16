@@ -20,7 +20,7 @@ const Meals = () => {
 
     useEffect(() => {
         if(recipeList?.length == 0){
-            dispatch(fetchRecipesAsync(["Mexican", "Spanish"]))
+            dispatch(fetchRecipesAsync(["Mexican", "Spanish", "American", "Japanese"]))
         }
     }, [recipeList?.length, dispatch]);
 
