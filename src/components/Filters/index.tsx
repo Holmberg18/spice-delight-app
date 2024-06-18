@@ -9,13 +9,14 @@ import {
     sortStock,
     sortFastDelivery,
     sortRating,
-    clearFilters
+    clearFilters,
+    setKeyword
 } from '@/features/recipeSlice'
 import Rating from "@/components/Rating"
 import Button from "@/components/Button"
 import { ReactNode } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronRight, faChevronDown } from "@fortawesome/free-solid-svg-icons"
+import { faChevronRight, faChevronDown, faX } from "@fortawesome/free-solid-svg-icons"
 import { useAppDispatch, useAppSelector } from '@/hooks'
 
 interface MyFormValues {
@@ -80,8 +81,19 @@ const Filters = () => {
                         name="Clear Filters" 
                         rounded={true}
                         action={() => dispatch(clearFilters())}
-                        className="max-w-[10rem] mt-6" 
+                        className="max-w-[10rem] my-6" 
                     />
+                    {   
+                        filterList.searchQuery.length ?
+                        <div className="flex flex-row justify-center items-center bg-[#406065] text-white my-6 px-6 py-2 rounded-full max-w-[10rem]">
+                            <p>{filterList.searchQuery}</p>
+                            <button className="mx-2">
+                                    <FontAwesomeIcon onClick={() => dispatch(setKeyword(""))} icon={faX} />
+                            </button> 
+
+                        </div>: ""
+                    }
+
                 </Form>
             </Formik>
         </div>

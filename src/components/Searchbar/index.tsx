@@ -2,7 +2,7 @@ import { useState, KeyboardEvent } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch } from 'react-redux'
-import { sortKeyword } from '@/features/recipeSlice'
+import { setKeyword } from '@/features/recipeSlice'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -13,7 +13,7 @@ const Searchbar = () => {
     const handleSearch = (e: KeyboardEvent): void => {
         if(e.key == "Enter"){
             const keyword = e.target as HTMLInputElement
-            dispatch(sortKeyword(keyword?.value))
+            dispatch(setKeyword(keyword?.value))
             navigate("/products")
         }
     }
