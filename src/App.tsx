@@ -3,6 +3,7 @@ import Footer from "@/components/Footer"
 import Home from "@/pages/Home"
 import Meals from "@/pages/Meals"
 import Cart from "@/pages/Cart"
+import Checkout from "@/pages/Checkout"
 import MemberPage from "@/pages/MemberPage"
 import { 
   BrowserRouter as Router,
@@ -12,7 +13,6 @@ import {
 import { Provider } from "react-redux"
 import { store } from "@/store"
 import "@/App.css"
-import CheckoutForm from "@/pages/Checkout"
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
             <Route path="/login" element={<MemberPage />}/>
             <Route path="/products" element={<Meals />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<CheckoutForm />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
           <Footer />
         </Router>

@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { State, IState } from 'country-state-city';
 import * as Yup from 'yup'
-import Button from '@/components/Button';
 import Rating from '@/components/Rating';
 import { RootState } from "@/app/store"
 import { useSelector } from "react-redux"
+import Payment from "@/components/Payment"
 
 const initialValues: CheckoutFormValues = {
     firstName: "",
@@ -75,19 +75,19 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="address" className="block text-left mx-3">Address</label>
+                            <label htmlFor="address" className="block text-left mx-3">Shipping Address</label>
                             <Field name="address" type="text" className="mt-1 p-2 border rounded w-full" />
                             <ErrorMessage name="address" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="city" className="block text-left mx-3">City</label>
+                            <label htmlFor="city" className="block text-left mx-3">Shipping City</label>
                             <Field name="city" type="text" className="mt-1 p-2 border rounded w-full" />
                             <ErrorMessage name="city" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="state" className="block text-left mx-3">State</label>
+                            <label htmlFor="state" className="block text-left mx-3">Shipping State</label>
                             <Field as="select" name="state" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="">Select a state...</option>
                                 {stateOptions.map((option) => (
@@ -98,13 +98,13 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className="col-span-1">
-                            <label htmlFor="zipCode" className="block text-left mx-3">Zip Code</label>
+                            <label htmlFor="zipCode" className="block text-left mx-3">Shipping Zip Code</label>
                             <Field name="zipCode" type="text" className="mt-1 p-2 border rounded w-full" />
                             <ErrorMessage name="zipCode" component="div" className="text-red text-sm" />
                         </div>
 
                         <div className="col-span-1">
-                            <Button buttonType="button" name={"Pay Now"} rounded={true} />
+                            <Payment />
                         </div>
                     </Form>
                 </Formik>

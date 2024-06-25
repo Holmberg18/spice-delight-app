@@ -29,3 +29,7 @@ declare interface Customer {
     address: string,
     username: string
 }
+declare interface CartState {
+    items: CartItem[],
+    total: number
+}
