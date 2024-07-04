@@ -34,8 +34,10 @@ const validationSchema = Yup.object({
 
 const CheckoutForm = () => {
 
-    const [total, setTotal] = useState<number>(0)
     const cart = useSelector((state: RootState) => state.cart.items)
+    const cartTotal = useSelector((state: RootState) => state.cart.total)
+    const [total, setTotal] = useState<number>(cartTotal)
+
 
     useEffect(() => {
         setTotal(cart.reduce((acc: number, curr: {[key:string]: any}) => acc + (curr.meal.price * curr.quantity), 0))
@@ -58,7 +60,7 @@ const CheckoutForm = () => {
                     <Form className="grid grid-cols-1 gap-6">
                         <div className="col-span-1">
                             <label htmlFor="firstName" className="block text-left mx-3">First Name</label>
-                            <Field name="firstname" type="text" className="mt-1 p-2 border rounded w-full" />
+                            <Field name="firstName" type="text" className="mt-1 p-2 border rounded w-full" />
                             <ErrorMessage name="firstName" component="div" className="text-[#d10819] text-sm" />
                         </div>
 
@@ -104,7 +106,7 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className="col-span-1">
-                            <Payment />
+                            <Payment totalAmount={total} />
                         </div>
                     </Form>
                 </Formik>

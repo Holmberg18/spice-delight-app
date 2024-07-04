@@ -6,7 +6,11 @@ import { Elements } from "@stripe/react-stripe-js"
 
 const stripe = new Stripe(import.meta.env.VITE_TEST_STRIPE_SECRET_KEY)
 
-const Payment = () => {
+interface Props {
+    totalAmount: number
+}
+
+const Payment = ({ totalAmount }: Props) => {
     const [stripePromise, setStripePromise] = useState<any>(null)
     const [clientSecret, setClientSecret] = useState<any>("")
 
@@ -19,7 +23,7 @@ const Payment = () => {
         try{
             const paymentIntent = await stripe.paymentIntents.create({
                 currency: "usd",
-                amount: 1999,
+                amount: totalAmount * 100,
                 automatic_payment_methods: {
                     enabled: true
                 }
@@ -43,7 +47,7 @@ const Payment = () => {
             {
                 stripePromise && clientSecret && (
                     <Elements stripe={stripePromise} options={{ clientSecret }}>
-                        <StripeCheckout />
+                        <StripeCheckout totalAmount={totalAmount}/>
                     </Elements>
                 )
             }

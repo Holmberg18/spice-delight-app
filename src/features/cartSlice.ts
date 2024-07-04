@@ -2,10 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
 import { Meal } from "@/models/Meal"
 
-const getCartFromCookie = (): [] => {
-    const cartCookie = Cookies.get("shoppingCart")
-    return cartCookie ? JSON.parse(cartCookie).items : []
-}
+const cartCookie = Cookies.get("shoppingCart")
+const { items, total }: { items: cartItems | undefined, total: number | undefined } 
+    = JSON.parse(cartCookie ? cartCookie : "")
 
 const setCartCookie = (cart: CartState) => {
     const cartString = JSON.stringify(cart)
@@ -13,11 +12,14 @@ const setCartCookie = (cart: CartState) => {
 }
 
 interface CartState {
-    items: { meal: Meal; quantity: number }[] 
+    items: cartItems,
+    total: number
 }
 
+//MAKE THIS CLEANER
 const initialState: CartState = {
-    items: getCartFromCookie()
+    items: items?.length ? items : [],
+    total: total ? total : 0.00
 }
 
 export const cartSlice = createSlice({
@@ -31,6 +33,7 @@ export const cartSlice = createSlice({
             } else {
                 state.items.push({ meal: action.payload, quantity: 1 })
             }
+            state.total += action.payload.price
             setCartCookie(state)
         },
         removeFromCart: (state, action: PayloadAction<Meal>) => {

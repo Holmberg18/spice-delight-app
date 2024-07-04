@@ -29,7 +29,14 @@ declare interface Customer {
     address: string,
     username: string
 }
+declare interface Order {
+    customerId: number,
+    orderDate: Date,
+    totalAmount: number,
+    status: string
+}
 declare interface CartState {
     items: CartItem[],
     total: number
 }
+declare type cartItems = { meal: Meal, quantity: number }[]
