@@ -19,11 +19,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight, faChevronDown, faX } from "@fortawesome/free-solid-svg-icons"
 import { useAppDispatch, useAppSelector } from '@/hooks'
 
+interface Props {
+    resetPage: Function
+}
+
 interface MyFormValues {
     sortBy: string
 }
 
-const Filters = () => {
+const Filters = ({ resetPage }: Props) => {
 
     const dispatch = useAppDispatch()
     const [showFilters, setShowFilters] = useState(false)
@@ -60,7 +64,9 @@ const Filters = () => {
                                 type={filter.type}
                                 name="filter"
                                 value={filter.value}
-                                onChange={() => dispatch(filter.action())}
+                                onChange={() => {
+                                    resetPage(0)
+                                    dispatch(filter.action())}}
                                 checked={filter.checked}
                             />
                             {<p>{filter.value}</p>}
@@ -71,6 +77,7 @@ const Filters = () => {
                         <Rating
                             rating={minRating}
                             onClick={(i: number) => {
+                                resetPage(0)
                                 dispatch(sortRating(i + 1))
                             }}
                             className="cursor-pointer mx-2 my-3"
@@ -80,7 +87,10 @@ const Filters = () => {
                         buttonType="button"
                         name="Clear Filters" 
                         rounded={true}
-                        action={() => dispatch(clearFilters())}
+                        action={() => {
+                            resetPage(0)
+                            dispatch(clearFilters())
+                        }}
                         className="max-w-[10rem] my-6" 
                     />
                     {   
@@ -88,7 +98,10 @@ const Filters = () => {
                         <div className="flex flex-row justify-center items-center bg-[#406065] text-white my-6 px-6 py-2 rounded-full max-w-[10rem]">
                             <p>{filterList.searchQuery}</p>
                             <button className="mx-2">
-                                    <FontAwesomeIcon onClick={() => dispatch(setKeyword(""))} icon={faX} />
+                                    <FontAwesomeIcon onClick={() => {
+                                        resetPage(0)
+                                        dispatch(setKeyword(""))
+                                    }} icon={faX} />
                             </button> 
 
                         </div>: ""

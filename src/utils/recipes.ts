@@ -1,6 +1,24 @@
 import axios from 'axios'
 import { Meal } from '@/models/Meal'
 
+const fetchRecipe = (id: string | undefined): Promise<MealResponse> => {
+
+    const recipe: Promise<MealResponse> = axios({
+        url: `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then((response: any) => response.data)
+    .then((data: any) => data.meals[0])
+    .catch((error) => {
+        console.log(error)
+    })
+
+    return recipe
+}
+
 const fetchRecipes = (type: string) => {
 
     const recipes: Promise<void | Meal[]> = axios({
@@ -52,4 +70,4 @@ const getBannerPhotos = ():any => {
         return bannerPhotos
 }
 
-export { fetchRecipes, getBannerPhotos }
+export { fetchRecipe, fetchRecipes, getBannerPhotos }

@@ -5,14 +5,14 @@ import Filters from "@/components/Filters"
 import SingleMeal from "@/components/SingleMeal"
 import { Meal } from "@/models/Meal"
 import ReactPaginate from "react-paginate"
-import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"; // icons form react-icons
-import { IconContext } from "react-icons"; // for customizing icons
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"
+import { IconContext } from "react-icons"
 
 const Meals = () => {
 
    const dispatch = useAppDispatch()
    const [page, setPage] = useState<number>(0)
-   const n = 3
+   const n = 6
    const recipeList = useAppSelector((state) => state.recipes.items)
    const filterList = useAppSelector((state) => state.recipes.filters)
 
@@ -26,7 +26,7 @@ const Meals = () => {
 
     useEffect(() => {
         if(recipeList?.length == 0){
-            dispatch(fetchRecipesAsync(["Mexican", "Spanish", "American", "Japanese"]))
+            dispatch(fetchRecipesAsync(["Mexican", "Spanish", "Italian", "Japanese"]))
         }
     }, [recipeList?.length, dispatch]);
 
@@ -43,12 +43,12 @@ const Meals = () => {
         return filteredMeals?.filter((item, index) => {
             return (index >= page * n) && (index < (page + 1) * n)
         })
-    }, [page])
+    }, [filteredMeals, page])
 
     return(
         <>
             <div className="flex flex-col lg:flex-row wrap">
-                <Filters />
+                <Filters resetPage={setPage} />
                 <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 lg:w-[75%] justify-center">
                     {filterData?.length ? filterData.map((prod: Meal) => {
                         return <SingleMeal meal={prod} key={prod.idMeal} />
