@@ -40,7 +40,7 @@ const Meals = () => {
     },[recipeList, sortByPrice, includeOutOfStock, fastDeliveryOnly, minRating, searchQuery])
 
     const filterData: Meal[] | undefined = useMemo(() => {
-        return filteredMeals?.filter((item, index) => {
+        return filteredMeals?.filter((_item, index) => {
             return (index >= page * n) && (index < (page + 1) * n)
         })
     }, [filteredMeals, page])

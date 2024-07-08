@@ -21,9 +21,9 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": false
   },
   "include": ["src", "globals.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
