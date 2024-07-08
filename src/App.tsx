@@ -6,6 +6,7 @@ import Product from "@/pages/Product"
 import Cart from "@/pages/Cart"
 import Checkout from "@/pages/Checkout"
 import MemberPage from "@/pages/MemberPage"
+import ThankYou from "./pages/ThankYou"
 import { 
   BrowserRouter as Router,
   Routes,
@@ -28,6 +29,7 @@ function App() {
             <Route path="/product/:id" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
           <Footer />
         </Router>

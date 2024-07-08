@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { State, IState } from 'country-state-city';
 import * as Yup from 'yup'
@@ -35,13 +34,8 @@ const validationSchema = Yup.object({
 const CheckoutForm = () => {
 
     const cart = useSelector((state: RootState) => state.cart.items)
-    const cartTotal = useSelector((state: RootState) => state.cart.total)
-    const [total, setTotal] = useState<number>(cartTotal)
-
-
-    useEffect(() => {
-        setTotal(cart.reduce((acc: number, curr: {[key:string]: any}) => acc + (curr.meal.price * curr.quantity), 0))
-    }, [cart])
+    const total = (Math.round(cart.reduce((acc: number, curr: {[key:string]: any}) => 
+        acc + (curr.meal.price * curr.quantity), 0.00) * 100) / 100).toFixed(2);    
 
     return (
         <div className="bg-[#343a40] min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-6 justify-center items-center p-4">
@@ -106,7 +100,7 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className="col-span-1">
-                            <Payment totalAmount={total} />
+                            <Payment totalAmount={Number(total)} />
                         </div>
                     </Form>
                 </Formik>

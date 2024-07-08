@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from "react"
+import { ChangeEvent } from "react"
 import { Link } from "react-router-dom"
 import Rating from "@/components/Rating"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -12,13 +12,10 @@ import { useDispatch, useSelector } from "react-redux"
 
 const Cart = () => {
 
-    const [total, setTotal] = useState<number>(0)
     const cart = useSelector((state: RootState) => state.cart.items)
+    const cartTotal = (Math.round(cart.reduce((acc: number, curr: {[key:string]: any}) => 
+        acc + (curr.meal.price * curr.quantity), 0.00) * 100) / 100).toFixed(2);
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        setTotal(cart.reduce((acc: number, curr: CartItem) => acc + Number(curr.meal.price) * curr.quantity, 0))
-    }, [cart])
 
     return (
         <div className="flex flex-row w-full">
@@ -56,7 +53,7 @@ const Cart = () => {
             </div>
             <div className="flex flex-col bg-[#343a40] text-white p-6 w-[25%] m-2 h-[86vh]">
                 <h1 className="text-xxl mb-3">Subtotal ({cart.length}) items</h1>
-                <p className="Manrope bold mb-3">Total: ${total}</p>
+                <p className="Manrope bold mb-3">Total: ${cartTotal}</p>
                 <Link to="/checkout">
                     <Button buttonType="button" name="Proceed to Checkout" className="bg-blue" rounded={false} />
                 </Link>

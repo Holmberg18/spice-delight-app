@@ -3,7 +3,7 @@ import Cookies from "js-cookie"
 import { Meal } from "@/models/Meal"
 
 const cartCookie = Cookies.get("shoppingCart")
-const { items, total }: { items: cartItems | undefined, total: number | undefined } 
+const { items }: { items: cartItems | undefined } 
     = JSON.parse(cartCookie ? cartCookie : "")
 
 const setCartCookie = (cart: CartState) => {
@@ -13,13 +13,11 @@ const setCartCookie = (cart: CartState) => {
 
 interface CartState {
     items: cartItems,
-    total: number
 }
 
 //MAKE THIS CLEANER
 const initialState: CartState = {
     items: items?.length ? items : [],
-    total: total ? total : 0.00
 }
 
 export const cartSlice = createSlice({
@@ -33,7 +31,6 @@ export const cartSlice = createSlice({
             } else {
                 state.items.push({ meal: action.payload, quantity: 1 })
             }
-            state.total += action.payload.price
             setCartCookie(state)
         },
         removeFromCart: (state, action: PayloadAction<Meal>) => {
@@ -46,10 +43,14 @@ export const cartSlice = createSlice({
                 state.items[index].quantity = action.payload.quantity
             }
             setCartCookie(state)
+        },
+        clearCart: (state) => {
+            state.items = []
+            setCartCookie(state)
         }
     }
 })
 
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions
+export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer
