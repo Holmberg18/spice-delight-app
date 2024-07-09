@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react" 
 import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
+import { useNavigate } from "react-router-dom"
 
 interface Props {
     getSlideData: Function,
@@ -11,20 +12,22 @@ interface Props {
     action?: Function,
     imageId: string,
     initialSlide?: number,
+    product: boolean,
 }
 
 
 
-const Slider = ({  getSlideData, id, src, label, perView, action, imageId, initialSlide }: Props) => {
+const Slider = ({  getSlideData, id, src, label, perView, initialSlide, product }: Props) => {
 
     const [slideData, setSlideData] = useState<Object[]>([])
     const [currentSlide, setCurrentSlide] = useState<number>(0)
     const [loaded, setLoaded] = useState<boolean>(false)
+    const navigate = useNavigate()
 
-    const handleImgClick = (imgSrc: string): void => {
-        if(typeof action === "function"){
-            action(imgSrc)
-        }
+    const handleImgClick = (slide: any): void => {
+      if(product){
+        navigate("/product/"+slide.idMeal)
+      }
     }
 
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -68,7 +71,7 @@ const Slider = ({  getSlideData, id, src, label, perView, action, imageId, initi
                 Array.isArray(slideData) && slideData.length > 0 ? slideData.map((slide: {[key: string]: any}, index: number) => 
                     <div key={slide[id]} className={`keen-slider__slide number-slide${index}`}>
                         <div className="max-w-sm rounded overflow-hidden shadow-lg">
-                            <img src={slide[src]} alt="recipe" className="w-full" onClick={() => handleImgClick(slide[imageId])} />
+                            <img src={slide[src]} alt="recipe" className="w-full cursor-pointer" onClick={() => handleImgClick(slide)} />
                             <p className="font-bold text-xl mb-2">{slide[label].split(" ").slice(0, 2).join(" ")}</p>
                         </div>
                     </div>

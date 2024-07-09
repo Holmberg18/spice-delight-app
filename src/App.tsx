@@ -1,12 +1,15 @@
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
-import Home from "@/pages/Home"
-import Meals from "@/pages/Meals"
-import Product from "@/pages/Product"
-import Cart from "@/pages/Cart"
-import Checkout from "@/pages/Checkout"
-import MemberPage from "@/pages/MemberPage"
-import ThankYou from "./pages/ThankYou"
+import { 
+  Home, 
+  Meals, 
+  Product, 
+  Cart, 
+  Checkout, 
+  MemberPage, 
+  ThankYou, 
+  PhoneApp 
+} from '@/pages';
 import { 
   BrowserRouter as Router,
   Routes,
@@ -23,13 +26,14 @@ function App() {
         <Router>
           <Navigation />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />}/>
+            <Route path="/phone-app" element={<PhoneApp />}/>
             <Route path="/login" element={<MemberPage />}/>
-            <Route path="/products" element={<Meals />} />
-            <Route path="/product/:id" element={<Product />} />
+            <Route path="/products" element={<Meals />}/>
+            <Route path="/product/:id" element={<Product />}/>
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/checkout" element={<Checkout />}/>
+            <Route path="/thank-you" element={<ThankYou />}/>
           </Routes>
           <Footer />
         </Router>

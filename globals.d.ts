@@ -1,10 +1,10 @@
+declare module "circletype"
 interface mealProps {
         byStock: boolean,
         byFastDelivery: boolean,
         byRating: number,
         searchQuery: string,
 }
-
 declare interface Object {[key: string]: any}
 declare interface CheckoutFormValues {
     firstName: string,

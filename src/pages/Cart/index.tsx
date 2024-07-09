@@ -19,7 +19,7 @@ const Cart = () => {
 
     return (
         <div className="flex flex-row w-full">
-            <div className="w-[75%] h-[86vh] p-8" >
+            <div className="w-[75%] p-8" >
                 <ol className="Tiempos">
                     {
                         cart.length > 0 ? cart.map((prod: CartItem) => (
