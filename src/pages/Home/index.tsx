@@ -1,12 +1,10 @@
 import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import Button from "@/components/Button"
+import { Button, Slider } from "@/components"
 import { fetchRecipes } from "@/utils/recipes"
-import Slider from "@/components/Slider"
 import CircleType from "circletype"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons"
-
 
 const Home = () => {
 

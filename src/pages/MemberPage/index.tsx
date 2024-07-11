@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import LoginForm from '@/components/LoginForm'
-import RegisterForm from '@/components/RegisterForm'
+import { LoginForm, RegisterForm } from '@/components'
 import { RootState } from "@/app/store"
 import { useSelector } from "react-redux"
 import { DefaultProfile } from "@/assets/svgs"
-
 
 const MemberPage = () => {
   const { 

@@ -1,10 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { State, IState } from 'country-state-city';
+import { State, IState } from 'country-state-city'
 import * as Yup from 'yup'
-import Rating from '@/components/Rating';
+import { Rating, Payment } from '@/components'
 import { RootState } from "@/app/store"
 import { useSelector } from "react-redux"
-import Payment from "@/components/Payment"
 
 const initialValues: CheckoutFormValues = {
     firstName: "",

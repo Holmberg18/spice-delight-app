@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react"
-import { fetchRecipe } from "@/utils/recipes";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { fetchRecipe } from "@/utils/recipes"
+import { useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import { addToCart, removeFromCart } from "@/features/cartSlice"
 import { RootState } from "@/app/store"
 import { Meal, CartItem } from "@/models/Meal"
