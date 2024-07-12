@@ -75,4 +75,5 @@ declare interface MealResponse {
     strCreativeCommonsConfirmed: string | null;
     dateModified: string | null;
 }
-declare interface FilterList {value: string, type: string, order: string, action: Function, checked: boolean }
+declare interface FilterList { value: string, type: string, order: string, action: Function, checked: boolean }
+declare interface StripeKey { keyId: number, keyName: string, publishableKey: string, secretKey: string }
