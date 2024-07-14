@@ -10,24 +10,15 @@ interface Props {
 }
 
 const Payment = ({ totalAmount }: Props) => {
-    const [keys, setKeys] = useState<void | StripeKey>()
-    const [stripePromise, setStripePromise] = useState<any>(null)
-    const [clientSecret, setClientSecret] = useState<any>("")
+    const [stripePromise, setStripePromise] = useState<any>()
+    const [clientSecret, setClientSecret] = useState<any>()
 
-    const getKeys = async() => {
-        const retrieveKeys = await getStripeKey("stripe_key")
-        setKeys(retrieveKeys)
-    }
-
-    const buildStripePromise = async() => {
-        getKeys()
-        const loadedStripe = keys ? await loadStripe(keys?.publishableKey) : null
-        setStripePromise(loadedStripe)
-    }
-
-    const buildPaymentIntent = async() => {
+    const buildPaymentPromiseIntent = async() => {
         try{
-            const stripe = keys ? await new Stripe(keys.secretKey) : null
+            const stripeKeys: StripeKey | void = await getStripeKey("stripe_key")
+            const loadedStripe = stripeKeys ? await loadStripe(stripeKeys?.publishableKey) : null
+            setStripePromise(loadedStripe)
+            const stripe: Stripe | null = stripeKeys ? await new Stripe(stripeKeys.secretKey) : null
             const paymentIntent = await stripe?.paymentIntents.create({
                 currency: "usd",
                 amount: totalAmount * 100,
@@ -35,19 +26,18 @@ const Payment = ({ totalAmount }: Props) => {
                     enabled: true
                 }
             })
-            setClientSecret(paymentIntent?.client_secret)
+            if(paymentIntent?.client_secret){
+                setClientSecret(paymentIntent.client_secret)
+            }
         } catch (e: any){
             console.log(e.message)
         }
     }
 
     useEffect(() => {
-        buildStripePromise()
+        buildPaymentPromiseIntent()
     }, [])
 
-    useEffect(() => {
-        buildPaymentIntent()
-    }, [])
 
     return (
         <> 

@@ -1,5 +1,8 @@
-import Navigation from "@/components/Navigation"
-import Footer from "@/components/Footer"
+import {
+  Navigation,
+  Footer,
+  ProtectedRoute
+} from "@/components"
 import { 
   Home, 
   Meals, 
@@ -7,8 +10,7 @@ import {
   Cart, 
   Checkout, 
   MemberPage, 
-  ThankYou, 
-  PhoneApp 
+  PhoneApp,
 } from '@/pages';
 import { 
   BrowserRouter as Router,
@@ -33,7 +35,7 @@ function App() {
             <Route path="/product/:id" element={<Product />}/>
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />}/>
-            <Route path="/thank-you" element={<ThankYou />}/>
+            <Route path="/thank-you" element={<ProtectedRoute />}/>
           </Routes>
           <Footer />
         </Router>

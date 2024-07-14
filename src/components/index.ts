@@ -13,3 +13,4 @@ export { default as Searchbar } from '@/components/Searchbar';
 export { default as SingleMeal } from '@/components/SingleMeal';
 export { default as Slider } from '@/components/Slider';
 export { default as StripeCheckout } from '@/components/StripeCheckout';
+export { default as ProtectedRoute } from "@/components/ProtectedRoute"

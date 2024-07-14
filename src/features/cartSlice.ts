@@ -13,11 +13,12 @@ const setCartCookie = (cart: CartState) => {
 
 interface CartState {
     items: cartItems,
+    orderCreated: boolean
 }
 
-//MAKE THIS CLEANER
 const initialState: CartState = {
     items: items?.length ? items : [],
+    orderCreated: false
 }
 
 export const cartSlice = createSlice({
@@ -47,10 +48,14 @@ export const cartSlice = createSlice({
         clearCart: (state) => {
             state.items = []
             setCartCookie(state)
+        },
+        updateOrderCreated: (state, action: PayloadAction<boolean>) => {
+            state.orderCreated = action.payload
+            setCartCookie(state)
         }
     }
 })
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions
+export const { addToCart, removeFromCart, updateQuantity, clearCart, updateOrderCreated } = cartSlice.actions
 
 export default cartSlice.reducer

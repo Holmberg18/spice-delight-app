@@ -2,7 +2,7 @@ import { useState} from "react"
 import Button from '@/components/Button';
 import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js"
 import { useDispatch, useSelector } from "react-redux"
-import { clearCart } from "@/features/cartSlice"
+import { clearCart, updateOrderCreated } from "@/features/cartSlice"
 import { RootState } from "@/store"
 import { createOrder } from "@/utils/orders";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ const StripeCheckout = ({ totalAmount }: Props) => {
 
         setIsProcessing(true)
 
-        await stripe.confirmPayment({
+        stripe.confirmPayment({
             elements,
             confirmParams: {
                 return_url: `${window.location.origin}/thank-you`
@@ -44,6 +44,7 @@ const StripeCheckout = ({ totalAmount }: Props) => {
             } else {
                 await createOrder(customer.customerId, totalAmount)
                 dispatch(clearCart())
+                dispatch(updateOrderCreated(true))
                 navigate("/thank-you")
             }
         })
