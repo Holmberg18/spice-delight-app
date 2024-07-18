@@ -3,11 +3,11 @@ import Button from "@/components/Button"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart, removeFromCart } from "@/features/cartSlice"
 import { RootState } from "@/app/store"
-import { Meal, CartItem } from "@/models/Meal"
+import { CartItem } from "@/models/Meal"
 import { Link } from "react-router-dom"
 
 interface Props {
-    meal: Meal
+    meal: Product
 }
 
 const SingleMeal = ({ meal }: Props) => {
@@ -22,11 +22,11 @@ const SingleMeal = ({ meal }: Props) => {
         ratings,
         inStock,
         fastDelivery
-    }: Meal = meal
+    }: Product = meal
 
     return (
         <div className="max-w-md rounded overflow-auto shadow-lg m-8 flex flex-col justify-evenly items-center">
-            <Link to={`/product/${idMeal}`}><img className="w-full" src={strMealThumb} alt={strMeal} /></Link>
+            <Link to={`/product/${strMeal}+${idMeal}`}><img className="w-full" src={strMealThumb} alt={strMeal} /></Link>
             <div className="px-6 py-4 h-64">
                 <div className="font-bold text-lg mb-2">{strMeal}</div>
                 <span>${Math.trunc(price)}</span>

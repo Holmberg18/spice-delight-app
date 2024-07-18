@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
-import { fetchRecipes } from "@/utils/recipes"
-import { Meal } from "@/models/Meal"
+import { fetchProducts } from "@/utils/recipes"
+import { Meal, Product } from "@/models/Meal"
 
 interface RecipeState {
-    items: Meal[] | null,
-    initialItems: Meal[] | null,
+    items: Product[] | null,
+    initialItems: Product[] | null,
     filters: {
         sortByPrice: string
         includeOutOfStock: boolean,
@@ -26,11 +26,12 @@ const initialState: RecipeState = {
     }
 }
 
-export const fetchRecipesAsync = createAsyncThunk(
-    'recipes/fetchRecipes',
-    async (types: string[]): Promise<Meal[]> => {
-        const allRecipes = await Promise.all(types.map(type => fetchRecipes(type)))
-        return allRecipes.flat().filter(recipe => recipe !== undefined) as Meal[]
+
+export const fetchProductsAsync = createAsyncThunk(
+    "recipes/fetchProducts",
+    async(): Promise<Product[]> => {
+        const allProducts = await fetchProducts()
+        return allProducts.filter((product: Product) => product !== undefined)
     }
 )
 
@@ -68,7 +69,7 @@ const recipeSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchRecipesAsync.fulfilled, (state, action) => {
+        builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
             state.items = action.payload;
             if(state.initialItems?.length === 0){
                 state.initialItems = action.payload

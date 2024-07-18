@@ -8,8 +8,18 @@ export interface Meal {
     inStock: boolean,
     fastDelivery: boolean
 }
+export interface Product {
+    idMeal: string,
+    strMealThumb: string,
+    strMeal: string,
+    price: number,
+    fastDelivery: boolean,
+    ratings: number,
+    inStock: boolean,
+    strCategory: string
+}
 export interface CartItem {
-    meal: Meal,
+    meal: Product,
     quantity: number
 }
 

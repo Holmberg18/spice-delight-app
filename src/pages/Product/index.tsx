@@ -1,14 +1,14 @@
 import { useState, useEffect, useMemo } from "react"
-import { fetchRecipe } from "@/utils/recipes"
+import { fetchRecipe, fetchProduct } from "@/utils/recipes"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart, removeFromCart } from "@/features/cartSlice"
 import { RootState } from "@/app/store"
-import { Meal, CartItem } from "@/models/Meal"
+import { CartItem } from "@/models/Meal"
 import Button from '@/components/Button'
 
 
-const getValidIngredients = (meal: Record<string, any>): string[] => {
+const getValidIngredients = (meal: Record<string, any> | undefined): string[] => {
     const ingredients: string[] = [];
 
     for (let key in meal) {
@@ -22,8 +22,12 @@ const getValidIngredients = (meal: Record<string, any>): string[] => {
 
 const RecipePage = () => {
 
-    const [recipe, setRecipe] = useState<any>()
+    const [recipe, setRecipe] = useState<Record<string, any>>()
+    const [product, setProduct] = useState<Product>()
     const { id } = useParams()
+    const params: string[] | undefined = id?.split("+")
+    const productName: string = params? params[0]: ""
+    const productId: string = params ? params[1]: ""
     const dispatch = useDispatch()
     const cartItems = useSelector((state: RootState) => state.cart.items)
 
@@ -33,18 +37,20 @@ const RecipePage = () => {
         setRecipe(response)
     }
 
+    const getProduct = async (name: string) => {
+        const response = await fetchProduct(name)
+        setProduct(response)
+    }
+
     useEffect(() => {
-        getRecipe(id)
+        getRecipe(productName)
+        getProduct(productId)
     }, [])
 
     const {
         idMeal,
         strMealThumb,
         strMeal,
-        price =(Math.random() * (50 - 10) + 10).toFixed(2),
-        fastDelivery = Math.random() >= 0.5,
-        ratings = (Math.random() * (5 - 1) + 1).toFixed(),
-        inStock = Math.random() <= 0.8,
         strCategory,
     } = useMemo(() => recipe ? recipe : {
         strMealThumb: "",
@@ -54,17 +60,29 @@ const RecipePage = () => {
         ratings: 0,
         strCategory: ""
     }, [recipe])
+
+    const {
+        price,
+        fastDelivery,
+        ratings,
+        inStock
+    } = useMemo(() => product ? product : {
+        price: 0.00,
+        fastDelivery: false,
+        ratings: 0,
+        inStock: false
+    }, [product])
     const ingredients = getValidIngredients(recipe)
 
-    const meal: Meal = {
+    const meal: Product = {
         idMeal: idMeal,
-        name: strMeal,
-        price: price,
         strMeal: strMeal,
+        price: price,
         strMealThumb: strMealThumb,
         ratings: ratings,
         inStock: inStock,
-        fastDelivery: fastDelivery
+        fastDelivery: fastDelivery,
+        strCategory: strCategory
     }
 
     return (

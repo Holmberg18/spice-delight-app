@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { Meal } from '@/models/Meal'
+import { getApiKey } from "@/utils/keyVault"
 
-const fetchRecipe = (id: string | undefined): Promise<MealResponse> => {
+const fetchRecipe = (id: string | undefined): Promise<Meal> => {
 
-    const recipe: Promise<MealResponse> = axios({
-        url: `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+    const recipe: Promise<Meal> = axios({
+        url: `https://www.themealdb.com/api/json/v1/1/search.php?s=${id}`,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -17,6 +18,46 @@ const fetchRecipe = (id: string | undefined): Promise<MealResponse> => {
     })
 
     return recipe
+}
+
+const fetchProduct = async(id: string): Promise<Product> => {
+
+    const apiKey: string | undefined = await getApiKey()
+    const products = axios({
+        url: import.meta.env.VITE_SPICE_DELIGHT_API_URL + "Product/"+ id, 
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Ocp-Apim-Subscription-Key": apiKey
+        }
+    })
+    .then((response: any) => response.data)
+    .catch((error) => {
+        console.log(error)
+    })
+
+    return products
+    
+}
+
+const fetchProducts = async(): Promise<Product[]> => {
+
+    const apiKey: string | undefined = await getApiKey()
+    const products = axios({
+        url: import.meta.env.VITE_SPICE_DELIGHT_API_URL + "Product", 
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Ocp-Apim-Subscription-Key": apiKey
+        }
+    })
+    .then((response: any) => response.data)
+    .catch((error) => {
+        console.log(error)
+    })
+
+    return products
+    
 }
 
 const fetchRecipes = (type: string) => {
@@ -70,4 +111,10 @@ const getBannerPhotos = ():any => {
         return bannerPhotos
 }
 
-export { fetchRecipe, fetchRecipes, getBannerPhotos }
+export { 
+    fetchRecipe,
+    fetchRecipes,
+    getBannerPhotos,
+    fetchProduct,
+    fetchProducts
+}

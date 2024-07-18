@@ -77,3 +77,24 @@ declare interface MealResponse {
 }
 declare interface FilterList { value: string, type: string, order: string, action: Function, checked: boolean }
 declare interface StripeKey { keyId: number, keyName: string, publishableKey: string, secretKey: string }
+declare interface Meal {
+    idMeal: string,
+    strMeal: string,
+    price: number,
+    strMeal: string,
+    strMealThumb: string,
+    ratings: number
+    inStock: boolean,
+    fastDelivery: boolean
+    strCategory: string
+}
+declare interface Product {
+    idMeal: string,
+    strMealThumb: string,
+    strMeal: string,
+    price: number,
+    fastDelivery: boolean,
+    ratings: number,
+    inStock: boolean,
+    strCategory: string
+}

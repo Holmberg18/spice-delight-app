@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
-import { Meal } from "@/models/Meal"
 
 const cartCookie = Cookies.get("shoppingCart")
 const { items }: { items: cartItems | undefined } 
@@ -25,7 +24,7 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addToCart: (state, action: PayloadAction<Meal>) => {
+        addToCart: (state, action: PayloadAction<Product>) => {
             const existingIndex = state.items.findIndex((item) => item.meal.idMeal === action.payload.idMeal)
             if(existingIndex >= 0){
                 state.items[existingIndex].quantity += 1
@@ -34,7 +33,7 @@ export const cartSlice = createSlice({
             }
             setCartCookie(state)
         },
-        removeFromCart: (state, action: PayloadAction<Meal>) => {
+        removeFromCart: (state, action: PayloadAction<Product>) => {
             state.items = state.items.filter((item) =>  item.meal.idMeal !== action.payload.idMeal)
             setCartCookie(state)
         },
