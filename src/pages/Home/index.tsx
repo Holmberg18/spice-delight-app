@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Button, Slider } from "@/components"
-import { fetchRecipes } from "@/utils/recipes"
+import { fetchProducts } from "@/utils/recipes"
 import CircleType from "circletype"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons"
@@ -43,7 +43,7 @@ const Home = () => {
                     </div>
                     <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center my-auto lg:block">
                         <Slider 
-                            getSlideData={() => fetchRecipes("Spanish")} 
+                            getSlideData={() => fetchProducts()} 
                             id="idMeal"
                             src= "strMealThumb"
                             label= "strMeal"

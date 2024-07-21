@@ -32,12 +32,12 @@ const RecipePage = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items)
 
 
-    const getRecipe = async (id: string | undefined) => {
+    const getRecipe = async (id: string | undefined): Promise<void> => {
         const response = await fetchRecipe(id)
         setRecipe(response)
     }
 
-    const getProduct = async (name: string) => {
+    const getProduct = async (name: string): Promise<void> => {
         const response = await fetchProduct(name)
         setProduct(response)
     }

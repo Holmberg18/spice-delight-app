@@ -26,7 +26,7 @@ const Slider = ({  getSlideData, id, src, label, perView, initialSlide, product 
 
     const handleImgClick = (slide: any): void => {
       if(product){
-        navigate("/product/"+slide.idMeal)
+        navigate("/product/"+slide.strMeal)
       }
     }
 

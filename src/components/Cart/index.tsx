@@ -47,7 +47,7 @@ const Cart = () => {
                                 />
                                 <div className="flex flex-col text-white hover:text-blue text-sm cursor-pointer">
                                     <span>{item.meal.strMeal}</span>
-                                    <span>{Math.floor(item.meal.price)}</span>
+                                    <span>${item.meal.price.toFixed(2)}</span>
                                 </div>
                                 <div className="block text-white hover:text-blue text-sm cursor-pointer">
                                     <FontAwesomeIcon 
