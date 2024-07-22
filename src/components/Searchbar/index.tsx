@@ -40,7 +40,7 @@ const Searchbar = () => {
                         <input
                             ref={searchEl}
                             type="text"
-                            placeholder="Search for recipes, restaurants..."
+                            placeholder="Search for recipes..."
                             className="p-2 border rounded"
                             onKeyDown={handleKeyboardSearch}
                             autoFocus

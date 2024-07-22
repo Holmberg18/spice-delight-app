@@ -25,7 +25,7 @@ const SingleMeal = ({ meal }: Props) => {
     }: Product = meal
 
     return (
-        <div className="max-w-md rounded overflow-auto shadow-lg m-8 flex flex-col justify-evenly items-center">
+        <div className="max-w-md rounded overflow-hidden shadow-lg m-8 flex flex-col justify-evenly items-center">
             <Link to={`/product/${strMeal}+${idMeal}`}><img className="w-full" src={strMealThumb} alt={strMeal} /></Link>
             <div className="px-6 py-4 h-64">
                 <div className="font-bold text-lg mb-2">{strMeal}</div>

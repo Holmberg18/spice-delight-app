@@ -12,18 +12,18 @@ import { useDispatch, useSelector } from "react-redux"
 const Cart = () => {
 
     const cart = useSelector((state: RootState) => state.cart.items)
-    const cartTotal = (Math.round(cart.reduce((acc: number, curr: {[key:string]: any}) => 
+    const cartTotal = (Math.round(cart.reduce((acc: number, curr: Object) => 
         acc + (curr.meal.price * curr.quantity), 0.00) * 100) / 100).toFixed(2);
     const dispatch = useDispatch()
 
     return (
-        <div className="flex flex-row w-full">
-            <div className="w-[75%] p-8" >
+        <div className="flex flex-col lg:flex-row w-full">
+            <div className="w-full lg:w-[75%] p-8" >
                 <ol className="Tiempos">
                     {
                         cart.length > 0 ? cart.map((prod: CartItem) => (
-                            <li key={prod.meal.strMeal} className="flex flex-col justify-evenly items-center bg-white shadow-lg p-4 my-4 rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
-                                <img className="md:max-w-xs fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} />
+                            <li key={prod.meal.strMeal} className="flex flex-col justify-around items-center bg-white shadow-lg p-4 my-4 rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
+                                <Link to={`/product/`+prod.meal.strMeal+`+`+prod.meal}><img className="md:max-w-xs fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} /></Link>
                                 <p>{prod.meal.strMeal}</p>
                                 <p>${prod.meal.price.toFixed(2)}</p>
                                 <Rating rating={prod.meal.ratings} className="px-6 pb-2" />
@@ -34,7 +34,7 @@ const Cart = () => {
                                         dispatch(updateQuantity({idMeal: prod.meal.idMeal, quantity: parseInt(e.target.value)}))}
                                 >
                                     {
-                                       [...Array(prod.meal.inStock).keys()].map((x) => (
+                                       [...Array(5).keys()].map((x) => (
                                             <option key={x + 1}>{x + 1}</option>
                                        ))
                                     }
@@ -50,7 +50,7 @@ const Cart = () => {
                     }
                 </ol>
             </div>
-            <div className="flex flex-col bg-[#343a40] text-white p-6 w-[25%] m-2 h-[86vh]">
+            <div className="flex flex-col bg-[#343a40] text-white p-6 w-full lg:w-[25%] m-2 h-[86vh]">
                 <h1 className="text-xxl mb-3">Subtotal ({cart.length}) items</h1>
                 <p className="Manrope bold mb-3">Total: ${cartTotal}</p>
                 {

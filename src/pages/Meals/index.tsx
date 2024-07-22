@@ -47,7 +47,7 @@ const Meals = () => {
         <>
             <div className="flex flex-col lg:flex-row wrap">
                 <Filters resetPage={setPage} />
-                <div className="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 lg:w-[75%] justify-center">
+                <div className="grid grid-cols-1 m-auto md:grid-cols-2 xl:grid-cols-3 lg:w-[75%] justify-center">
                     {filterData?.length ? filterData.map((prod: Product) => {
                         return <SingleMeal meal={prod} key={prod.idMeal} />
                     }): ""}

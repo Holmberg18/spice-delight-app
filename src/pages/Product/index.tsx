@@ -92,7 +92,7 @@ const RecipePage = () => {
                 <div className="p-8 flex flex-col justify-between w-full">
                     <div>
                         <h2 className="text-2xl font-semibold mb-4">{strMeal}</h2>
-                        <p className="text-xl text-orange-500 mb-4">${price}</p>
+                        <p className="text-xl text-orange-500 mb-4">${price.toFixed(2)}</p>
                         <p className="text-xl text-orange-500 mb-4">Ingredients</p>
                         <p className="text-lg mb-1">{ingredients.join(', ')}</p>
                     </div>
