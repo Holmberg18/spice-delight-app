@@ -85,7 +85,7 @@ const Filters = ({ resetPage }: Props) => {
                     </div>
                     <Button 
                         buttonType="button"
-                        name="Clear Filters" 
+                        name={<p>Clear Filters</p>} 
                         rounded={true}
                         action={() => {
                             resetPage(0)

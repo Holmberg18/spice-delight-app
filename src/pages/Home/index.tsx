@@ -24,7 +24,7 @@ const Home = () => {
                         <h1 className="my-4 text-7xl">Get Your Favorite Food With Ease</h1>
                         <p className="my-9">Satisfy Your Hunger Pangs with a Wide Range of Delicious Meals from Top Restaurants - Fast and Reliable Delivery Guaranteed!</p>
                         <div className="flex flex-wrap items-center justify-center xs:flex-column lg:justify-between lg:flex-row px-6">
-                            <Link to="/products"><Button buttonType="button" name={"Order Now"} rounded={true} /></Link>
+                            <Link to="/products"><Button buttonType="button" name={<p>Order Now</p>} rounded={true} /></Link>
                             <div className="relative h-48 w-48">
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><p ref={getAppRef} className="animate-[spin_15s_linear_infinite]"> GET THE APP. GET THE APP. GET THE APP.</p></div>
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Link to="/phone-app"><Button buttonType="button" icon={<FontAwesomeIcon icon={faArrowRight} />} rounded={true}/></Link></div>
@@ -37,23 +37,21 @@ const Home = () => {
                 </div>
     
                 {/* Recipe Slider section */}
-                <section className="grid sm:grid-rows-5 grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 grid-rows-1 mt-16 content-center align-middle gap-x-4">
-                    <div className="lg:col-span-1 flex items-center justify-center">
+                <section className="grid grid-rows-1 grid-cols-1 lg:grid-cols-5 grid-rows-1 mt-16 gap-x-4 content-center">
+                    <div className="lg:col-span-1 flex items-center justify-center my-3">
                         <p className="font-semibold text-2xl">Trending Recipes</p>
                     </div>
-                    <div className="row-span-1 lg:col-span-2 p-1 sm:flex justify-center my-auto lg:block">
+                    <div className="col-span-1 lg:col-span-2 my-auto">
                         <Slider 
                             getSlideData={() => fetchProducts()} 
                             id="idMeal"
                             src= "strMealThumb"
                             label= "strMeal"
-                            perView={2}
                             imageId="strMealThumb"
                             product={true}
                         />
                     </div>
                     <div className="row-span-1 flex items-center my-7 justify-center xl:justify-start">
-                        {/* <a href="#" >Explore More</a> */}
                         <Link className="font-semibold underline underline-offset-8 decoration-yellow" to="/products">Explore More</Link>
                     </div>
                     <div className="row-span-1 lg:col-span-1 my-10">

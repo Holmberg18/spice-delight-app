@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react"
 
 interface Props {
-    name?: string
+    name?: JSX.Element
     disabled?: boolean
     action?: MouseEventHandler<HTMLButtonElement>,
     rounded: boolean
@@ -11,13 +11,17 @@ interface Props {
 }
 
 const Button = ({ name, disabled, action, rounded, icon, className, buttonType }: Props) => {
-
     return (
-        <button type={buttonType} disabled={disabled} className={`bg-black hover:bg-blue-700 text-white text-sm max-w-content sm:h-12 md:h-14 lg:h-16 px-6 sm:py-3 md:py-4 lg:py-5 ${className}`} onClick={action} style={{borderRadius: rounded ? 24: 0}}>
-                {name}{icon}
+        <button
+            type={buttonType}
+            disabled={disabled}
+            className={`bg-black hover:bg-blue-700 text-white text-sm p-4 ${rounded ? 'rounded-xl' : ''} ${className} flex items-center justify-center whitespace-normal break-words`}
+            onClick={action}
+        >
+            {icon && <span className="mr-2">{icon}</span>}
+            {name}
         </button>
-    )
+    );
+};
 
-}
-
-export default Button
+export default Button;

@@ -117,14 +117,14 @@ const RecipePage = () => {
                                     buttonType="button"
                                     action={() => {
                                     dispatch(removeFromCart(meal))
-                                }} name="Remove from cart" rounded={true} className="my-2" />
+                                }} name={<p>Remove from cart</p>} rounded={true} className="my-2" />
                             ) : (
                                 <Button 
                                     buttonType="button"
                                     action={()=> {
                                         dispatch(addToCart(meal))
                                     }} 
-                                    name={!inStock ? "Out of Stock" : "Add to Cart"} 
+                                    name={!inStock ? <p>Out of Stock</p> : <p>Add to Cart</p>} 
                                     rounded={true} 
                                     disabled={!inStock} 
                                 />

@@ -33,7 +33,7 @@ const Searchbar = () => {
     }
 
     return(
-        <div className="relative">
+        <div className="flex flex-row">
             {
                 isVisible ? (
                     <>
@@ -45,14 +45,20 @@ const Searchbar = () => {
                             onKeyDown={handleKeyboardSearch}
                             autoFocus
                         />
-                        <Button buttonType="button" name={"Search"} className={"mx-3"} rounded={true} action={handleButtonSearch}/>
-                    </>
+                        <Button 
+                            buttonType="button" 
+                            name={<FontAwesomeIcon icon={faSearch} onClick={() => setIsVisible(true)} 
+                            className="cursor-pointer"/>} 
+                            className={"mx-3"} 
+                            rounded={true} 
+                            action={handleButtonSearch}/>
+                        </>
                 ) : (
                     <FontAwesomeIcon
                         icon={faSearch}
                         onClick={() => setIsVisible(true)}
                         className="cursor-pointer"
-                        />
+                    />
                 )
             }
         </div>

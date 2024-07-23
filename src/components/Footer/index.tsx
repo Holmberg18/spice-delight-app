@@ -4,7 +4,7 @@ import { faFacebook, faLinkedin, faTwitter, faInstagram } from "@fortawesome/fre
 
 const Footer = () => {
     return(
-        <footer className="bg-[#343a40] mt-[20rem] p-16 text-sm py-18 px-36 text-white">
+        <footer className="bg-[#343a40] mt-[20rem] p-16 text-sm py-18 px-4 text-white">
             <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto">
                 <div className="text-left col-span-1 space-y-3">
                     <p>{new Date().getFullYear()} Spice Delight. All rights reserved.</p>

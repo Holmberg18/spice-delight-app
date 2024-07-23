@@ -17,30 +17,30 @@ const Navigation = () => {
                     <h1>Spice Delight</h1>
                 </a>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-                <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
-                        <Link to="/">
-                            <li className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
-                                Home
+                    <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
+                            <Link to="/">
+                                <li className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
+                                    Home
+                                </li>
+                            </Link>
+                            <Link to="/products">
+                                <li className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
+                                    Products
+                                </li>
+                            </Link>
+                            <li className="block rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
+                                <Searchbar />
                             </li>
-                        </Link>
-                        <Link to="/products">
-                            <li className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
-                                Products
+                            <li>
+                                <Link to="/phone-app" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent"><Button buttonType="button" name={<p>Get the App</p>} rounded={true} /></Link>
                             </li>
-                        </Link>
-                        <li className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
-                            <Searchbar />
-                        </li>
-                        <li>
-                            <Link to="/phone-app" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent"><Button buttonType="button" name={"Get the App"} rounded={true} /></Link>
-                        </li>
-                        <li>
-                            <Cart />
-                        </li>
-                        <li>
-                            <Account />
-                        </li>
-                </ul>
+                            <li>
+                                <Cart />
+                            </li>
+                            <li>
+                                <Account />
+                            </li>
+                    </ul>
                 </div>
             </div>
             <div onClick={() => setMobileVisible(!mobileVisible)} className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 md:hidden">

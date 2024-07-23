@@ -8,7 +8,6 @@ interface Props {
     id: string,
     src: string,
     label: string,
-    perView: number,
     action?: Function,
     imageId: string,
     initialSlide?: number,
@@ -17,7 +16,7 @@ interface Props {
 
 
 
-const Slider = ({  getSlideData, id, src, label, perView, initialSlide, product }: Props) => {
+const Slider = ({  getSlideData, id, src, label, initialSlide, product }: Props) => {
 
     const [slideData, setSlideData] = useState<Object[]>([])
     const [currentSlide, setCurrentSlide] = useState<number>(0)
@@ -26,20 +25,20 @@ const Slider = ({  getSlideData, id, src, label, perView, initialSlide, product 
 
     const handleImgClick = (slide: any): void => {
       if(product){
-        navigate("/product/"+slide.strMeal)
+        navigate("/product/"+slide.strMeal+ "+" + slide.idMeal)
       }
     }
 
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         breakpoints: {
-            "min-width: 300px)": {
-                slides: { perView: perView - 4, spacing: 5}
+            "min-width: 200px)": {
+                slides: { perView: 1, spacing: 1}
             },
             "(min-width: 400px)": {
-                slides: { perView: perView - 3, spacing: 10 },
+                slides: { perView: 2, spacing: 5 },
             },
             "(min-width: 800px": {
-                slides: { perView: perView, spacing: 15}
+                slides: { perView: 2, spacing: 15}
             }
         },
         initial: initialSlide || 1,

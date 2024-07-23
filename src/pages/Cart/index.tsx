@@ -56,7 +56,7 @@ const Cart = () => {
                 {
                     cart.length > 0 ? 
                     <Link to="/checkout">
-                        <Button buttonType="button" name="Proceed to Checkout" className="bg-blue" rounded={false} />
+                        <Button buttonType="button" name={<p>Proceed to Checkout</p>} className="bg-blue" rounded={false} />
                     </Link> : ""
                 }
             </div>

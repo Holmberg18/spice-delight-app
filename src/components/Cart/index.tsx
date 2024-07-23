@@ -62,7 +62,7 @@ const Cart = () => {
                         <Button 
                             buttonType="button"
                             action={() => setDropdownVisible(false)} 
-                            name="Go To Cart" 
+                            name={<p>Go to Cart</p>}
                             rounded={true} 
                             className="md:hover:text-blue text-[.8rem]"
                         />
