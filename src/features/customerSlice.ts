@@ -4,8 +4,8 @@ import { Customer } from "@/models/Customer"
 
 
 const getCustomerFromCookie = (): Customer => {
-    const customerCookie = Cookies.get("customer")
-    return customerCookie ? JSON.parse(customerCookie).customer : {}
+    const customerCookie: string | undefined = Cookies.get("customer")
+    return customerCookie && customerCookie.length ? JSON.parse(customerCookie).customer : {}
 }
 
 const setCustomerCookie = (customer: CustomerState) => {

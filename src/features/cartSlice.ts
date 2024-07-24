@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
 
-const cartCookie = Cookies.get("shoppingCart")
+const cartCookie: string | undefined = Cookies.get("shoppingCart")
 const { items }: { items: cartItems | undefined } 
-    = JSON.parse(cartCookie ? cartCookie : "")
+    = JSON.parse(cartCookie && cartCookie.length ? cartCookie : "")
 
 const setCartCookie = (cart: CartState) => {
     const cartString = JSON.stringify(cart)
