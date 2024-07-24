@@ -110,14 +110,14 @@ const RecipePage = () => {
                         <div className="mt-4">
                             <h3 className="text-xl font-semibold">Category: {strCategory}</h3>
                         </div>
-                        <div className="mt-4">
+                        <div className="flex flex-row justify-center align-items mt-4">
                         {
                             cartItems.some((cartItem: CartItem) => cartItem.meal.idMeal === idMeal) ? (
                                 <Button 
                                     buttonType="button"
                                     action={() => {
-                                    dispatch(removeFromCart(meal))
-                                }} name={<p>Remove from cart</p>} rounded={true} className="my-2" />
+                                        dispatch(removeFromCart(meal))
+                                }} name={<p>Remove from cart</p>} rounded={true} />
                             ) : (
                                 <Button 
                                     buttonType="button"

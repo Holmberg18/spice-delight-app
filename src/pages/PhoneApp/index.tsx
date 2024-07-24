@@ -12,12 +12,14 @@ const PhoneApp = () => (
                     Spice Delight offers a wide variety of menu items and recipes that are fresh and delivered fast.
                     With our new app, you can:
                 </p>
-                <ul className="list-disc list-inside text-left text-[#343a40]">
-                    <li>Browse selections</li>
-                    <li>Log on to your account</li>
-                    <li>Place orders</li>
-                    <li>And more!</li>
-                </ul>
+                <div className="flex justify-center align-items">
+                    <ul className="max-w-[15rem] list-disc list-inside text-left text-[#343a40]">
+                        <li>Browse selections</li>
+                        <li>Log on to your account</li>
+                        <li>Place orders</li>
+                        <li>And more!</li>
+                    </ul>
+                </div>
             </div>
         </main>
     </div>

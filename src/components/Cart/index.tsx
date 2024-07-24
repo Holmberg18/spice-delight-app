@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect} from 'react'
-import { Link } from 'react-router-dom'
 import Button from '@/components/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { removeFromCart } from "@/features/cartSlice"
@@ -7,10 +6,12 @@ import { RootState } from "@/app/store"
 import { useDispatch, useSelector } from "react-redux"
 import { CartItem } from '@/models/Meal'
 import { faCartShopping, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
 
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false)
+    const navigate = useNavigate()
     const dropdownMenu = useRef<HTMLDivElement>(null)
     const cart = useSelector((state: RootState) => state.cart.items)
     const dispatch = useDispatch()
@@ -45,7 +46,7 @@ const Cart = () => {
                                     className="h-8 w-8 rounded-full mx-2" 
                                     alt={item.meal.strMeal} 
                                 />
-                                <div className="flex flex-col text-white hover:text-blue text-sm cursor-pointer">
+                                <div className="flex flex-col text-white text-sm">
                                     <span>{item.meal.strMeal}</span>
                                     <span>${item.meal.price.toFixed(2)}</span>
                                 </div>
@@ -57,16 +58,21 @@ const Cart = () => {
                                 </div>
                             </li>
                         ) : <li className="block text-white hover:text-blue text-sm cursor-pointer text-lg">Your cart is empty!</li>
-                    }
-                    <Link to="/cart">
+                    }<li>
+                        
+                    </li>
+                    <li className="flex flex-row align-items justify-center">
                         <Button 
                             buttonType="button"
-                            action={() => setDropdownVisible(false)} 
+                            action={() => {
+                                navigate("/cart")
+                                setDropdownVisible(false)
+                            }}
                             name={<p>Go to Cart</p>}
                             rounded={true} 
                             className="md:hover:text-blue text-[.8rem]"
                         />
-                    </Link>
+                    </li>
                 </ul>
             </div>
         </div>

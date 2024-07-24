@@ -15,10 +15,10 @@ const Button = ({ name, disabled, action, rounded, icon, className, buttonType }
         <button
             type={buttonType}
             disabled={disabled}
-            className={`bg-black hover:bg-blue-700 text-white text-sm p-4 ${rounded ? 'rounded-xl' : ''} ${className} flex items-center justify-center whitespace-normal break-words`}
+            className={`bg-black hover:bg-blue-700 text-white text-sm p-4 ${rounded ? 'rounded-[24px]' : ''} ${className} flex items-center justify-center whitespace-normal break-words`}
             onClick={action}
         >
-            {icon && <span className="mr-2">{icon}</span>}
+            {icon && <span>{icon}</span>}
             {name}
         </button>
     );

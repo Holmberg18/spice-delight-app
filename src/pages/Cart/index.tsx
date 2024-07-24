@@ -55,7 +55,7 @@ const Cart = () => {
                 <p className="Manrope bold mb-3">Total: ${cartTotal}</p>
                 {
                     cart.length > 0 ? 
-                    <Link to="/checkout">
+                    <Link to="/checkout" className="flex justify-center align-items">
                         <Button buttonType="button" name={<p>Proceed to Checkout</p>} className="bg-blue" rounded={false} />
                     </Link> : ""
                 }
