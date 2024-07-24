@@ -5,7 +5,7 @@ import { Customer } from "@/models/Customer"
 
 const getCustomerFromCookie = (): Customer => {
     const customerCookie: string | undefined = Cookies.get("customer")
-    return customerCookie && customerCookie.length ? JSON.parse(customerCookie).customer : {}
+    return customerCookie?.length ? JSON.parse(customerCookie).customer : {}
 }
 
 const setCustomerCookie = (customer: CustomerState) => {

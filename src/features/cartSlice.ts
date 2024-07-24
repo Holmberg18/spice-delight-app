@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
 
-const cartCookie: string | undefined = Cookies.get("shoppingCart")
-const { items }: { items: cartItems | undefined } 
-    = JSON.parse(cartCookie && cartCookie.length ? cartCookie : "")
+const getCartItems = (): cartItems => {
+    const cartCookie: string | undefined = Cookies.get("shoppingCart")
+    return cartCookie?.length ? JSON.parse(cartCookie).items : []
+}
 
 const setCartCookie = (cart: CartState) => {
     const cartString = JSON.stringify(cart)
@@ -16,7 +17,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-    items: items?.length ? items : [],
+    items: getCartItems(),
     orderCreated: false
 }
 
