@@ -12,8 +12,5 @@ export default defineConfig({
      watch: {
        usePolling: true
      }
-  },
-  define: {
-    'process.env': process.env
   }
  })
