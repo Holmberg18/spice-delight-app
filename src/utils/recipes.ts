@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Meal } from '@/models/Meal'
 import { getApiKey } from "@/utils/keyVault"
+import { KeyVaultKey } from '@azure/keyvault-keys'
 
 const fetchRecipe = (id: string | undefined): Promise<Meal> => {
 
@@ -22,13 +23,13 @@ const fetchRecipe = (id: string | undefined): Promise<Meal> => {
 
 const fetchProduct = async(id: string): Promise<Product> => {
 
-    const apiKey: string | undefined = await getApiKey()
+    const apiKey: string | undefined | KeyVaultKey = await getApiKey()
     const products = axios({
         url: import.meta.env.VITE_SPICE_DELIGHT_API_URL + "Product/"+ id, 
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": apiKey
+            "Ocp-Apim-Subscription-Key": typeof apiKey === "string" ? apiKey : ""
         }
     })
     .then((response: any) => response.data)
@@ -42,13 +43,13 @@ const fetchProduct = async(id: string): Promise<Product> => {
 
 const fetchProducts = async(): Promise<Product[]> => {
 
-    const apiKey: string | undefined = await getApiKey()
+    const apiKey: string | undefined | KeyVaultKey = await getApiKey()
     const products = axios({
         url: import.meta.env.VITE_SPICE_DELIGHT_API_URL + "Product", 
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": apiKey
+            "Ocp-Apim-Subscription-Key": typeof apiKey === "string" ? apiKey : ""
         }
     })
     .then((response: any) => response.data)
