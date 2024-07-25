@@ -4,6 +4,6 @@ export const getApiKey = (): string | undefined => {
         return import.meta.env.VITE_API_KEY
     }
 
-    return process.env.VITE_API_PROD_KEY
+    return import.meta.env.VITE_API_PROD_KEY
     
 }
