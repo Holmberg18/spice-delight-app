@@ -1,21 +1,15 @@
-import axios from "axios"
-import { getApiKey } from "@/utils/keyVault"
-import { KeyVaultKey } from '@azure/keyvault-keys'
+import axios from "axios";
 
+export const login = async (username: string, password: string): Promise<Customer | void> => {
+    const credentials = { "username": username, "password": password };
 
-export const login = async (username:string, password:string): Promise<Customer | void> => {
-    
-    const apiKey: string | undefined | KeyVaultKey = await getApiKey()
-    const credentials = { "username": username, "password": password }
-    return axios.post(import.meta.env.VITE_SPICE_DELIGHT_API_URL + "Customer/Login", credentials, {
+    return axios.post('/api/login', credentials, {
         headers: {
-            "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": typeof apiKey === "string" ? apiKey : ""
+            "Content-Type": "application/json"
         }
     })
     .then((response: any) => response.data)
     .catch((error) => {
-        console.log(error)
-    })
-    
-}
+        console.log(error);
+    });
+};

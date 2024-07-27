@@ -1,23 +1,18 @@
-import axios from "axios"
-import { getApiKey } from "@/utils/keyVault"
-import { KeyVaultKey } from "@azure/keyvault-keys"
+import axios from "axios";
 
 export const createOrder = async (customerId: string, totalAmount: number): Promise<Order | void> => {
+    const orderDetails = { "customerID": customerId, "totalAmount": totalAmount, "status": 0 };
 
-    const apiKey: string | undefined | KeyVaultKey = await getApiKey()
-    const orderDetails = { "customerID": customerId, "totalAmount": totalAmount, "status": 0}
-    return axios.post(import.meta.env.VITE_SPICE_DELIGHT_API_URL + "Order", orderDetails, {
+    return axios.post('/api/order', orderDetails, {
         headers: {
-            "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": typeof apiKey === "string" ? apiKey : ""
+            "Content-Type": "application/json"
         }
     })
     .then((response: any) => {
-        console.log("order created")
-        return response.data
+        console.log("order created");
+        return response.data;
     })
     .catch((error) => {
-        console.log(error)
-    })
-    
-}
+        console.log(error);
+    });
+};
