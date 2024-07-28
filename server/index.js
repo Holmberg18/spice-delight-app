@@ -176,6 +176,31 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.post('/api/register', async (req, res) => {
+   const credentials = req.body
+  try {
+    const apiKey = await getSecretKey();
+    const response = await fetch(`${process.env.VITE_SPICE_DELIGHT_API_URL}Customer`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': apiKey
+      },
+      body: JSON.stringify(credentials)
+    });
+
+    if (!response.ok) {
+      throw new Error('Error creating user');
+    }
+
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({ error: 'Error creating user' });
+  }
+});
+
 app.get('/api/recipe/:id', async (req, res) => {
   const { id } = req.params;
   try {

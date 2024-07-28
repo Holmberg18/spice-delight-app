@@ -13,3 +13,16 @@ export const login = async (username: string, password: string): Promise<Custome
         console.log(error);
     });
 };
+
+export const register = async (customerData: CustomerDetails): Promise<Customer | void> => {
+
+    return axios.post('/api/register', customerData, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then((response: any) => response.data)
+    .catch((error) => {
+        console.log(error);
+    });
+};

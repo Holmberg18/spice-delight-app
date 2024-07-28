@@ -6,18 +6,8 @@ import { useDispatch } from "react-redux"
 import { login as loginCustomer } from "@/features/customerSlice"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import * as Yup from "yup"
-
-
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .required("Username is a required field")
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username cannot exceed 20 characters"),
-  password: Yup.string()
-    .required("Password is a required field")
-    .min(8, "Password must be at least 8 characters"),
-});
+import { loginSchema as validationSchema } from "@/schemas/validationSchemas"
+import { loginFormStyles as styles } from "@/styles/styles"
 
 
 const LoginForm = () => {
@@ -26,17 +16,17 @@ const LoginForm = () => {
   const dispatch = useDispatch()
   const [submit, setSubmit] = useState<boolean>(false)
 
-  const handleLogin = async(username: string, password: string): Promise<void> => {
+  const handleLogin = async (username: string, password: string): Promise<void> => {
     setSubmit(true)
-    const loginAttempt = await login(username,password)
-    if(loginAttempt){
+    const loginAttempt: any = await login(username, password)
+    if (loginAttempt) {
       dispatch(loginCustomer(loginAttempt))
       navigate("/products")
     } else {
       setSubmit(false)
     }
   }
-  
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -47,15 +37,6 @@ const LoginForm = () => {
       handleLogin(values.username, values.password)
     },
   });
-
-  const styles: Styles = {
-    login: "w-360px pt-8 mx-auto",
-    form: "relative z-10 bg-white rounded-lg max-w-360px mx-auto mb-100px p-45 text-center",
-    input: "outline-none bg-gray-200 w-full border-0 rounded-md mb-3 p-3 box-border text-sm focus:bg-gray-300",
-    button: "uppercase outline-none bg-blue-600 w-full border-0 rounded-md p-3 text-sm transition-all duration-300 ease-in-out cursor-pointer active:bg-blue-800",
-    span: "text-4xl text-blue-600 mb-6 block",
-    error: "ml-4 mt-1 text-left text-red-500 text-xs"
-  }
 
   return (
     <div className={styles.login}>
@@ -84,14 +65,14 @@ const LoginForm = () => {
           <p className={styles.error}>{formik.errors.password}</p>
         )}
         <div className="flex flex-row">
-        <button
-          disabled={submit}
-          type="submit"
-          className={styles.button}
-        >
-          Login
-        </button>
-        { submit ? <FontAwesomeIcon className="animate-spin" icon={faSpinner} /> : "" }
+          <button
+            disabled={submit}
+            type="submit"
+            className={styles.button}
+          >
+            Login
+          </button>
+          {submit ? <FontAwesomeIcon className="animate-spin" icon={faSpinner} /> : ""}
         </div>
       </form>
     </div>
