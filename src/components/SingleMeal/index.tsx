@@ -26,7 +26,11 @@ const SingleMeal = ({ meal }: Props) => {
 
     return (
         <div className="max-w-md rounded overflow-hidden shadow-lg m-8 flex flex-col justify-evenly items-center">
-            <Link to={`/product/${strMeal}+${idMeal}`}><img className="w-full" src={strMealThumb} alt={strMeal} /></Link>
+            <Link to={`/product/${strMeal}+${idMeal}`}>
+                <div className="overflow-hidden">
+                    <img className="w-full transition-transform duration-500 ease-in-out transform hover:scale-110" src={strMealThumb} alt={strMeal} />
+                </div>
+            </Link>
             <div className="px-6 py-4 h-64">
                 <div className="font-bold text-lg mb-2">{strMeal}</div>
                 <span>${Math.trunc(price)}</span>
@@ -35,22 +39,22 @@ const SingleMeal = ({ meal }: Props) => {
                 <div className="flex flex-col items-center">
                     {
                         cartItems.some((cartItem: CartItem) => cartItem.meal.idMeal === idMeal) ? (
-                            <Button 
+                            <Button
                                 buttonType="button"
                                 action={() => {
                                     dispatch(removeFromCart(meal))
-                                }} 
+                                }}
                                 name={<p>Remove from cart</p>}
                                 rounded={true} />
                         ) : (
-                            <Button 
+                            <Button
                                 buttonType="button"
-                                action={()=> {
+                                action={() => {
                                     dispatch(addToCart(meal))
-                                }} 
-                                name={!inStock ? <p>Out of Stock</p>: <p>Add to Cart</p>} 
-                                rounded={true} 
-                                disabled={!inStock} 
+                                }}
+                                name={!inStock ? <p>Out of Stock</p> : <p>Add to Cart</p>}
+                                rounded={true}
+                                disabled={!inStock}
                             />
                         )
                     }

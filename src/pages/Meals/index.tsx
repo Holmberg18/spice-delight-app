@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react"
 import { useAppDispatch, useAppSelector } from "@/hooks"
 import { fetchProductsAsync } from "@/features/recipeSlice"
-import { Filters, SingleMeal } from "@/components"
+import { Filters, SingleMeal, Loading } from "@/components"
 import ReactPaginate from "react-paginate"
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"
 import { IconContext } from "react-icons"
@@ -50,7 +50,9 @@ const Meals = () => {
                 <div className="grid grid-cols-1 m-auto md:grid-cols-2 xl:grid-cols-3 lg:w-[75%] justify-center">
                     {filterData?.length ? filterData.map((prod: Product) => {
                         return <SingleMeal meal={prod} key={prod.idMeal} />
-                    }): ""}
+                    }): 
+                    [1, 2, 3, 4, 5, 6].map((_, index) => <Loading key={index} />)
+                    }
                 </div>
             </div>
             <ReactPaginate
