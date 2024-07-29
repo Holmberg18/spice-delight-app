@@ -12,9 +12,9 @@ import { loginFormStyles as styles } from "@/styles/styles"
 
 const LoginForm = () => {
 
+  const [submit, setSubmit] = useState<boolean>(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [submit, setSubmit] = useState<boolean>(false)
 
   const handleLogin = async (username: string, password: string): Promise<void> => {
     setSubmit(true)

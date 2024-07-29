@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useFormik } from "formik"
 import { register } from "@/utils/customerService"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { login as loginCustomer } from "@/features/customerSlice"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { registerSchema as validationSchema } from "@/schemas/validationSchemas"
@@ -10,12 +12,15 @@ import { loginFormStyles as styles } from "@/styles/styles"
 const RegisterForm = () => {
 
   const [submit, setSubmit] = useState<boolean>(false)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  
   const handleRegister = async (values: CustomerDetails): Promise<void> => {
     setSubmit(true)
     const registerAttempt: any = await register(values)
     if (registerAttempt) {
-      navigate("/login")
+      dispatch(loginCustomer(registerAttempt))
+      navigate("/products")
     } else {
       setSubmit(false)
     }
