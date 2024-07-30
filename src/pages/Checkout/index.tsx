@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { State, IState } from 'country-state-city'
-import * as Yup from 'yup'
 import { Rating, Payment } from '@/components'
 import { RootState } from "@/app/store"
+import { orderSchema as validationSchema } from '@/schemas/validationSchemas'
 import { useSelector } from "react-redux"
 
 const initialValues: CheckoutFormValues = {
@@ -19,16 +19,6 @@ const stateOptions: StateOption[] = State.getStatesOfCountry("US").map((state: I
     label: state.name,
     value: state.isoCode,
 }))
-
-const validationSchema = Yup.object({
-    firstName: Yup.string().required("Required"),
-    lastName: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email address").required("Required"),
-    address: Yup.string().required("Required"),
-    city: Yup.string().required("Required"),
-    state: Yup.string().required("Required"),
-    zipCode: Yup.string().matches(/^[0-9]{5}(?:-[0-9]{4})?$/, "Invalid ZIP code").required("Required"),
-})
 
 const CheckoutForm = () => {
 
