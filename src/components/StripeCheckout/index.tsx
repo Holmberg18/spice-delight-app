@@ -16,6 +16,7 @@ const StripeCheckout = ({ totalAmount }: Props) => {
     const stripe = useStripe()
     const elements = useElements()
     const customer: Customer = useSelector((state: RootState) => state.customer.customer)
+    const cart = useSelector((state: RootState) => state.cart.items)
     const dispatch = useDispatch()
     const loggedIn: string = typeof customer?.customerId
     const [message, setMessage] = useState<string | undefined>("")
@@ -42,7 +43,7 @@ const StripeCheckout = ({ totalAmount }: Props) => {
                 setMessage(result.error.message)
                 console.log(message)
             } else {
-                await createOrder(customer.customerId, totalAmount)
+                await createOrder(customer.customerId, totalAmount, cart)
                 dispatch(clearCart())
                 dispatch(updateOrderCreated(true))
                 navigate("/thank-you")

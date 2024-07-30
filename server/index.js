@@ -125,10 +125,12 @@ const getStripeKey = async (keyName) => {
   }
 };
 
-const createOrder = async (customerId, totalAmount) => {
+const createOrder = async (customerId, totalAmount, items) => {
   try {
     const apiKey = await getSecretKey();
-    const orderDetails = { "customerID": customerId, "totalAmount": totalAmount, "status": 0 };
+    const currentDate = new Date();
+    const timestamp = currentDate.toISOString();
+    const orderDetails = { "customerID": customerId, "totalAmount": totalAmount, orderDate: timestamp, "status": 0, "items": items };
     const response = await fetch(`${process.env.VITE_SPICE_DELIGHT_API_URL}Order`, {
       method: 'POST',
       headers: {
@@ -245,9 +247,9 @@ app.get('/api/stripe/:keyName', async (req, res) => {
 });
 
 app.post('/api/order', async (req, res) => {
-  const { customerId, totalAmount } = req.body;
+  const { customerId, totalAmount, items } = req.body;
   try {
-    const order = await createOrder(customerId, totalAmount);
+    const order = await createOrder(customerId, totalAmount, items);
     res.json(order);
   } catch (error) {
     console.error('Error creating order:', error);

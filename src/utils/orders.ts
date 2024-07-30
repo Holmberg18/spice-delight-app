@@ -1,7 +1,16 @@
 import axios from "axios";
 
-export const createOrder = async (customerId: string, totalAmount: number): Promise<Order | void> => {
-    const orderDetails = { "customerID": customerId, "totalAmount": totalAmount, "status": 0 };
+export const createOrder = async (customerId: string, totalAmount: number, cart: cartItems): Promise<Order | void> => {
+    const orderDetails: { 
+        customerID: string, 
+        totalAmount: number, 
+        status: number, 
+        items: string } = { 
+        "customerID": customerId,
+        "totalAmount": totalAmount,
+        "status": 0,
+        "items": JSON.stringify(cart) 
+    }
 
     return axios.post('/api/order', orderDetails, {
         headers: {
