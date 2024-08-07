@@ -29,6 +29,7 @@ const client = new SecretClient(vaultUrl, credentialChain);
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
+// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 const getSecretKey = async () => {
@@ -256,6 +257,7 @@ app.post('/api/order', async (req, res) => {
   }
 });
 
+// The "catchall" handler: for any request that doesn't match the above, send back React's index.html file.
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 });
