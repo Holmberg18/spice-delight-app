@@ -1,4 +1,3 @@
-// server/index.js
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -179,7 +178,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.post('/api/register', async (req, res) => {
-   const credentials = req.body
+  const credentials = req.body;
   try {
     const apiKey = await getSecretKey();
     const response = await fetch(`${process.env.VITE_SPICE_DELIGHT_API_URL}Customer`, {

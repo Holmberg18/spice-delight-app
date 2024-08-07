@@ -31,11 +31,19 @@ jobs:
           npm run test --if-present
         # Other scripts if configured should be added here, such as linting, formatting
 
+      - name: Move build output to server directory
+        run: |
+          mkdir -p server/dist
+          mv dist/* server/dist/
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: . # Upload the entire project directory to ensure server/index.js is included
+          path: |
+            server
+            package.json
+            package-lock.json
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,7 +57,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-app
-          path: ./ # Download to the current working directory
+
+      - name: Install dependencies on Azure
+        run: |
+          npm install
 
       - name: Install PM2
         run: |
@@ -57,5 +68,5 @@ jobs:
 
       - name: Start the server
         run: |
-          cd server # Change to the directory where index.js is located
+          cd server
           pm2 start index.js --name spice-delight-app
