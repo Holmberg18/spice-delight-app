@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: dist
+          path: . # Upload the entire project directory to ensure server/index.js is included
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,20 +49,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-app
-
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: spice-delight-app
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: .
+          path: ./ # Download to the current working directory
 
       - name: Install PM2
         run: |
           npm install -g pm2
 
-      - name: 'Start the server'
+      - name: Start the server
         run: |
-          pm2 start server/index.js --name spice-delight-app
+          cd server # Change to the directory where index.js is located
+          pm2 start index.js --name spice-delight-app
