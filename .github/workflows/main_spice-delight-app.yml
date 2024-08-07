@@ -36,6 +36,8 @@ jobs:
         with:
           name: node-app
           path: |
+            dist
+            server.js
             package.json
             package-lock.json
 
