@@ -31,17 +31,11 @@ jobs:
           npm run test --if-present
         # Other scripts if configured should be added here, such as linting, formatting
 
-      - name: Move build output to server directory
-        run: |
-          mkdir -p server/dist
-          mv dist/* server/dist/
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
           path: |
-            server
             package.json
             package-lock.json
 
@@ -65,6 +59,4 @@ jobs:
         run: npm install -g pm2
 
       - name: Start the server
-        run: |
-          cd server
-          pm2 start index.js --name spice-delight-app
+        run: pm2 start server.js --name spice-delight-app
