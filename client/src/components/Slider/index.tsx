@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react" 
+import { useState } from "react" 
 import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
 import { useNavigate } from "react-router-dom"
 
 interface Props {
-    getSlideData: Function,
+    slideData: Product[] | JSX.Element[],
     id: string,
     src: string,
     label: string,
@@ -16,9 +16,8 @@ interface Props {
 
 
 
-const Slider = ({  getSlideData, id, src, label, initialSlide, product }: Props) => {
+const Slider = ({ slideData, id, src, label, initialSlide, product }: Props) => {
 
-    const [slideData, setSlideData] = useState<Object[]>([])
     const [currentSlide, setCurrentSlide] = useState<number>(0)
     const [loaded, setLoaded] = useState<boolean>(false)
     const navigate = useNavigate()
@@ -52,16 +51,6 @@ const Slider = ({  getSlideData, id, src, label, initialSlide, product }: Props)
         }
     })
 
-    const getSlides = async(): Promise<void> => {
-        const data = await getSlideData()
-        setSlideData(data)
-        setTimeout(() => instanceRef.current?.update(), 50);       
-    }
-
-    useEffect(() => {
-        getSlides()
-    },[])
-
     return (
         <>
           <div className="relative flex flex-row">
@@ -74,7 +63,14 @@ const Slider = ({  getSlideData, id, src, label, initialSlide, product }: Props)
                             <p className="font-bold text-xl mb-2">{slide[label].split(" ").slice(0, 2).join(" ")}</p>
                         </div>
                     </div>
-                ) : ''
+                ) : 
+                  [1,2,3,4,5].map((__, index: number) => 
+                  <div key={index} className={`keen-slider__slide number-slide${index}`}>
+                    <div className={`bg-grey bg-opacity-30 flex justify-center items-center`}>
+                        <div className={`h-[10rem] w-[10rem] rounded-full border-8 border-gray border-t-blue animate-spin`}></div>
+                    </div>
+                  </div>
+                )
             }
             </div>
             {loaded && instanceRef.current && (

@@ -50,7 +50,7 @@ const Meals = () => {
                     {filterData?.length ? filterData?.map((prod: Product) => {
                         return <SingleMeal meal={prod} key={prod.idMeal} />
                     }): 
-                    [1, 2, 3, 4, 5, 6].map((_, index) => <Loading key={index} />)
+                    [1, 2, 3, 4, 5, 6].map((_, index) => <Loading key={index} height="h-[20rem]" width="w-[20rem]" />)
                     }
                 </div>
             </div>
