@@ -13,6 +13,7 @@ import { loginFormStyles as styles } from "@/styles/styles"
 const LoginForm = () => {
 
   const [submit, setSubmit] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -24,6 +25,7 @@ const LoginForm = () => {
       navigate("/products")
     } else {
       setSubmit(false)
+      setError(true)
     }
   }
 
@@ -64,7 +66,7 @@ const LoginForm = () => {
         {formik.errors.password && (
           <p className={styles.error}>{formik.errors.password}</p>
         )}
-        <div className="flex flex-row">
+        <div className="flex flex-row items-center">
           <button
             disabled={submit}
             type="submit"
@@ -72,8 +74,9 @@ const LoginForm = () => {
           >
             Login
           </button>
-          {submit ? <FontAwesomeIcon className="animate-spin" icon={faSpinner} /> : ""}
+          <FontAwesomeIcon className={`${submit ? "visible" : "invisible"} animate-spin text-xl`} icon={faSpinner} />
         </div>
+        { error ? <p className="text-sm text-red">Login Failed: Invalid Username or Password</p>: ""}
       </form>
     </div>
   )

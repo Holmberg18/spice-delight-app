@@ -1,10 +1,5 @@
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
 import { Meal } from '@/models/Meal';
-
-//TODO: Creat env variable to check if development or production, change the other utility functions to use the axiosInstance
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000'
-});
 
 const fetchRecipe = (id: string | undefined): Promise<Meal> => {
     return axiosInstance.get(`/api/recipe/${id}`)

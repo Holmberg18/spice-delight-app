@@ -1,7 +1,7 @@
-import axios from "axios";
+import axiosInstance from './axiosInstance';
 
 export const getStripeKey = async (keyName: string): Promise<StripeKey | void> => {
-    return axios.get(`/api/stripe/${keyName}`)
+    return axiosInstance.get(`/api/stripe/${keyName}`)
         .then((response: any) => response.data)
         .catch((error) => {
             console.log(error);

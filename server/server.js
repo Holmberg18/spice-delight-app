@@ -171,7 +171,8 @@ app.post('/api/login', async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error('Error logging in:', error);
+    // Log a generic message without sensitive details
+    console.error('Login error occurred');
     res.status(500).json({ error: 'Error logging in' });
   }
 });
