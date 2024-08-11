@@ -1,10 +1,11 @@
-import { useState } from "react" 
+import { useState, useEffect } from "react" 
 import "keen-slider/keen-slider.min.css"
+import { Loading } from "@/components"
 import { useKeenSlider } from "keen-slider/react"
 import { useNavigate } from "react-router-dom"
 
 interface Props {
-    slideData: Product[] | JSX.Element[],
+    getSlideData: Function
     id: string,
     src: string,
     label: string,
@@ -16,8 +17,9 @@ interface Props {
 
 
 
-const Slider = ({ slideData, id, src, label, initialSlide, product }: Props) => {
+const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) => {
 
+    const [slideData, setSlideData] = useState<Object[]>([])
     const [currentSlide, setCurrentSlide] = useState<number>(0)
     const [loaded, setLoaded] = useState<boolean>(false)
     const navigate = useNavigate()
@@ -27,6 +29,16 @@ const Slider = ({ slideData, id, src, label, initialSlide, product }: Props) => 
         navigate("/product/"+slide.strMeal+ "+" + slide.idMeal)
       }
     }
+
+    const getSlides = async(): Promise<void> => {
+      const data = await getSlideData()
+      setSlideData(data)
+      setTimeout(() => instanceRef.current?.update(), 50);       
+    }
+
+    useEffect(() => {
+        getSlides()
+    },[])
 
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         breakpoints: {
@@ -67,7 +79,7 @@ const Slider = ({ slideData, id, src, label, initialSlide, product }: Props) => 
                   [1,2,3,4,5].map((__, index: number) => 
                   <div key={index} className={`keen-slider__slide number-slide${index}`}>
                     <div className={`bg-grey bg-opacity-30 flex justify-center items-center`}>
-                        <div className={`h-[10rem] w-[10rem] rounded-full border-8 border-gray border-t-blue animate-spin`}></div>
+                        <Loading height="h-[10rem]" width="w-[10rem]" />
                     </div>
                   </div>
                 )

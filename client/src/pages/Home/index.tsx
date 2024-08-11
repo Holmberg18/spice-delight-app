@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Button, Slider } from "@/components"
 import { fetchProducts } from "@/utils/recipes"
@@ -22,10 +22,6 @@ const Home = () => {
         new CircleType(getAppRef.current)
         getProductSlides()
     },[])
-
-    const products = useMemo(() => {
-        return slides ? slides : []
-    }, [slides])
 
     return (
         <div className="bg-gray-100 text-gray-800">
@@ -57,7 +53,7 @@ const Home = () => {
                     </div>
                     <div className="col-span-1 lg:col-span-2 my-auto">
                         <Slider 
-                            slideData={products} 
+                            getSlideData={fetchProducts} 
                             id="idMeal"
                             src= "strMealThumb"
                             label= "strMeal"
