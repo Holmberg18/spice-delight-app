@@ -1,5 +1,4 @@
 export { default as Account } from '@/components/Account';
-export { default as Banner } from '@/components/Banner';
 export { default as Button } from '@/components/Button';
 export { default as Cart } from '@/components/Cart';
 export { default as Filters } from '@/components/Filters';
