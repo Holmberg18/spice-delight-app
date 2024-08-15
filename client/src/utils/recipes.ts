@@ -3,7 +3,7 @@ import { Meal } from '@/models/Meal';
 
 const fetchRecipe = (id: string | undefined): Promise<Meal> => {
     return axiosInstance.get(`/api/recipe/${id}`)
-        .then((response: any) => response.data)
+        .then((response: any) => response.data.meals[0])
         .catch((error) => {
             console.error('Error fetching recipe:', error);
         });

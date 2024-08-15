@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Button, Slider } from "@/components"
 import { fetchProducts } from "@/utils/recipes"
@@ -9,18 +9,8 @@ import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons"
 const Home = () => {
 
     const getAppRef = useRef<HTMLParagraphElement>(null)
-    const [slides, setSlides] = useState<Product[]>([])
-
-    const getProductSlides = async() => {
-        const slideData: Product[] = await fetchProducts()
-        if(slideData?.length){
-            setSlides(slideData)
-        }
-    }
-
     useEffect(() => {
         new CircleType(getAppRef.current)
-        getProductSlides()
     },[])
 
     return (
