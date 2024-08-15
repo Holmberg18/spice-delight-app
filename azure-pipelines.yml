@@ -28,7 +28,7 @@ steps:
     workingDir: 'server'
 
 - script: |
-    echo "VITE_AZURE_BASE_URL=https://spice-delight-app.azurewebsites.net" >> client/.env
+    echo "VITE_AZURE_BASE_URL=ashy-pebble-00588ee0f.5.azurestaticapps.net" >> client/.env
     echo "VITE_ENV=Production" >> client/.env
   displayName: 'Set Environment Variables for Client'
 
