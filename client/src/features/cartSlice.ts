@@ -11,11 +11,6 @@ const setCartCookie = (cart: CartState) => {
     Cookies.set("shoppingCart", cartString, { expires: 7 })
 }
 
-interface CartState {
-    items: cartItems,
-    orderCreated: boolean
-}
-
 const initialState: CartState = {
     items: getCartItems(),
     orderCreated: false

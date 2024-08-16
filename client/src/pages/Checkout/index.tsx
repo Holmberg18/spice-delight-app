@@ -101,7 +101,7 @@ const CheckoutForm = () => {
                             <li key={prod.meal.strMeal} className="flex flex-col items-center space-x-4 bg-white shadow-lg p-4 my-4 rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
                                 <img className="w-full max-w-[5rem] fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} />
                                 <p>{prod.meal.strMeal}</p>
-                                <p>${prod.meal.price}</p>
+                                <p>${prod.meal.price.toFixed(2)}</p>
                                 <Rating rating={prod.meal.ratings} className="px-6 pb-2" />
                             </li>
                         )) : <li className="Tiempos text-lg">Your cart is empty!</li>

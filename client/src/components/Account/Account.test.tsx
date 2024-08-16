@@ -11,8 +11,7 @@ import { Customer } from "@/models/Customer"
 
 vi.mock("js-cookie")
 
-
-describe("customerSlice", () => {
+describe("Account component", () => {
   const initialState: CustomerState = {
     customer: {
       customerId: "",

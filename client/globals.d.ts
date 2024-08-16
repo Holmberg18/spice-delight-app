@@ -36,8 +36,8 @@ declare interface Order {
     status: string
 }
 declare interface CartState {
-    items: CartItem[],
-    total: number
+    items: cartItems,
+    orderCreated: boolean
 }
 declare type cartItems = { meal: Meal, quantity: number }[]
 declare interface MealResponse {

@@ -50,8 +50,8 @@ const Meals = () => {
                     {filterData?.length ? filterData?.map((prod: Product) => {
                         return <SingleMeal meal={prod} key={prod.idMeal} />
                     }): 
-                    [1, 2, 3, 4, 5, 6].map((_, index) => (   
-                    <div className={`relative max-w-md rounded overflow-hidden shadow-lg h-[30rem] w-[26rem] m-8 flex flex-col justify-evenly items-center`}>
+                    [1, 2, 3, 4, 5, 6].map((value, index) => (   
+                    <div key={`Loading-${value}`} className={`relative max-w-md rounded overflow-hidden shadow-lg h-[30rem] w-[26rem] m-8 flex flex-col justify-evenly items-center`}>
                         <div className={`bg-grey bg-opacity-30 flex justify-center items-center`}>
                             <Loading width="w-[20rem]" height="h-[20rem]" />
                         </div>

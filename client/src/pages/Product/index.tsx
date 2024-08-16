@@ -85,7 +85,7 @@ const RecipePage = () => {
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="flex flex-col md:flex-row w-full md:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto rounded-lg overflow-hidden shadow-lg">
-                <img className="w-full md:w-1/2 h-96 object-cover" src={strMealThumb} alt={strMeal} />
+                <img className="w-full md:w-1/2 h-96 object-cover" loading="lazy" src={strMealThumb} alt={strMeal} />
                 <div className="p-8 flex flex-col justify-between w-full">
                     <div>
                         <h2 className="text-2xl font-semibold mb-4">{strMeal}</h2>
