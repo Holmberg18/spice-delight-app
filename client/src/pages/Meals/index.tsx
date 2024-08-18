@@ -11,8 +11,8 @@ const Meals = () => {
    const dispatch = useAppDispatch()
    const [page, setPage] = useState<number>(0)
    const n = 6
-   const recipeList = useAppSelector((state) => state.recipes.items)
-   const filterList = useAppSelector((state) => state.recipes.filters)
+   const recipeList = useAppSelector((state) => state.recipe.items)
+   const filterList = useAppSelector((state) => state.recipe.filters)
 
    const { 
         sortByPrice,

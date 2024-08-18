@@ -5,7 +5,7 @@ import customerReducer from "@/features/customerSlice"
 
 export const store = configureStore({
     reducer: {
-        recipes: recipeReducer,
+        recipe: recipeReducer,
         cart: cartReducer,
         customer: customerReducer
     }

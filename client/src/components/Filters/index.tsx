@@ -18,6 +18,9 @@ import { ReactNode } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight, faChevronDown, faX } from "@fortawesome/free-solid-svg-icons"
 import { useAppDispatch, useAppSelector } from '@/hooks'
+import { RootState } from "@/app/store"
+import { useSelector } from "react-redux"
+
 
 interface Props {
     resetPage: Function
@@ -31,7 +34,8 @@ const Filters = ({ resetPage }: Props) => {
 
     const dispatch = useAppDispatch()
     const [showFilters, setShowFilters] = useState(false)
-    const filterList = useAppSelector((state) => state.recipes.filters)
+    const filterList = useSelector((state: RootState) => state.recipe.filters)
+
     const { 
         sortByPrice,
         includeOutOfStock,

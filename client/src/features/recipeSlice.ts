@@ -2,18 +2,6 @@ import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
 import { fetchProducts } from "@/utils/recipes"
 import { Product } from "@/models/Meal"
 
-interface RecipeState {
-    items: Product[] | null,
-    initialItems: Product[] | null,
-    filters: {
-        sortByPrice: string
-        includeOutOfStock: boolean,
-        fastDeliveryOnly: boolean,
-        minRating: number,
-        searchQuery: string,
-    }
-}
-
 const initialState: RecipeState = {
     items: [],
     initialItems: [],
@@ -35,7 +23,7 @@ export const fetchProductsAsync = createAsyncThunk(
     }
 )
 
-const recipeSlice = createSlice({
+export const recipeSlice = createSlice({
     name: 'recipes',
     initialState,
     reducers: {

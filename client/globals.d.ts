@@ -75,7 +75,25 @@ declare interface MealResponse {
     strCreativeCommonsConfirmed: string | null;
     dateModified: string | null;
 }
+declare interface RecipeState {
+    items: Product[] | null,
+    initialItems: Product[] | null,
+    filters: {
+        sortByPrice: string
+        includeOutOfStock: boolean,
+        fastDeliveryOnly: boolean,
+        minRating: number,
+        searchQuery: string,
+    }
+}
 declare interface FilterList { value: string, type: string, order: string, action: Function, checked: boolean }
+declare interface Filters { 
+    sortByPrice: string
+    includeOutOfStock: boolean
+    fastDeliveryOnly: boolean
+    minRating: number
+    searchQuery: string
+}
 declare interface StripeKey { keyId: number, keyName: string, publishableKey: string, secretKey: string }
 declare interface Meal {
     idMeal: string,

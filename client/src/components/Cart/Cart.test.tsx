@@ -2,9 +2,8 @@ import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from "react-redux"
 import { MemoryRouter } from "react-router-dom"
-import { cartSlice, addToCart, removeFromCart } from "@/features/cartSlice"
+import cartReducer, { cartSlice, addToCart, removeFromCart } from "@/features/cartSlice"
 import { configureStore } from "@reduxjs/toolkit"
-import cartReducer from "@/features/cartSlice"
 import { Cart } from "@/components"
 
 describe("Cart Component", () => {
