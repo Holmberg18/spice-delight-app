@@ -150,6 +150,13 @@ app.http('login', {
                 body: JSON.stringify(credentials)
             });
 
+            if (response.status === 401) {
+                return {
+                    status: 401,
+                    body: { error: 'Unauthorized - invalid credentials' },
+                };
+            }
+
             if (!response.ok) {
                 throw new Error('Error logging in');
             }

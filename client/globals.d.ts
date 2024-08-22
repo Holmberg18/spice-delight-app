@@ -86,6 +86,9 @@ declare interface RecipeState {
         searchQuery: string,
     }
 }
+declare interface CustomerState {
+    customer: Customer
+}
 declare interface FilterList { value: string, type: string, order: string, action: Function, checked: boolean }
 declare interface Filters { 
     sortByPrice: string

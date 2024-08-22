@@ -13,10 +13,6 @@ const setCustomerCookie = (customer: CustomerState) => {
     Cookies.set("customer", customerString, { expires: 7 })
 }
 
-export interface CustomerState {
-    customer: Customer
-}
-
 const initialState: CustomerState = {
     customer: getCustomerFromCookie()
 }

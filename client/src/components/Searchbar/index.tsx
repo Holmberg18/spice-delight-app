@@ -32,36 +32,44 @@ const Searchbar = () => {
             dispatchSearch(keyword)
     }
 
-    return(
+    return (
         <div className="flex flex-row">
-            {
-                isVisible ? (
-                    <>
-                        <input
-                            ref={searchEl}
-                            type="text"
-                            placeholder="Search for recipes..."
-                            className="p-2 border rounded"
-                            onKeyDown={handleKeyboardSearch}
-                            autoFocus
-                        />
-                        <Button 
-                            buttonType="button" 
-                            name={<FontAwesomeIcon icon={faSearch} onClick={() => setIsVisible(true)} 
-                            className="cursor-pointer"/>} 
-                            className={"mx-3"} 
-                            rounded={true} 
-                            action={handleButtonSearch}/>
-                        </>
-                ) : (
-                    <FontAwesomeIcon
-                        icon={faSearch}
-                        onClick={() => setIsVisible(true)}
-                        className="cursor-pointer"
+            {isVisible ? (
+                <>
+                    <input
+                        ref={searchEl}
+                        type="text"
+                        placeholder="Search for recipes..."
+                        aria-label="search-input"
+                        className="p-2 border rounded"
+                        onKeyDown={handleKeyboardSearch}
+                        autoFocus
                     />
-                )
-            }
+                    <Button
+                        buttonType="button"
+                        name={
+                            <FontAwesomeIcon
+                                icon={faSearch}
+                                onClick={() => setIsVisible(true)}
+                                aria-label="search-button" 
+                                className="cursor-pointer"
+                            />
+                        }
+                        className={"mx-3"}
+                        rounded={true}
+                        action={handleButtonSearch}
+                    />
+                </>
+            ) : (
+                <FontAwesomeIcon
+                    icon={faSearch}
+                    onClick={() => setIsVisible(true)}
+                    aria-label="search-icon"
+                    className="cursor-pointer"
+                />
+            )}
         </div>
+
     )
 }
 
