@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { loadStripe } from "@stripe/stripe-js"
 import Stripe from "stripe"
 import StripeCheckout from "@/components/StripeCheckout"
@@ -11,7 +11,7 @@ interface Props {
 
 const Payment = ({ totalAmount }: Props) => {
     const [stripePromise, setStripePromise] = useState<any>()
-    const [clientSecret, setClientSecret] = useState<any>()
+    const [clientSecret, setClientSecret] = useState<any>(null)
 
     const buildPaymentPromiseIntent = async() => {
         try{
@@ -38,16 +38,18 @@ const Payment = ({ totalAmount }: Props) => {
         buildPaymentPromiseIntent()
     }, [])
 
+    const StripeElements = useMemo(() => 
+        stripePromise && clientSecret ? (
+            <Elements stripe={stripePromise} options={{ clientSecret }}>
+                <StripeCheckout totalAmount={totalAmount}/>
+            </Elements>
+        ): ""
+    , [stripePromise, clientSecret])
+
 
     return (
         <> 
-            {
-                stripePromise && clientSecret && (
-                    <Elements stripe={stripePromise} options={{ clientSecret }}>
-                        <StripeCheckout totalAmount={totalAmount}/>
-                    </Elements>
-                )
-            }
+            { StripeElements }
         </>
     )
 }

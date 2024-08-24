@@ -74,7 +74,7 @@ const LoginForm = () => {
           >
             Login
           </button>
-          <FontAwesomeIcon className={`${submit ? "visible" : "invisible"} animate-spin text-xl`} icon={faSpinner} />
+          <FontAwesomeIcon className={`${submit ? "visible" : "invisible"} animate-spin text-xl`} icon={faSpinner} aria-label="loading-spinner" />
         </div>
         { error ? <p className="text-sm text-red">Login Failed: Invalid Username or Password</p>: ""}
       </form>

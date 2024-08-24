@@ -28,6 +28,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@reduxjs/toolkit": "^2.1.0",
     "@stripe/react-stripe-js": "^2.7.1",
+    "@stripe/ui-extension-sdk": "^8.9.1",
     "axios": "^1.7.3",
     "circletype": "^2.3.0",
     "country-state-city": "^3.2.1",

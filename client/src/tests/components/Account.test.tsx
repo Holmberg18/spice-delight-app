@@ -1,10 +1,9 @@
-import { describe, it, expect, beforeEach, vi } from "vitest"
 import { render, screen } from "@testing-library/react"
 import { Provider } from "react-redux"
 import { MemoryRouter } from "react-router-dom"
 import { Account } from "@/components"
 import { customerSlice, login, logout } from "@/features/customerSlice"
-import customerReducer, { CustomerState } from "@/features/customerSlice"
+import customerReducer from "@/features/customerSlice"
 import { configureStore } from "@reduxjs/toolkit"
 import Cookies from "js-cookie"
 import { Customer } from "@/models/Customer"
@@ -34,11 +33,6 @@ describe("Account component", () => {
     username: "johndoe",
   }
 
-
-  beforeEach(() => {
-    // Reset the mock before each test
-    vi.clearAllMocks()
-  })
 
   it("should log in the customer and set the cookie, and renders Sign Out when customer is not defined", () => {
     const state: CustomerState = { customer: mockCustomer }

@@ -88,7 +88,7 @@ const Navigation = () => {
                 >
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                         <li>
-                            <Link to="/">
+                            <Link to="/" aria-label="nav-home-link-mobile">
                                 <div
                                     className="block py-2 pl-3 pr-4 text-gray-900 bg-blue-700 rounded dark:bg-blue-600 dark:hover:text-white"
                                     aria-current="page"
@@ -99,7 +99,7 @@ const Navigation = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/products">
+                            <Link to="/products" aria-label="nav-products-link-mobile">
                                 <div
                                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                     aria-label="nav-products-link"
@@ -109,7 +109,7 @@ const Navigation = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link aria-label="nav-cart-link" to="/cart" className="dark:hover:text-white">
+                            <Link aria-label="nav-cart-link-mobile" to="/cart" className="dark:hover:text-white">
                                 <Cart /> {/* Added label for the cart component */}
                             </Link>
                         </li>

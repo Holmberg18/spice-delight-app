@@ -1,11 +1,9 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import customerReducer from "@/features/customerSlice"
 import LoginForm from "@/components/LoginForm";
-import "@testing-library/jest-dom/vitest";
 
 const initialState: CustomerState = {
     customer: {
@@ -16,7 +14,7 @@ const initialState: CustomerState = {
     phone: "",
     address: "",
     username: ""
-}
+  }
 }
 
 const defaultStore = configureStore({
@@ -41,19 +39,10 @@ describe("LoginForm Component", () => {
 
     expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
-    expect( screen.getByRole("button", { name: /Login/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Login/i })).toBeInTheDocument();
   });
 
   it("shows validation errors if fields are empty on submit", async () => {
-
-    const store = configureStore({
-        reducer: {
-            customer: customerReducer
-        },
-        preloadedState: {
-            customer: initialState
-        },
-    })
 
     render(
       <Provider store={defaultStore}>
@@ -92,6 +81,7 @@ describe("LoginForm Component", () => {
     await waitFor(() => {
       expect(screen.getByText("Login Failed: Invalid Username or Password")).toBeInTheDocument();
     });
+
   });
 
 
@@ -112,12 +102,14 @@ describe("LoginForm Component", () => {
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "soFetch012490!" },
     });
-    fireEvent.click(screen.getByRole("button"));
-
     const button = screen.getByRole("button", { name: /Login/i })
+    fireEvent.click(button);
 
+    //wait for spinner to appear
     await waitFor(() => {
-        expect(button.hasAttribute("disabled")).toBe(true);
-      });
+      expect(screen.getByLabelText('loading-spinner')).toBeInTheDocument()
+    });
+
+    expect(button).toBeDisabled()
   });
 });
