@@ -17,6 +17,17 @@ const initialState: CustomerState = {
   }
 }
 
+const mockCustomer: Customer = {
+  customerId: '12345',
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'john.doe@example.com',
+  phone: '123-456-7890',
+  address: '123 Main St',
+  username: 'johndoe',
+};
+
+
 const defaultStore = configureStore({
     reducer: {
         customer: customerReducer
@@ -26,7 +37,17 @@ const defaultStore = configureStore({
     },
 })
 
+vi.mock('../utils/customerService', () => ({
+  login: vi.fn().mockResolvedValueOnce(null)
+                .mockResolvedValueOnce(mockCustomer)
+}))
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
 describe("LoginForm Component", () => {
+
   it("renders the login form", () => {
 
     render(
@@ -40,7 +61,8 @@ describe("LoginForm Component", () => {
     expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Login/i })).toBeInTheDocument();
-  });
+  })
+
 
   it("shows validation errors if fields are empty on submit", async () => {
 
@@ -76,11 +98,14 @@ describe("LoginForm Component", () => {
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "invalidPass" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /Login/i }));
+    const button = screen.getByRole("button", { name: /Login/i })
+    fireEvent.click(button);
 
     await waitFor(() => {
       expect(screen.getByText("Login Failed: Invalid Username or Password")).toBeInTheDocument();
     });
+
+    expect(button).toBeEnabled()
 
   });
 

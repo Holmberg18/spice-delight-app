@@ -28,8 +28,6 @@ const defaultCustomer: CustomerState = {
 // Test Case 1: State Management
 describe('Navigation Component', () => {
    
-
-
     it('should render all the navigation links and components', () => {
         const store = configureStore({
             reducer: {
@@ -49,16 +47,16 @@ describe('Navigation Component', () => {
             </Provider>
         );
 
-        expect(screen.getByLabelText('home-link-desktop')).toHaveAttribute('href', '/')
-        expect(screen.getByLabelText('products-link-desktop')).toHaveAttribute('href', '/products')
-        expect(screen.getByLabelText('get-the-app-link-desktop')).toHaveAttribute('href', '/phone-app')
-        expect(screen.getByLabelText('cart-container')).toBeInTheDocument();
-        expect(screen.getByLabelText('account-container')).toBeInTheDocument();
-        expect(screen.getByLabelText('nav-account-link')).toHaveAttribute('href', '/login')
+        expect(screen.getByTestId('home-link-desktop')).toHaveAttribute('href', '/')
+        expect(screen.getByTestId('products-link-desktop')).toHaveAttribute('href', '/products')
+        expect(screen.getByTestId('get-the-app-link-desktop')).toHaveAttribute('href', '/phone-app')
+        expect(screen.getByTestId('cart-container')).toBeInTheDocument();
+        expect(screen.getByTestId('account-container')).toBeInTheDocument();
+        expect(screen.getByTestId('nav-account-link')).toHaveAttribute('href', '/login')
 
         // Check for components like Searchbar
 
-        const searchIcon = screen.getByLabelText('search-icon');
+        const searchIcon = screen.getByTestId('search-icon');
         fireEvent.click(searchIcon);
         expect(screen.getByPlaceholderText("Search for recipes...")).toBeInTheDocument()
 
@@ -88,18 +86,18 @@ describe('Navigation Component', () => {
 
         fireEvent(window, new Event('resize'))
 
-        const toggleButton = screen.getByLabelText('menu-toggle-button')
-        const mobileMenu = screen.getByLabelText("navbar-hamburger")
+        const toggleButton = screen.getByTestId('menu-toggle-button')
+        const mobileMenu = screen.getByTestId("navbar-hamburger")
         expect(mobileMenu).toHaveClass("hidden")
 
         // Click to open the menu
         fireEvent.click(toggleButton);
         expect(mobileMenu).toHaveClass("block")
 
-        expect(screen.getByLabelText('menu-toggle-button')).toBeInTheDocument()
-        expect(screen.getByLabelText('navbar-hamburger')).toBeInTheDocument();
-        expect(screen.getByLabelText('nav-home-link-mobile')).toHaveAttribute('href', '/')
-        expect(screen.getByLabelText('nav-products-link-mobile')).toHaveAttribute('href', '/products')
-        expect(screen.getByLabelText('nav-cart-link-mobile')).toHaveAttribute('href', '/cart')
+        expect(screen.getByTestId('menu-toggle-button')).toBeInTheDocument()
+        expect(screen.getByTestId('navbar-hamburger')).toBeInTheDocument();
+        expect(screen.getByTestId('nav-home-link-mobile')).toHaveAttribute('href', '/')
+        expect(screen.getByTestId('nav-products-link-mobile')).toHaveAttribute('href', '/products')
+        expect(screen.getByTestId('nav-cart-link-mobile')).toHaveAttribute('href', '/cart')
     });
 });

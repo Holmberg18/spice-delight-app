@@ -18,7 +18,7 @@ const Payment = ({ totalAmount }: Props) => {
             const stripeKeys: StripeKey | void = await getStripeKey("stripe_key")
             const loadedStripe = stripeKeys ? await loadStripe(stripeKeys?.publishableKey) : null
             setStripePromise(loadedStripe)
-            const stripe: Stripe | null = stripeKeys ? await new Stripe(stripeKeys.secretKey) : null
+            const stripe: Stripe | null = stripeKeys ? new Stripe(stripeKeys.secretKey) : null
             const paymentIntent = await stripe?.paymentIntents.create({
                 currency: "usd",
                 amount: totalAmount * 100,

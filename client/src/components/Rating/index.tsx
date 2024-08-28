@@ -11,13 +11,13 @@ interface Props {
 const Rating = ({ rating, onClick, className }: Props) => {
 
     return (
-        <div className={"flex flex-row " + className}>
+        <div className={"flex flex-row " + className} data-testid="rating-group">
             {[...Array(5)].map((_, i: number) => (
                 <span key={i} onClick={() => onClick ? onClick(i) : ""} >
                     {rating > i ? (
-                        <FontAwesomeIcon icon={solidStar} className="text-base"/>
+                        <FontAwesomeIcon icon={solidStar} data-testid="solid-star" className="text-base"/>
                     ) : (
-                        <FontAwesomeIcon icon={regularStar} className="text-base"/>
+                        <FontAwesomeIcon icon={regularStar} data-testid="regular-star" className="text-base"/>
                     )}
                 </span>
             ))}

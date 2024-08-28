@@ -17,7 +17,7 @@ import Button from "@/components/Button"
 import { ReactNode } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight, faChevronDown, faX } from "@fortawesome/free-solid-svg-icons"
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { RootState } from "@/app/store"
 import { useSelector } from "react-redux"
 

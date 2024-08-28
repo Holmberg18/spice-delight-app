@@ -40,7 +40,7 @@ const Searchbar = () => {
                         ref={searchEl}
                         type="text"
                         placeholder="Search for recipes..."
-                        aria-label="search-input"
+                        data-testid="search-input"
                         className="p-2 border rounded"
                         onKeyDown={handleKeyboardSearch}
                         autoFocus
@@ -51,7 +51,7 @@ const Searchbar = () => {
                             <FontAwesomeIcon
                                 icon={faSearch}
                                 onClick={() => setIsVisible(true)}
-                                aria-label="search-button" 
+                                data-testid="search-button" 
                                 className="cursor-pointer"
                             />
                         }
@@ -64,7 +64,7 @@ const Searchbar = () => {
                 <FontAwesomeIcon
                     icon={faSearch}
                     onClick={() => setIsVisible(true)}
-                    aria-label="search-icon"
+                    data-testid="search-icon"
                     className="cursor-pointer"
                 />
             )}

@@ -14,7 +14,7 @@ const Account = () => {
 
     return(
         <div className="flex flex-row space-x-4">      
-            <Link to="/login" aria-label="nav-account-link">
+            <Link to="/login" data-testid="nav-account-link">
                 <button>
                     <FontAwesomeIcon icon={faUser} /> <span className="text-sm">{loggedIn ? "My Account" : "Login"}</span>
                 </button>
