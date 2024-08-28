@@ -17,17 +17,6 @@ const initialState: CustomerState = {
   }
 }
 
-const mockCustomer: Customer = {
-  customerId: '12345',
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'john.doe@example.com',
-  phone: '123-456-7890',
-  address: '123 Main St',
-  username: 'johndoe',
-};
-
-
 const defaultStore = configureStore({
     reducer: {
         customer: customerReducer
@@ -37,9 +26,17 @@ const defaultStore = configureStore({
     },
 })
 
-vi.mock('../utils/customerService', () => ({
+vi.mock('@/utils/customerService', () => ({
   login: vi.fn().mockResolvedValueOnce(null)
-                .mockResolvedValueOnce(mockCustomer)
+                .mockResolvedValueOnce({
+                  customerId: '12345',
+                  firstName: 'John',
+                  lastName: 'Doe',
+                  email: 'john.doe@example.com',
+                  phone: '123-456-7890',
+                  address: '123 Main St',
+                  username: 'johndoe',
+                })
 }))
 
 beforeEach(() => {
