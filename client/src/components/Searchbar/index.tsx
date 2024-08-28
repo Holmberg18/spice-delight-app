@@ -1,4 +1,4 @@
-import { useState, useRef, KeyboardEvent, MouseEventHandler } from "react"
+import { useState, useRef, KeyboardEvent } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch } from 'react-redux'
@@ -11,7 +11,7 @@ const Searchbar = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate() 
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState<boolean>(false)
     const searchEl = useRef<any>()
 
     const dispatchSearch = (keyword: string): void => {

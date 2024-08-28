@@ -3,10 +3,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import customerReducer from "@/features/customerSlice"
-import LoginForm from "@/components/LoginForm";
+import { LoginForm } from "@/components";
 
 const initialState: CustomerState = {
-    customer: {
+  customer: {
     customerId: "",
     firstName: "",
     lastName: "",
@@ -18,25 +18,25 @@ const initialState: CustomerState = {
 }
 
 const defaultStore = configureStore({
-    reducer: {
-        customer: customerReducer
-    },
-    preloadedState: {
-        customer: initialState
-    },
+  reducer: {
+    customer: customerReducer
+  },
+  preloadedState: {
+    customer: initialState
+  },
 })
 
 vi.mock('@/utils/customerService', () => ({
   login: vi.fn().mockResolvedValueOnce(null)
-                .mockResolvedValueOnce({
-                  customerId: '12345',
-                  firstName: 'John',
-                  lastName: 'Doe',
-                  email: 'john.doe@example.com',
-                  phone: '123-456-7890',
-                  address: '123 Main St',
-                  username: 'johndoe',
-                })
+    .mockResolvedValueOnce({
+      customerId: '12345',
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890',
+      address: '123 Main St',
+      username: 'johndoe',
+    })
 }))
 
 beforeEach(() => {
@@ -71,7 +71,7 @@ describe("LoginForm Component", () => {
       </Provider>
     );
 
-    fireEvent.click( screen.getByRole("button", { name: /Login/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Login/i }));
 
     await waitFor(() => {
       expect(screen.getByText(/username is a required field/i)).toBeInTheDocument();
