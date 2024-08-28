@@ -14,7 +14,7 @@ const RegisterForm = () => {
   const [submit, setSubmit] = useState<boolean>(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  
+
   const handleRegister = async (values: CustomerDetails): Promise<void> => {
     setSubmit(true)
     const registerAttempt: any = await register(values)
@@ -110,14 +110,16 @@ const RegisterForm = () => {
             )
           ))
         }
-        <button
+        <div className="flex flex-row items-center">
+          <button
             disabled={submit}
             type="submit"
             className={styles.button}
-        >
-          Register
-        </button>
-        {submit ? <FontAwesomeIcon className="animate-spin" icon={faSpinner} /> : ""}
+          >
+            Register
+          </button>
+          <FontAwesomeIcon className={`${submit ? "visible" : "invisible"} animate-spin text-xl`} icon={faSpinner} data-testid="loading-spinner" />
+        </div>
       </form>
     </div>
   )

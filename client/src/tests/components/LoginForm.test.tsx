@@ -132,7 +132,7 @@ describe("LoginForm Component", () => {
 
     //wait for spinner to appear
     await waitFor(() => {
-      expect(screen.getByLabelText('loading-spinner')).toBeInTheDocument()
+      expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
     });
 
     expect(button).toBeDisabled()
