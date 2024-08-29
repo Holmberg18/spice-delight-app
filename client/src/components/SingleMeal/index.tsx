@@ -33,7 +33,7 @@ const SingleMeal = ({ meal }: Props) => {
             </Link>
             <div className="px-6 py-4 h-64">
                 <div className="font-bold text-lg mb-2">{strMeal}</div>
-                <span>${Math.trunc(price)}</span>
+                <span data-testid="price">${price.toFixed(2)}</span>
                 <p className="text-gray-700 text-base">{fastDelivery ? "Fast Delivery" : "4 days delivery"}</p>
                 <Rating rating={ratings} className="justify-center px-6 pb-2 mb-3" />
                 <div className="flex flex-col items-center">
