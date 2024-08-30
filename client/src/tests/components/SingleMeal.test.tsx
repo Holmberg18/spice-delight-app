@@ -60,13 +60,13 @@ describe("SingleMeal Component", () => {
         )
 
         //add mock item to cart
-        const addToCartButton = screen.getByRole("button", { name: /add to cart/i })
+        const addToCartButton: HTMLButtonElement = screen.getByRole("button", { name: /add to cart/i })
         fireEvent.click(addToCartButton)
         const state = defaultStore.getState();
         expect(state.cart.items[0].meal).toBe(mockItem)
 
         //check if remove from cart button is shown
-        const removeFromCartButton = screen.getByRole("button", { name: /remove from cart/i})
+        const removeFromCartButton: HTMLButtonElement = screen.getByRole("button", { name: /remove from cart/i})
         expect(removeFromCartButton).toBeInTheDocument()
 
         //remove mock item from current cart

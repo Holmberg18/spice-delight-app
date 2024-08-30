@@ -16,7 +16,6 @@ interface Props {
 }
 
 
-
 const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) => {
 
     const [slideData, setSlideData] = useState<Object[]>([])
@@ -33,7 +32,7 @@ const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) 
     const getSlides = async(): Promise<void> => {
       const data = await getSlideData()
       setSlideData(data)
-      setTimeout(() => instanceRef.current?.update(), 50);       
+      setTimeout(() => instanceRef?.current?.update(), 50);       
     }
 
     useEffect(() => {
