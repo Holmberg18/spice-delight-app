@@ -106,7 +106,7 @@ vi.mock("@/utils/recipes", () => ({
       "strCategory": "Italian"
     }
   ])
-  .mockResolvedValueOnce([])
+    .mockResolvedValueOnce([])
 }))
 
 describe("Slider component", () => {
@@ -117,15 +117,15 @@ describe("Slider component", () => {
         matches: false,
         media: query,
         onchange: null,
-        addListener: vi.fn(), // Deprecated
-        removeListener: vi.fn(), // Deprecated
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
         addEventListener: vi.fn(),
         removeEventListener: vi.fn(),
         dispatchEvent: vi.fn(),
       })),
     });
   });
-  it("renders the slider component and renders the slide data", async() => {
+  it("renders the slider component and renders the slide data", async () => {
     render(
       <BrowserRouter>
         <Slider
@@ -153,4 +153,27 @@ describe("Slider component", () => {
       expect(screen.getAllByRole("img").length).toBe(10);
     })
   });
+
+  it("renders the slider component with no slide data, defaults to loading spinner", async () => {
+    const { container } = render(
+      <BrowserRouter>
+        <Slider
+          getSlideData={fetchProducts}
+          id="idMeal"
+          src="strMealThumb"
+          label="strMeal"
+          imageId="strMealThumb"
+          product={true}
+        />
+      </BrowserRouter>
+    );
+
+    const images = screen.queryAllByRole('img');
+
+    await waitFor(() => {
+      expect(images.length).toBe(0);
+      expect(container.getElementsByClassName("animate-spin").length).toBe(5)
+    })
+  });
+
 });
