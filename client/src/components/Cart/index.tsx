@@ -54,6 +54,7 @@ const Cart = () => {
                                     <FontAwesomeIcon 
                                         icon={faTrashCan} 
                                         onClick={() => dispatch(removeFromCart(item.meal))}
+                                         data-testid="remove-button"
                                     />
                                 </div>
                             </li>

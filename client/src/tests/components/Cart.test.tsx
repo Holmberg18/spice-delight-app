@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from "react-redux"
 import { MemoryRouter } from "react-router-dom"
-import cartReducer, { cartSlice, addToCart, removeFromCart } from "@/features/cartSlice"
+import cartReducer, { cartSlice, addToCart } from "@/features/cartSlice"
 import { configureStore } from "@reduxjs/toolkit"
 import { Cart } from "@/components"
 
@@ -46,7 +46,7 @@ describe("Cart Component", () => {
         expect(screen.getByText(/Your cart is empty!/i)).toBeDefined()
     })
 
-    test("add to cart, and show items in cart, remove from cart", () => {
+    test("add to cart, and show items in cart, remove from cart", async() => {
 
         const state: CartState = initialState
         const result = cartSlice.reducer(state, addToCart(mockItem))
@@ -71,29 +71,12 @@ describe("Cart Component", () => {
         )
 
         expect(screen.getByText(/Seafood fideuà/i)).toBeDefined()
+        fireEvent.click(screen.getByTestId("remove-button"))
 
-        //remove mockItem from cart
-        const removeCartState = cartSlice.reducer(store.getState().cart, removeFromCart(mockItem))
-        expect(removeCartState).toEqual(initialState)
-
-        const newStore = configureStore({
-            reducer: {
-                cart: cartReducer
-            },
-            preloadedState: {
-                cart: removeCartState
-            },
+        //Fix, click trash item to remove item from cart
+        await waitFor(() => {
+            expect(screen.getByText(/Your cart is empty!/i)).toBeDefined()
         })
-
-        render(
-            <Provider store={newStore}>
-                <MemoryRouter>
-                    <Cart />
-                </MemoryRouter>
-            </Provider>
-        )
-
-        expect(screen.getByText(/Your cart is empty!/i)).toBeDefined()
 
     })
 })

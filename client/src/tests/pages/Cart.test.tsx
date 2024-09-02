@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit"
-import cartReducer, { cartSlice, addToCart, removeFromCart } from "@/features/cartSlice"
+import cartReducer, { cartSlice, addToCart } from "@/features/cartSlice"
 import { Cart } from "@/pages";
 
 const initialState: CartState = {

@@ -56,7 +56,7 @@ const StripeCheckout = ({ totalAmount }: Props) => {
         <div id="payment-form">
             <PaymentElement />
             { !loggedIn && <p className="text-[#d10819] text-sm">Please login to submit orders</p> }
-            <Button action={handleSubmit} buttonType="button" name={isProcessing ? <p>Processing</p> : <p>Pay Now</p>} rounded={true} disabled={isProcessing} className="mt-4" />
+            { cart.length ? <Button action={handleSubmit} buttonType="button" name={isProcessing ? <p>Processing</p> : <p>Pay Now</p>} rounded={true} disabled={isProcessing} className="mt-4" /> : ""}
         </div>
     )
 

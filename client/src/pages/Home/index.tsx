@@ -10,7 +10,7 @@ const Home = () => {
 
     const getAppRef = useRef<HTMLParagraphElement>(null)
     useEffect(() => {
-        new CircleType(getAppRef.current)
+            new CircleType(getAppRef.current)
     },[])
 
     return (
