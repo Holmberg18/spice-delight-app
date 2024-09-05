@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react"
-import { useAppDispatch, useAppSelector } from "@/hooks"
-import { fetchProductsAsync } from "@/features/recipeSlice"
+import { RootState } from "@/app/store"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchProductsAsync, buildRecipeList } from "@/features/recipeSlice"
 import { Filters, SingleMeal, Loading } from "@/components"
 import ReactPaginate from "react-paginate"
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"
@@ -8,11 +9,11 @@ import { IconContext } from "react-icons"
 
 const Meals = () => {
 
-   const dispatch = useAppDispatch()
+   const dispatch = useDispatch()
    const [page, setPage] = useState<number>(0)
-   const n = 6
-   const recipeList = useAppSelector((state) => state.recipe.items)
-   const filterList = useAppSelector((state) => state.recipe.filters)
+   const n: number = 6
+   const recipeList = useSelector((state: RootState) => state.recipe.items)
+   const filterList = useSelector((state: RootState) => state.recipe.filters)
 
    const { 
         sortByPrice,
@@ -22,9 +23,14 @@ const Meals = () => {
         searchQuery,
     } = filterList
 
+    const fetchProducts = async() => {
+        const products: Product[] = await fetchProductsAsync()
+        dispatch(buildRecipeList(products))
+    }
+
     useEffect(() => {
         if(recipeList?.length == 0){
-            dispatch(fetchProductsAsync())
+            fetchProducts()            
         }
     }, [recipeList?.length, dispatch]);
 
@@ -69,12 +75,12 @@ const Meals = () => {
                 breakLabel="..."
                 previousLabel={
                     <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
-                    <AiFillLeftCircle />
+                    <AiFillLeftCircle data-testid="previous" />
                     </IconContext.Provider>
                 }
                 nextLabel={
                     <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
-                    <AiFillRightCircle />
+                    <AiFillRightCircle data-testid="next" />
                     </IconContext.Provider>
                 }
             />

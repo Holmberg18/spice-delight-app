@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from "react-redux"
 import { MemoryRouter } from "react-router-dom"
 import cartReducer, { cartSlice, addToCart } from "@/features/cartSlice"
