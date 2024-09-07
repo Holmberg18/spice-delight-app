@@ -51,6 +51,7 @@ const MemberPage = () => {
                 onClick={() => {
                   setIsLogin(!isLogin)
                 }}
+                data-testid="register-login-button"
                 className="flex justify-center items-center mt-4 rounded-lg shadow-md hover:bg-gray-100 cursor-pointer"
               >
                 <h2 className="px-4 py-3 w-5/6 text-center font-bold">
