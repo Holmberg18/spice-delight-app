@@ -60,8 +60,13 @@ describe("Utility methods", () => {
         expect(products[0]).toHaveProperty("strMealThumb")
     })
     it("Successfully creates a new order", async () => {
-        const order: any = await createOrder("1", 22.00, cartItems)
+        const order: Order | void = await createOrder("1", 22.00, cartItems)
         expect(order).toHaveProperty("orderID")
         expect(order).toHaveProperty("customerID")
+    })
+    it("Successfully retrieves Stripe Key and Secret", async () => {
+        const keys: StripeKey | void = await getStripeKey("stripe_key")
+        expect(keys).toHaveProperty("publishableKey")
+        expect(keys).toHaveProperty("secretKey")
     })
 })
