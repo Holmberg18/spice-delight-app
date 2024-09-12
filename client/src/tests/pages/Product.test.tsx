@@ -1,7 +1,5 @@
-import { fetchProduct } from '@/utils/recipes'
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
-import { useParams } from 'react-router-dom';
-import cartReducer, { cartSlice, addToCart } from "@/features/cartSlice"
+import cartReducer from "@/features/cartSlice"
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider } from "react-redux"
 import { MemoryRouter } from "react-router-dom"
@@ -18,16 +16,9 @@ vi.mock("@/utils/recipes", async () => {
         fetchRecipe: vi.fn().mockResolvedValueOnce(recipe)
             .mockResolvedValueOnce({})
             .mockResolvedValueOnce(recipe),
-        fetchProduct: vi.fn().mockResolvedValueOnce(product)
-        .mockResolvedValueOnce(product)
-        .mockResolvedValueOnce(product)
+        fetchProduct: vi.fn().mockResolvedValue(product)
     }
 })
-
-beforeEach(() => {
-    vi.clearAllMocks();
-  });
-  
 
 describe("Product page component", () => {
     it("renders the Product page and show the product attributes including ingredients", async () => {

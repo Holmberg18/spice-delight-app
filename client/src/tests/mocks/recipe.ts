@@ -54,7 +54,7 @@ export const recipe = {
     "dateModified": null
 }
 export const product = {
-    "idMeal": 31,
+    "idMeal": "31",
     "strMealThumb": "https://www.themealdb.com/images/media/meals/wqqvyq1511179730.jpg",
     "strMeal": "Seafood fideuà",
     "price": 22,

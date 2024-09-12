@@ -102,7 +102,6 @@ declare interface Meal {
     idMeal: string,
     strMeal: string,
     price: number,
-    strMeal: string,
     strMealThumb: string,
     ratings: number
     inStock: boolean,
