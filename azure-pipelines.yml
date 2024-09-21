@@ -21,17 +21,13 @@ steps:
   inputs:
     command: 'install'
     workingDir: 'client'
+
 - task: Npm@1
   displayName: 'Installing Modules in /server'
   inputs:
     command: 'install'
     workingDir: 'server'
-
-- script: |
-    echo "VITE_AZURE_BASE_URL=http://localhost:7071" >> client/.env
-    echo "VITE_ENV=Production" >> client/.env
-  displayName: 'Set Environment Variables for Client'
-  
+    
 - task: Npm@1
   displayName: 'Building Modules in /client'
   inputs:
