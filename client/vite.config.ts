@@ -13,5 +13,13 @@ export default defineConfig({
      watch: {
        usePolling: true
      }
+     ,
+     proxy: {
+      '/api': {
+        target: 'http://localhost:7071', // Replace with your backend API URL
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   }
  })
