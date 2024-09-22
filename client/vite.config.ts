@@ -2,8 +2,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from "vite-tsconfig-paths"
-import { resolve } from "path"
-
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
@@ -13,13 +11,5 @@ export default defineConfig({
      watch: {
        usePolling: true
      }
-     ,
-     proxy: {
-      '/api': {
-        target: 'http://localhost:7071', // Replace with your backend API URL
-        changeOrigin: true,
-        secure: false,
-      },
-    },
   }
  })
