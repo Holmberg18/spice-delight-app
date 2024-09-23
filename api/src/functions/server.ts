@@ -25,7 +25,6 @@ const getSecretKey = async (): Promise<string> => {
     }
 };
 
-
 const fetchRecipe = async (id: string): Promise<any> => {
     try {
         const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${id}`, {
