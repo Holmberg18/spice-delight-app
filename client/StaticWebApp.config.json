@@ -1,17 +1,4 @@
 {
-  "globalHeaders": {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST"
-  },
-  "routes": [
-    {
-      "route": "api/*",
-      "allowedRoles": [ "anonymous" ]
-    }
-  ],
-  "platform": {
-    "apiRuntime": "node:18"
-  },
   "navigationFallback": {
     "rewrite": "/index.html"
   }
