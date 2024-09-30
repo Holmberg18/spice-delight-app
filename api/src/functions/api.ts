@@ -1,7 +1,7 @@
 import { app, HttpRequest, InvocationContext } from "@azure/functions";
-import { ClientSecretCredential, ChainedTokenCredential } from '@azure/identity';
-import { SecretClient } from '@azure/keyvault-secrets';
-import axios from 'axios';
+import { ClientSecretCredential, ChainedTokenCredential } from "@azure/identity";
+import { SecretClient } from "@azure/keyvault-secrets";
+import axios from "axios";
 
 
 const tenantId = process.env.AZURE_TENANT_ID;
@@ -20,8 +20,8 @@ const getSecretKey = async (): Promise<string> => {
         const secret = await client.getSecret(secretName);
         return secret.value!;
     } catch (error) {
-        console.error('Error fetching secret:', error);
-        throw new Error('Error fetching secret');
+        console.error("Error fetching secret:", error);
+        throw new Error("Error fetching secret");
     }
 };
 
