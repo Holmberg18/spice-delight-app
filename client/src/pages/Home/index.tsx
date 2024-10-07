@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Button, Slider } from "@/components"
-import { fetchProducts } from "@/utils/recipes"
+// import { fetchProducts } from "@/utils/recipes"
+import { AuthProvider } from "@/auth/hooks/auth-provider"
+import Auth from "@/components/Auth"
 import CircleType from "circletype"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons"
@@ -42,14 +44,17 @@ const Home = () => {
                         <p className="font-semibold text-2xl">Trending Recipes</p>
                     </div>
                     <div className="col-span-1 lg:col-span-2 my-auto">
-                        <Slider 
+                        {/* <Slider 
                             getSlideData={fetchProducts} 
                             id="idMeal"
                             src= "strMealThumb"
                             label= "strMeal"
                             imageId="strMealThumb"
                             product={true}
-                        />
+                        /> */}
+                        <AuthProvider>
+                            <Auth />
+                        </AuthProvider>
                     </div>
                     <div className="row-span-1 flex items-center my-7 justify-center xl:justify-start">
                         <Link className="font-semibold underline underline-offset-8 decoration-yellow" to="/products">Explore More</Link>
