@@ -11,6 +11,8 @@ Welcome to **Spice Delight**, your go-to app for exploring mouthwatering food it
 
 - **User Reviews and Ratings:** Read honest reviews from fellow foodies and share your own experiences. Let's build a community of passionate cooks!
 
-## Feedback and Support
+## Spice Delight is a full-stack web application built with the following technologies:
 
-Have feedback, questions, or need assistance? Reach out to us at holmberg18@gmail.com. We'd love to hear from you!
+- **Frontend: Developed using React with Vite for fast, modern web development. TypeScript for improved type safety and better developer tooling, and designed and styled with Tailwind.
+
+- **Backend: The app’s backend is powered by ASP.NET Web API, providing a robust and scalable framework for managing data, handling user requests, and serving the necessary APIs.
