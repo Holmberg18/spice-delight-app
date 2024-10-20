@@ -9,7 +9,7 @@ Welcome to **Spice Delight**, your go-to app for exploring mouthwatering food it
 
 - **Ingredients at Your Fingertips:** Find detailed ingredient lists, nutritional information, and step-by-step instructions for each recipe. No more last-minute grocery store runs!
 
-- **User Reviews and Ratings:** Read honest reviews from fellow foodies and share your own experiences. Let's build a community of passionate cooks!
+- **Ratings:** Read honest reviews from fellow foodies and share your own experiences. Let's build a community of passionate cooks!
 
 ## Spice Delight is a full-stack web application built with the following technologies:
 
