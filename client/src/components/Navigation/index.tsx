@@ -4,6 +4,7 @@ import Searchbar from "@/components/Searchbar"
 import Cart from "@/components/Cart"
 import Account from "@/components/Account"
 import Button from "@/components/Button"
+import ScrollLink from '@/components/ScrollLink'
 
 const Navigation = () => {
 
@@ -19,26 +20,26 @@ const Navigation = () => {
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
                         <li>
-                            <Link to="/" data-testid="home-link-desktop">
+                            <ScrollLink to="/" data-testid="home-link-desktop">
                                 <div className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
                                     Home
                                 </div>
-                            </Link>
+                            </ScrollLink>
                         </li>
                         <li>
-                            <Link to="/products" data-testid="products-link-desktop">
+                            <ScrollLink to="/products" data-testid="products-link-desktop">
                                 <div className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
                                     Products
                                 </div>
-                            </Link>
+                            </ScrollLink>
                         </li>
                         <li role="listitem" data-testid="searchbar-container-desktop">
                             <Searchbar />
                         </li>
                         <li>
-                            <Link to="/phone-app" data-testid="get-the-app-link-desktop" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
+                            <ScrollLink to="/phone-app" data-testid="get-the-app-link-desktop" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
                                 <Button buttonType="button" name={<p>Get the App</p>} rounded={true} />
-                            </Link>
+                            </ScrollLink>
                         </li>
                         <li data-testid="cart-container">
                             <Cart />
@@ -88,7 +89,7 @@ const Navigation = () => {
                 >
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                         <li>
-                            <Link to="/" data-testid="nav-home-link-mobile">
+                            <ScrollLink to="/" data-testid="nav-home-link-mobile">
                                 <div
                                     className="block py-2 pl-3 pr-4 text-gray-900 bg-blue-700 rounded dark:bg-blue-600 dark:hover:text-white"
                                     aria-current="page"
@@ -96,22 +97,22 @@ const Navigation = () => {
                                 >
                                     Home
                                 </div>
-                            </Link>
+                            </ScrollLink>
                         </li>
                         <li>
-                            <Link to="/products" data-testid="nav-products-link-mobile">
+                            <ScrollLink to="/products" data-testid="nav-products-link-mobile">
                                 <div
                                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                     data-testid="nav-products-link"
                                 >
                                     Products
                                 </div>
-                            </Link>
+                            </ScrollLink>
                         </li>
                         <li>
-                            <Link data-testid="nav-cart-link-mobile" to="/cart" className="dark:hover:text-white">
-                                <Cart /> {/* Added label for the cart component */}
-                            </Link>
+                            <ScrollLink data-testid="nav-cart-link-mobile" to="/cart" className="dark:hover:text-white">
+                                <Cart /> 
+                            </ScrollLink>
                         </li>
                     </ul>
                 </div>

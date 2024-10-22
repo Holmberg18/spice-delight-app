@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { ScrollLink } from "@/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import { RootState } from "@/app/store"
@@ -14,11 +14,11 @@ const Account = () => {
 
     return(
         <div className="flex flex-row space-x-4">      
-            <Link to="/login" data-testid="nav-account-link">
+            <ScrollLink to="/login" dataTestId="nav-account-link">
                 <button>
                     <FontAwesomeIcon icon={faUser} /> <span className="text-sm">{loggedIn ? "My Account" : "Login"}</span>
                 </button>
-            </Link>
+            </ScrollLink>
             { 
                 loggedIn ? 
                     <button className="space-x-1" onClick={handleLogout}>

@@ -21,7 +21,7 @@ const getValidIngredients = (meal: Record<string, any> | undefined): string[] =>
 
 const RecipePage = () => {
     const [recipe, setRecipe] = useState<Record<string, any>>()
-    const [product, setProduct] = useState<Product>()
+    const [product, setProduct] = useState<Record<string, any>>()
     const { id } = useParams<{ id: string }>();
     const params: string[] | undefined = id?.split("+")
     const productName: string = params ? params[0] : ""
@@ -29,13 +29,13 @@ const RecipePage = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart.items)
 
-    const getRecipe = async (id: string | undefined): Promise<void> => {
-        const response = await fetchRecipe(id);
+    const getRecipe = async (name: string | undefined): Promise<void> => {
+        const response: Meal | {} = await fetchRecipe(name);
         setRecipe(response);
     }
 
-    const getProduct = async (name: string): Promise<void> => {
-        const response = await fetchProduct(name);
+    const getProduct = async (id: string): Promise<void> => {
+        const response: Product | {} = await fetchProduct(id);
         setProduct(response);
     }
 
@@ -45,7 +45,6 @@ const RecipePage = () => {
     }, [])
 
     const {
-        idMeal,
         strMealThumb,
         strMeal,
         strCategory,
@@ -72,7 +71,7 @@ const RecipePage = () => {
     const ingredients = getValidIngredients(recipe);
 
     const meal: Product = {
-        idMeal: idMeal,
+        idMeal: productId ? productId: "0",
         strMeal: strMeal,
         price: price,
         strMealThumb: strMealThumb,
@@ -108,7 +107,7 @@ const RecipePage = () => {
                             <h3 className="text-xl font-semibold">Category: {strCategory}</h3>
                         </div>
                         <div className="flex flex-row justify-center items-center mt-4">
-                            {cartItems.some((cartItem: CartItem) => cartItem.meal.idMeal === idMeal) ? (
+                            {cartItems.some((cartItem: CartItem) => cartItem.meal.idMeal == productId) ? (
                                 <Button
                                     buttonType="button"
                                     action={() => {

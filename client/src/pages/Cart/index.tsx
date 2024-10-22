@@ -1,6 +1,5 @@
 import { ChangeEvent } from "react"
-import { Link } from "react-router-dom"
-import { Rating, Button } from "@/components"
+import { Rating, Button, ScrollLink } from "@/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import { updateQuantity, removeFromCart } from "@/features/cartSlice"
@@ -23,7 +22,7 @@ const Cart = () => {
                     {
                         cart.length > 0 ? cart.map((prod: CartItem) => (
                             <li key={prod.meal.strMeal} className="flex flex-col justify-around items-center bg-white shadow-lg p-4 my-4 rounded-lg shadow md:flex-row md:width-full hover:bg-gray-100">
-                                <Link to={`/product/`+prod.meal.strMeal+`+`+prod.meal}><img className="md:max-w-xs fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} /></Link>
+                                <ScrollLink to={`/product/`+prod.meal.strMeal+`+`+prod.meal.idMeal}><img className="md:max-w-xs fluid rounded-lg" src={prod.meal.strMealThumb} alt={prod.meal.strMeal} /></ScrollLink>
                                 <p>{prod.meal.strMeal}</p>
                                 <p>${prod.meal.price.toFixed(2)}</p>
                                 <Rating rating={prod.meal.ratings} className="px-6 pb-2" />
@@ -55,9 +54,9 @@ const Cart = () => {
                 <p className="Manrope bold mb-3">Total: ${cartTotal}</p>
                 {
                     cart.length > 0 ? 
-                    <Link to="/checkout" className="flex justify-center align-items">
+                    <ScrollLink to="/checkout" className="flex justify-center align-items">
                         <Button buttonType="button" name={<p>Proceed to Checkout</p>} className="bg-blue" rounded={false} />
-                    </Link> : ""
+                    </ScrollLink> : ""
                 }
             </div>
         </div>

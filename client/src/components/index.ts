@@ -14,3 +14,4 @@ export { default as Slider } from '@/components/Slider';
 export { default as StripeCheckout } from '@/components/StripeCheckout';
 export { default as ProtectedRoute } from "@/components/ProtectedRoute"
 export { default as Loading } from "@/components/Loading"
+export { default as ScrollLink } from "@/components/ScrollLink"
