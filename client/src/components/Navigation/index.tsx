@@ -20,14 +20,14 @@ const Navigation = () => {
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
                         <li>
-                            <ScrollLink to="/" data-testid="home-link-desktop">
+                            <ScrollLink to="/" dataTestId="home-link-desktop">
                                 <div className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
                                     Home
                                 </div>
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink to="/products" data-testid="products-link-desktop">
+                            <ScrollLink to="/products" dataTestId="products-link-desktop">
                                 <div className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
                                     Products
                                 </div>
@@ -37,7 +37,7 @@ const Navigation = () => {
                             <Searchbar />
                         </li>
                         <li>
-                            <ScrollLink to="/phone-app" data-testid="get-the-app-link-desktop" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
+                            <ScrollLink to="/phone-app" dataTestId="get-the-app-link-desktop" className="block py-2 pl-3 pr-4 text-black-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue md:dark:hover:bg-transparent">
                                 <Button buttonType="button" name={<p>Get the App</p>} rounded={true} />
                             </ScrollLink>
                         </li>
@@ -89,7 +89,7 @@ const Navigation = () => {
                 >
                     <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                         <li>
-                            <ScrollLink to="/" data-testid="nav-home-link-mobile">
+                            <ScrollLink to="/" dataTestId="nav-home-link-mobile">
                                 <div
                                     className="block py-2 pl-3 pr-4 text-gray-900 bg-blue-700 rounded dark:bg-blue-600 dark:hover:text-white"
                                     aria-current="page"
@@ -100,7 +100,7 @@ const Navigation = () => {
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink to="/products" data-testid="nav-products-link-mobile">
+                            <ScrollLink to="/products" dataTestId="nav-products-link-mobile">
                                 <div
                                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                     data-testid="nav-products-link"
@@ -110,7 +110,7 @@ const Navigation = () => {
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink data-testid="nav-cart-link-mobile" to="/cart" className="dark:hover:text-white">
+                            <ScrollLink dataTestId="nav-cart-link-mobile" to="/cart" className="dark:hover:text-white">
                                 <Cart /> 
                             </ScrollLink>
                         </li>

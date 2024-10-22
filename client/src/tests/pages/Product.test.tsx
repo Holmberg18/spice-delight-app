@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import cartReducer from "@/features/cartSlice"
+import { Params } from 'react-router-dom';
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider } from "react-redux"
 import { MemoryRouter } from "react-router-dom"
@@ -19,6 +20,15 @@ vi.mock("@/utils/recipes", async () => {
         fetchProduct: vi.fn().mockResolvedValue(product)
     }
 })
+
+vi.mock('react-router-dom', async () => {
+    const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom')
+
+    return {
+      ...actual,
+      useParams: (): Readonly<Params<string>> => ({ id: "Seafood%20fideuà+31" }),
+    };
+});
 
 describe("Product page component", () => {
     it("renders the Product page and show the product attributes including ingredients", async () => {
@@ -103,7 +113,7 @@ describe("Product page component", () => {
             expect(screen.getByRole("button", { name: /remove from cart/i })).toBeInTheDocument()
         })
         expect(store.getState().cart.items[0].meal).toStrictEqual({
-            "idMeal": "52836",
+            "idMeal": "31",
             "strMealThumb": "https://www.themealdb.com/images/media/meals/wqqvyq1511179730.jpg",
             "strMeal": "Seafood fideuà",
             "price": 22,
