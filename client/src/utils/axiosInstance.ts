@@ -1,12 +1,5 @@
-import axios from 'axios'
-import { AxiosInstance } from 'axios'
-import Cookies from "js-cookie"
-
-const setCookie = (data: any): void => {
-    const tokenString: string = JSON.stringify(data)
-    Cookies.set("token", tokenString, { expires: 1 })
-}
-
+import axios from 'axios';
+import { AxiosInstance } from 'axios';
 
 const getToken = async (): Promise<Object> => {
     try {
@@ -15,7 +8,6 @@ const getToken = async (): Promise<Object> => {
                 "Content-Type": "application/json"
             }
         });
-        setCookie(response.data)
         return response.data;
     } catch (error: any) {
         console.log(error.message);
@@ -25,13 +17,12 @@ const getToken = async (): Promise<Object> => {
 
 
 const buildAxiosInstance = async (): Promise<AxiosInstance> => {
-    const savedToken: string | undefined = Cookies.get("token")
-    const token: Object = savedToken?.length ? JSON.parse(savedToken) : await getToken()
+    const token = await getToken()
     const axiosInstance = await axios.create({
         baseURL: "https://api-management-spicedelightappapi.azure-api.net",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token?.access_token || ''}` // Handle undefined access_token
+            "Authorization": `Bearer ${token?.access_token || ''}`
         }
     });
     return axiosInstance
