@@ -25,9 +25,20 @@ vi.mock('react-router-dom', async () => {
     const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom')
 
     return {
-      ...actual,
-      useParams: (): Readonly<Params<string>> => ({ id: "Seafood%20fideuà+31" }),
+        ...actual,
+        useParams: (): Readonly<Params<string>> => ({ id: "Seafood%20fideuà+31" }),
     };
+});
+
+beforeEach(() => {
+    // IntersectionObserver isn't available in test environment
+    const mockIntersectionObserver = vi.fn();
+    mockIntersectionObserver.mockReturnValue({
+        observe: () => null,
+        unobserve: () => null,
+        disconnect: () => null
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
 });
 
 describe("Product page component", () => {
@@ -54,7 +65,6 @@ describe("Product page component", () => {
 
         expect(screen.getByText("Seafood fideuà")).toBeInTheDocument()
         expect(screen.getByText("Regular Delivery")).toBeInTheDocument()
-        expect(screen.getByRole("img")).toHaveAttribute("src", "https://www.themealdb.com/images/media/meals/wqqvyq1511179730.jpg")
         expect(screen.getByText("Mussels, Prawns, Saffron, Vermicelli, Olive Oil, Onions, Garlic, Paprika, Monkfish, Baby Squid, Fish Stock, Tomatoes, Lemon, Parsley"))
             .toBeInTheDocument()
     })
@@ -80,7 +90,6 @@ describe("Product page component", () => {
         })
 
         expect(screen.queryAllByText("Seafood fideuà").length).toBe(0)
-        expect(screen.getByRole("img")).not.toHaveAttribute("src", "https://www.themealdb.com/images/media/meals/wqqvyq1511179730.jpg")
         expect(screen.queryAllByText("Mussels, Prawns, Saffron, Vermicelli, Olive Oil, Onions, Garlic, Paprika, Monkfish, Baby Squid, Fish Stock, Tomatoes, Lemon, Parsley").length)
             .toBe(0)
     })

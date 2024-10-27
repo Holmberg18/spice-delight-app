@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react" 
+import { useState, useEffect, useMemo } from "react" 
 import "keen-slider/keen-slider.min.css"
 import { Loading } from "@/components"
 import { useKeenSlider } from "keen-slider/react"
 import { useNavigate } from "react-router-dom"
+import data from "./data.json"
 
 interface Props {
     getSlideData: Function
@@ -15,10 +16,10 @@ interface Props {
     product: boolean,
 }
 
-
 const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) => {
 
     const [slideData, setSlideData] = useState<Object[]>([])
+    const { recipeSlides }: {recipeSlides : any} = data
     const [currentSlide, setCurrentSlide] = useState<number>(0)
     const [loaded, setLoaded] = useState<boolean>(false)
     const navigate = useNavigate()
@@ -62,12 +63,14 @@ const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) 
         }
     })
 
+    const slides = useMemo(() => slideData.length ? slideData : recipeSlides, [slideData])
+
     return (
         <>
           <div className="relative flex flex-row">
             <div ref={sliderRef} className="keen-slider">
             {
-                Array.isArray(slideData) && slideData.length > 0 ? slideData.map((slide: {[key: string]: any}, index: number) => 
+                Array.isArray(slides) && slides.length > 0 ? slides.map((slide: {[key: string]: any}, index: number) => 
                     <div key={slide[id]} className={`keen-slider__slide number-slide${index}`}>
                         <div className="max-w-sm rounded overflow-hidden shadow-lg">
                             <img src={slide[src]} alt="recipe" className="w-full cursor-pointer" onClick={() => handleImgClick(slide)} />
@@ -100,7 +103,7 @@ const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) 
                   }
                   disabled={
                     currentSlide ===
-                    slideData.length - 1
+                    slides.length - 1
                   }
                 />
               </>
@@ -109,7 +112,7 @@ const Slider = ({ getSlideData, id, src, label, initialSlide, product }: Props) 
           {loaded && instanceRef.current && (
             <div className="dots">
               {[
-                ...Array(slideData.length).keys(),
+                ...Array(slides.length).keys(),
               ].map((idx) => {
                 return (
                   <button

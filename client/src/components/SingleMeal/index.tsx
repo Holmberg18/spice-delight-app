@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addToCart, removeFromCart } from "@/features/cartSlice"
 import { RootState } from "@/app/store"
 import { CartItem } from "@/models/Meal"
-import { Link } from "react-router-dom"
+import ScrollLink from "../ScrollLink"
 
 interface Props {
     meal: Product
@@ -26,11 +26,11 @@ const SingleMeal = ({ meal }: Props) => {
 
     return (
         <div className="max-w-md rounded overflow-hidden shadow-lg m-8 flex flex-col justify-evenly items-center">
-            <Link to={`/product/${strMeal}+${idMeal}`}>
+            <ScrollLink to={`/product/${strMeal}+${idMeal}`}>
                 <div className="overflow-hidden">
                     <img className="w-full transition-transform duration-500 ease-in-out transform hover:scale-110" src={strMealThumb} alt={strMeal} />
                 </div>
-            </Link>
+            </ScrollLink>
             <div className="px-6 py-4 h-64">
                 <div className="font-bold text-lg mb-2">{strMeal}</div>
                 <span data-testid="price">${price.toFixed(2)}</span>

@@ -56,26 +56,4 @@ describe("Slider component", () => {
     })
   });
 
-  it("renders the slider component with no slide data, defaults to loading spinner", async () => {
-    const { container } = render(
-      <BrowserRouter>
-        <Slider
-          getSlideData={fetchProducts}
-          id="idMeal"
-          src="strMealThumb"
-          label="strMeal"
-          imageId="strMealThumb"
-          product={true}
-        />
-      </BrowserRouter>
-    );
-
-    const images = screen.queryAllByRole('img');
-
-    await waitFor(() => {
-      expect(images.length).toBe(0);
-      expect(container.getElementsByClassName("animate-spin").length).toBe(5)
-    })
-  });
-
 });
