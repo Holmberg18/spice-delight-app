@@ -15,7 +15,7 @@ const Account = () => {
     return(
         <div className="flex flex-row space-x-4">      
             <ScrollLink to="/login" dataTestId="nav-account-link">
-                <button>
+                <button className="hover:text-blue transition-colors duration-300 space-x-1">
                     <FontAwesomeIcon icon={faUser} /> <span className="text-sm">{loggedIn ? "My Account" : "Login"}</span>
                 </button>
             </ScrollLink>

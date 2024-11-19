@@ -65,7 +65,7 @@ const Searchbar = () => {
                     icon={faSearch}
                     onClick={() => setIsVisible(true)}
                     data-testid="search-icon"
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:text-blue transition-colors duration-300"
                 />
             )}
         </div>
