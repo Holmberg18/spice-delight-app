@@ -15,7 +15,7 @@ const Button = ({ name, disabled, action, rounded, icon, className, buttonType }
         <button
             type={buttonType}
             disabled={disabled}
-            className={`bg-black hover:bg-blue-700 text-white text-sm p-4 ${rounded ? 'rounded-[24px]' : ''} ${className} flex items-center justify-center whitespace-normal break-words`}
+            className={`bg-black hover:bg-[#3d6998] text-white text-sm p-4 ${rounded ? 'rounded-[24px]' : ''} ${className} flex items-center justify-center whitespace-normal break-words transition-colors duration-300`}
             onClick={action}
         >
             {icon && <span>{icon}</span>}
