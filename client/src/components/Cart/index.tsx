@@ -58,21 +58,21 @@ const Cart = () => {
                                     />
                                 </div>
                             </li>
-                        ) : <li className="block text-white hover:text-blue text-sm cursor-pointer text-lg">Your cart is empty!</li>
+                        ) : <li className="block text-white text-sm cursor-pointer text-lg">Your cart is empty!</li>
                     }<li>
                         
                     </li>
                     <li className="flex flex-row align-items justify-center">
-                        <Button 
-                            buttonType="button"
-                            action={() => {
+                        <button
+                            button-type="button"
+                            onClick={() => {
                                 navigate("/cart")
                                 setDropdownVisible(false)
                             }}
-                            name={<p>Go to Cart</p>}
-                            rounded={true} 
-                            className="md:hover:text-blue text-[.8rem]"
-                        />
+                            className="text-white md:hover:text-blue text-[.8rem] rounded-lg h-12 transition-colors duration-300"
+                        >
+                            <p>Go to Cart</p>
+                        </button>
                     </li>
                 </ul>
             </div>

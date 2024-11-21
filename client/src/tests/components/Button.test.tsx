@@ -19,7 +19,7 @@ describe("Button Component", () => {
 
     const expectedClasses = [
         "bg-black",
-        "hover:bg-blue-700",
+        "hover:bg-[#3d6998]",
         "text-white",
         "text-sm",
         "p-4",
