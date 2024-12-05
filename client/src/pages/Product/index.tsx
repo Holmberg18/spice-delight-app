@@ -88,6 +88,12 @@ const RecipePage = () => {
 
     const productInCart: CartItem[] = cartItems.filter((cartItem: CartItem) => cartItem.meal.idMeal == productId)
 
+    if(!productName || !productId) return (
+        <div className="flex flex-col items-center justify-center h-60">
+            <h1 className="text-3xl font-bold">Ooops, we couldn't find what you were looking for!</h1>
+        </div>
+    )
+
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="flex flex-col md:flex-row w-full md:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto rounded-lg overflow-hidden shadow-lg">
