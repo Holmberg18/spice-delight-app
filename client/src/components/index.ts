@@ -15,3 +15,6 @@ export { default as StripeCheckout } from '@/components/StripeCheckout';
 export { default as ProtectedRoute } from "@/components/ProtectedRoute"
 export { default as Loading } from "@/components/Loading"
 export { default as ScrollLink } from "@/components/ScrollLink"
+export { default as About } from "@/components/About"
+export { default as Work } from "@/components/Work"
+export { default as Testimonial } from "@/components/Testimonial"

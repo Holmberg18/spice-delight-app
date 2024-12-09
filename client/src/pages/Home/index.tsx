@@ -1,6 +1,13 @@
 import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { Button, ScrollLink, Slider } from "@/components"
+import {
+    Button,
+    ScrollLink,
+    Slider,
+    About,
+    Work,
+    Testimonial
+} from "@/components"
 import { fetchProducts } from "@/utils/recipes"
 import CircleType from "circletype"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -64,6 +71,15 @@ const Home = () => {
                             <p className="font-semibold text-2xl my-2">We ensure quality food</p>
                             <p>We offer a range of healthy meal options that are made with fresh, high-quality ingredients.</p>
                         </div>
+                    </section>
+                    <section>
+                        <About />
+                    </section>
+                    <section>
+                        <Work />
+                    </section>
+                    <section>
+                        <Testimonial />
                     </section>
                 </div>
             </main>
