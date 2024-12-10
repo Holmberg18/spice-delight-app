@@ -58,7 +58,7 @@ describe("Home page component", () => {
             expect(screen.getByText("Honey Teriyaki")).toBeInTheDocument();
             expect(screen.getByText("Japanese gohan")).toBeInTheDocument();
             //slider images and hero image
-            expect(screen.getAllByRole("img").length).toBe(11);
+            expect(screen.getAllByRole("img").length).toBe(17);
         })
 
     })
